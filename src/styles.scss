@@ -17,6 +17,8 @@ $mdc-theme-on-secondary: #442b2d;
 // regular style toast
 @import '~ngx-toastr/toastr.css';
 
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 body {
   margin: 0;
 }

@@ -8,11 +8,8 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class ArticleCreateComponent implements OnInit {
 
-  constructor(private logger: NGXLogger) {
-    this.logger.info('ArticleCreateComponent');
-  }
+  constructor(private logger: NGXLogger) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

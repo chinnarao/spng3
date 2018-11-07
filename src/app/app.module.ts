@@ -24,7 +24,7 @@ import { HeaderModule } from './header/header.module';
 import { LocalStorageService } from './_core/local-storage.service';
 import { CoreModule } from './_core/core.module';
 // import { HeaderModule } from './header/header.module';
-// import { HttpErrorHandler } from './_core/http-error-handler.service';
+import { HttpErrorHandler } from './_core/http-error-handler.service';
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 
 // pending 1. if browser localstorage not supported then what?. 2. if internet offline 3. error interceptor 4.analytics.service.ts
@@ -45,8 +45,8 @@ import { CoreModule } from './_core/core.module';
     // SharedModule,
   ],
   providers: [
-    // HttpErrorHandler,
     NGXLogger, ToastrService, LocalStorageService,
+    HttpErrorHandler,
     // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
     // { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],
