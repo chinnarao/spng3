@@ -1,0 +1,45 @@
+// https://next.json-generator.com/
+[
+  {
+    'repeat(0, 99)': {
+  	    articleId:'_63667111286738610{{index()}}',
+   	    title: 'Article {{index()}}',
+        content: '{{lorem(1, "paragraphs")}}',
+        userIdOrEmail: 'article{{index()}}email@live.com',
+        userLoggedInSocialProviderName: '{{random("google", "facebook", "twitter", "linkedin", "googleplay", "anonymous")}}',
+        userPhoneNumber: '+1 {{phone()}}',
+        userSocialAvatarUrl: 'http://placehold.it/200x200',
+        biodataUrl: 'www.google.com',
+      	hireMe : '{{bool()}}',
+        openSourceUrls: 'https://github.com/chinnarao',
+        isActive: '{{bool()}}', 
+        isArticleInDraftMode:'{{bool()}}',
+        isPublished:'{{bool()}}',
+        attachedAssetsInCloudCount: '{{integer(0, 10)}}',
+        attachedAssetsInCloudStorageId:'8b8174ed-dc5d-4433-b41d-175625bd363d',
+        attachedAssetsStoredInCloudBaseFolderPath: 'https://github.com/chinnarao',
+        allRelatedSubjectsIncludesVersionsWithComma: 'c#,dotnet, javascript, html, css',
+        attachmentURLsComma: '',
+        publishedDate:  '{{moment().format()}}',
+        socialURLsWithComma: '',
+        totalVotes: '{{integer(1, 99999)}}',
+        totalVotedPersonsCount: '{{integer(1, 99999)}}',
+        articleAverageVotes:'{{integer(1, 99999)}}',
+        createdDateTime:'{{moment().format()}}',
+        updatedDateTime:'{{moment().format()}}',
+        tag1: '{{lorem(1, "words")}}',  
+        tag2: '{{lorem(1, "words")}}',  
+        tag3: '{{lorem(1, "words")}}',
+        tag4: '{{lorem(1, "words")}}',  
+        tag5: '{{lorem(1, "words")}}',
+        tag6: '{{lorem(1, "words")}}',  
+        tag7: '{{lorem(1, "words")}}',
+        tag8: '{{lorem(1, "words")}}',
+        tag9: '{{lorem(1, "words")}}',
+        tag10: '{{lorem(1, "words")}}',
+        tag11: '{{lorem(1, "words")}}',
+        tag12: '{{lorem(1, "words")}}',
+        updatedDateTimeString: '{{moment().format()}}'
+    }
+  }
+]

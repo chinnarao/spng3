@@ -1,0 +1,93 @@
+<mdc-top-app-bar-row>
+    <mdc-top-app-bar-section align="start">
+      <a routerLink="/" style="text-decoration: none;" fxShow.lt-md="false" fxShow="true">
+        <img src="/src/assets/img/scooppages.png" alt="logo" style="display: inline; height: 35px;">
+      </a>
+      <a routerLink="/" style="text-decoration: none;" fxShow.lt-md="true" fxShow="false">
+        <img src="/src/assets/img/logo.png" alt="logo" style="display: inline; height: 35px;">
+        <i class="material-icons" *ngIf="tokenStored">security</i>
+      </a>
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="start">
+      <button mdc-button class="mdc-button-color-sp" [routerLink]="['/ad-list']">
+        <mdc-icon>local_offer</mdc-icon>Advertisements
+      </button>
+      <button mdc-button class="mdc-button-color-sp" [routerLink]="['/article-list']">
+        <mdc-icon>school</mdc-icon>Articles
+      </button>
+      <!-- <div mdcMenuSurfaceAnchor #articlesanchor>
+        <button mdc-button class="mdc-button-color-sp" (click)="articles.open = !articles.open" [routerLink]="['/article-list']">
+          <mdc-icon>school</mdc-icon><a [routerLink]="['/article-list']">Articles</a><mdc-icon>arrow_drop_down</mdc-icon>
+        </button>
+        <mdc-menu #articles [anchor]="articlesanchor" anchorCorner="bottomStart" style="min-width: 150px;">
+          <mdc-list>
+            <mdc-list-item>Dotnet</mdc-list-item>
+            <mdc-list-item>Java</mdc-list-item>
+            <mdc-list-item>Python</mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div> -->
+    </mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="start"></mdc-top-app-bar-section>
+    <mdc-top-app-bar-section align="end">
+      <mat-search-bar #headerSearchBar></mat-search-bar>
+      <div mdcMenuSurfaceAnchor #postanchor>
+        <button mdc-button class="mdc-button-color-sp" (click)="postmenu.open = !postmenu.open">
+          <mdc-icon>note_add</mdc-icon>Post<mdc-icon>arrow_drop_down</mdc-icon>
+        </button>
+        <mdc-menu #postmenu [anchor]="postanchor" anchorCorner="bottomStart" style="min-width: 200px;">
+          <mdc-list>
+            <mdc-list-item [routerLink]="['/ad-list/create']">
+              <mdc-icon>local_offer</mdc-icon>Add Advertisement
+            </mdc-list-item>
+            <mdc-list-item [routerLink]="['/article-list/create']">
+              <mdc-icon>school</mdc-icon> Add Article
+            </mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div>
+      <div mdcMenuSurfaceAnchor #aboutanchor>
+        <button mdc-button class="mdc-button-color-sp" (click)="aboutmenu.open = !aboutmenu.open">
+          About<mdc-icon>arrow_drop_down</mdc-icon>
+        </button>
+        <mdc-menu #aboutmenu [anchor]="aboutanchor" anchorCorner="bottomStart" style="min-width: 240px;">
+          <mdc-list>
+            <mdc-list-item>
+              <mdc-icon>email</mdc-icon><span class="nowrap">Send Email To Site Owner</span>
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon>help</mdc-icon>Help
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon>security</mdc-icon>Privacy
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon>info</mdc-icon>Press
+            </mdc-list-item>
+            <mdc-list-item>
+              <mdc-icon>history</mdc-icon>Our Story
+            </mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div>
+      <div mdcMenuSurfaceAnchor #signanchor>
+        <button mdc-button class="mdc-button-color-sp" (click)="signmenu.open = !signmenu.open">
+          <mdc-icon>person</mdc-icon><mdc-icon>arrow_drop_down</mdc-icon>
+        </button>
+        <mdc-menu #signmenu [anchor]="signanchor" anchorCorner="bottomStart">
+          <mdc-list>
+            <mdc-list-item [routerLink]="['/log-in']" *ngIf="!isLoggedIn">
+              <mdc-icon>input</mdc-icon>Log In
+            </mdc-list-item>
+            <mdc-list-item (click)="signOut()" *ngIf="isLoggedIn">
+              <mdc-icon>exit_to_app</mdc-icon>Sign Out
+            </mdc-list-item>
+            <mdc-list-item [routerLink]="['/register']">
+              <mdc-icon>person_add</mdc-icon>Register
+            </mdc-list-item>
+          </mdc-list>
+        </mdc-menu>
+      </div>
+      <div id="google_translate_element"></div>
+    </mdc-top-app-bar-section>
+  </mdc-top-app-bar-row>

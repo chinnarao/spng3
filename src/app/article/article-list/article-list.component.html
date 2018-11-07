@@ -1,0 +1,19 @@
+<div fxLayout="column">
+  <div fxLayout="row" style="text-align:center;">
+    <nav fxFlex="15" fxFlexOrder.xs="2">
+      <div></div>
+    </nav>
+    <article fxFlex="70" fxFlexOrder.xs="1">
+      <div>
+          <app-article-search></app-article-search>
+      </div>
+      <div>
+        <H1>Articles</H1>
+        <button class="cancel-button" (click)="createError()" style="border:1px solid #dfdfdf;" mat-button>create error</button>
+      </div>
+    </article>
+    <aside fxFlex="15" fxFlexOrder.xs="3">
+      <div></div>
+    </aside>
+  </div>
+</div>

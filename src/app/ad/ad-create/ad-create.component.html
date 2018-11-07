@@ -1,0 +1,26 @@
+<div fxLayout="column">
+  <div fxLayout="row" style="text-align:center;">
+    <nav fxFlex="15" fxFlexOrder.xs="2">
+      <div></div>
+    </nav>
+    <article fxFlex="70" fxFlexOrder.xs="1">
+      <div>
+        <H1>Create Advertisement</H1><button (click)="createAd()">CreateAd</button>
+      </div>
+      <div>
+        <div>Please fix below fields:</div>
+        <ul>
+          <li *ngFor="let error of errors" style="color: red;"> 
+            {{ error }}
+          </li>
+        </ul>
+      </div>
+      <div>
+        <textarea rows="40" cols="100">{{adModel | json:2}}</textarea>
+      </div>
+    </article>
+    <aside fxFlex="15" fxFlexOrder.xs="3">
+      <div></div>
+    </aside>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div>
+  <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)"></firebase-ui>
+  <div style="margin-bottom:40px;" fxLayout fxLayoutAlign="center center">
+    <button class="cancel-button" [routerLink]="['/']" style="border:1px solid #dfdfdf;" mat-button>Go to Home</button>
+    <button class="cancel-button" [routerLink]="['/ad-list']" style="border:1px solid #dfdfdf;" mat-button>Go to Advertisements</button>
+    <button class="cancel-button" [routerLink]="['/article-list']" style="border:1px solid #dfdfdf;" mat-button>Go to Articles</button>
+  </div>
+</div>

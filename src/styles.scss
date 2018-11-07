@@ -1,1 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+// $mdc-theme-primary: #1565c0;
+// $mdc-theme-secondary: #388e3c;
+$mdc-theme-background: #fff;
+
+$mdc-theme-primary: white;
+$mdc-theme-secondary: #feeae6;
+$mdc-theme-on-primary: #442b2d;
+$mdc-theme-on-secondary: #442b2d;
+
+@import '~firebaseui/dist/firebaseui.css';
+@import "~@angular-mdc/theme/material";
+//@import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700');
+//@import url('https://fonts.googleapis.com/css?family=Droid+Sans:400,700');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+// regular style toast
+@import '~ngx-toastr/toastr.css';
+
+body {
+  margin: 0;
+}
+
+.mdc-button-color-sp {
+  // @include mdc-button-container-fill-color(white);
+  @include mdc-button-icon-color(black);
+  @include mdc-button-ink-color(black);
+  @include mdc-states(black);
+}
+.mdc-list{
+  padding: 0px;
+}
+.mdc-list-item {
+  height: 36px;
+  padding: 0 10px;
+}
+.ng-mdc-icon{
+    padding-right: 6px;
+}
+
+.mat-input-element{
+  background: lightgray !important;
+}

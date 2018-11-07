@@ -1,0 +1,63 @@
+// https://next.json-generator.com/
+[
+  {
+    'repeat(0, 99)': {
+        mockDontUse1: '{{floating(-90.000001, 90)}}',
+        mockDontUse2: '{{floating(-180.000001, 180)}}',
+        mockDontUse3: '{{floating(1000, 4000, 2, "0.00")}}',
+        mockDontUse4: '{{integer(11111, 99999)}}',
+  	    adId: '_63667111286738610{{index()}}',
+   	    adTitle: 'Ad {{index()}}',
+        adContent: '{{lorem(1, "paragraphs")}}',
+        adDisplayDays: 30,
+        userIdOrEmail: 'ad{{index()}}email@live.com',
+        userPhoneNumber: '+1 {{phone()}}',
+        userSocialAvatarUrl: 'http://placehold.it/200x200',
+      	userLoggedInSocialProviderName: '{{random("google", "facebook", "twitter", "linkedin", "googleplay", "anonymous")}}',
+      	addressStreet: "{{integer(100, 999)}} {{street()}}",
+        addressCity: "{{city()}}",
+        addressDistrictOrCounty: '{{random("orange", "los angeles", "bakersfield", "san fernanado", "san francisco", "anonymous")}}',
+        addressState: "{{state()}}",
+        addressPartiesMeetingLandmarkName: '{{firstName()}} {{surname()}}',
+        addressZipCode(tags){
+          return this.mockDontUse4 + '-' + this.mockDontUse4.toString().slice(1);
+        },
+        addressCountryCode: '{{random("in", "us", "ca", "sl", "jp", "au")}}',
+        addressCountryName: '{{random("india", "united states", "canada", "sri lanka", "japan", "australia")}}',
+        addressLatitude(tags){
+          return Number(this.mockDontUse1);
+        },
+        addressLongitude(tags){
+          return Number(this.mockDontUse2);
+        },
+        itemCost(tags){
+          return Number(this.mockDontUse3);
+        },
+        itemCostCurrencyName: 'dollar',
+        itemCurrencyISO_4217:'USD',
+        attachedAssetsInCloudCount: '{{integer(0, 10)}}',
+        attachedAssetsInCloudStorageId:'8b8174ed-dc5d-4433-b41d-175625bd363d',
+        attachedAssetsStoredInCloudBaseFolderPath: 'https://github.com/chinnarao',
+        createdDateTime:'{{moment().format()}}',
+        updatedDateTime:'{{moment().format()}}',
+        isDeleted: '{{bool()}}',
+        deletedDateTime:'',
+        isPublished: '{{bool()}}',
+        lastDraftOrBeforePublishedDateTime:'{{moment().format()}}',
+        lastPublishedDateTime: '{{moment().format()}}',
+        isActive: '{{bool()}}', 
+        lastActiveDateTime: '' ,
+        lastInActiveDateTime: '',
+        tag1: '{{lorem(1, "words")}}',  
+        tag2: '{{lorem(1, "words")}}',  
+        tag3: '{{lorem(1, "words")}}',
+        tag4: '{{lorem(1, "words")}}',  
+        tag5: '{{lorem(1, "words")}}',
+        tag6: '{{lorem(1, "words")}}',  
+        tag7: '{{lorem(1, "words")}}',
+        tag8: '{{lorem(1, "words")}}',
+        tag9: '{{lorem(1, "words")}}',
+        updatedDateTimeString: '{{moment().format()}}'
+    }
+  }
+]
