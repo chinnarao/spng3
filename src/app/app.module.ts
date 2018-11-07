@@ -18,21 +18,25 @@ import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HomeModule } from './home/home.module';
+import { PagesModule } from './_pages/pages.module';
 // import { HttpErrorHandler } from './_core/http-error-handler.service';
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 
 // pending 1. if browser localstorage not supported then what?. 2. if internet offline 3. error interceptor 4.analytics.service.ts
 // offline: https://github.com/cyrilletuzi/ngx-pwa-offline
+// environment.apiLogglyLogURL
 
 @NgModule({
   declarations: [ AppComponent, ],
   imports: [
     BrowserModule, AppRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
     // MenuMdcModule, MenuModule,
-    // LoggerModule.forRoot({serverLoggingUrl: environment.apiLogglyLogURL, level: NgxLoggerLevel.INFO, serverLogLevel: NgxLoggerLevel.TRACE}),
+    LoggerModule.forRoot({serverLoggingUrl: '', level: NgxLoggerLevel.INFO, serverLogLevel: NgxLoggerLevel.TRACE}),
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     LoadingBarHttpClientModule, LoadingBarRouterModule,
-    ToastrModule.forRoot({timeOut: 0, preventDuplicates: true, closeButton: true, tapToDismiss: true, progressBar: true, newestOnTop: true }), // positionClass: 'toast-bottom-full-width'
+    ToastrModule.forRoot({timeOut: 0, preventDuplicates: true, closeButton: true, tapToDismiss: true, progressBar: true, newestOnTop: true }),
+    HomeModule, PagesModule // positionClass: 'toast-bottom-full-width'
     // SharedModule, CoreModule,
   ],
   providers: [

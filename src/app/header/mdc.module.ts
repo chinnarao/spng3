@@ -48,4 +48,4 @@ import {
     // MdcTypographyModule,
   ]
 })
-export class MenuMdcModule { }
+export class MdcModule { }

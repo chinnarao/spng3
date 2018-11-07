@@ -4,7 +4,6 @@ import { RouterModule } from '@angular/router';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SpinnerComponent } from './components/spinner/spinner.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './pages/error/error.component';
@@ -23,14 +22,12 @@ import { MdcModule } from './modules/mdc.module';
     FooterComponent,
     HomeComponent,
     SpinnerComponent,
-    NotFoundComponent,
     ErrorComponent,
   ],
   exports: [
     FooterComponent,
     HomeComponent,
     SpinnerComponent,
-    NotFoundComponent,
     ErrorComponent,
   ],
   providers: [UtilsService],

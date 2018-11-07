@@ -1,5 +1,5 @@
-import { environment } from 'src/environments/environment';
-import {NgModule} from '@angular/core';
+import { environment} from 'src/environments/environment';
+import { NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -10,8 +10,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LogInComponent } from './log-in/log-in.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
-import { MenuMdcModule } from './menu.mdc.module';
-import { MenuService } from './menu.service';
+import { MdcModule } from './mdc.module';
+import { HeaderRouteHelperService } from './header-route-helper.service';
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -52,10 +52,10 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    MenuMdcModule,
+    MdcModule,
   ],
   declarations: [LogInComponent, HeaderComponent, RegisterComponent],
   exports: [LogInComponent, HeaderComponent, RegisterComponent],
-  providers: [MenuService]
+  providers: [HeaderRouteHelperService]
 })
-export class MenuModule { }
+export class HeaderModule { }

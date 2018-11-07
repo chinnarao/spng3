@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import 'zone.js/dist/zone-patch-rxjs';
 import { NGXLogger } from 'ngx-logger';
 import { User } from 'src/app/_models/user';
-import { MenuService } from '../menu.service';
+import { HeaderRouteHelperService } from '../header-route-helper.service';
 import { LocalStorageService } from 'src/app/_core/local-storage.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
     constructor(
         private afAuth: AngularFireAuth,
         private router: Router,
-        private menuService: MenuService,
+        private menuService: HeaderRouteHelperService,
         private ngZone: NgZone,
         private logger: NGXLogger,
         private localStorageService: LocalStorageService

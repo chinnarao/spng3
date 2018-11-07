@@ -1,4 +1,6 @@
-<mdc-top-app-bar-row>
+<!-- main content will not work [fixedAdjustElement]="mainContent"-->
+<mdc-top-app-bar [fixedAdjustElement]="mainContent">
+  <mdc-top-app-bar-row>
     <mdc-top-app-bar-section align="start">
       <a routerLink="/" style="text-decoration: none;" fxShow.lt-md="false" fxShow="true">
         <img src="/src/assets/img/scooppages.png" alt="logo" style="display: inline; height: 35px;">
@@ -72,7 +74,8 @@
       </div>
       <div mdcMenuSurfaceAnchor #signanchor>
         <button mdc-button class="mdc-button-color-sp" (click)="signmenu.open = !signmenu.open">
-          <mdc-icon>person</mdc-icon><mdc-icon>arrow_drop_down</mdc-icon>
+          <mdc-icon>person</mdc-icon>
+          <mdc-icon>arrow_drop_down</mdc-icon>
         </button>
         <mdc-menu #signmenu [anchor]="signanchor" anchorCorner="bottomStart">
           <mdc-list>
@@ -91,3 +94,4 @@
       <div id="google_translate_element"></div>
     </mdc-top-app-bar-section>
   </mdc-top-app-bar-row>
+</mdc-top-app-bar>
