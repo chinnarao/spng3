@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
+// import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import 'zone.js/dist/zone-patch-rxjs';
+// import 'zone.js/dist/zone-patch-rxjs';
 import { NGXLogger } from 'ngx-logger';
 import { User } from 'src/app/_models/user';
 import { HeaderRouteHelperService } from '../header-route-helper.service';
@@ -18,34 +18,34 @@ export class HeaderComponent implements OnInit {
     routingService: any;
     tokenStored = false;
     constructor(
-        private afAuth: AngularFireAuth,
+        // private afAuth: AngularFireAuth,
         private router: Router,
         private menuService: HeaderRouteHelperService,
         private ngZone: NgZone,
         private logger: NGXLogger,
         private localStorageService: LocalStorageService
     ) {
-        this.afAuth.auth.onAuthStateChanged(user => {
-            if (user) {
-                this.user = new User(user);
-                user.getIdToken(true).then(idToken => {
-                    this.user.user_idToken = idToken;
-                    // this.logger.info(this.user);
-                    this.localStorageService.set(Constants.token, idToken);
-                    this.tokenStored = true;
-                });
-                const route_2 = this.menuService.getRouteHistoryUrls_2();
-                // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
-                this.ngZone.run(() => this.router.navigate([route_2]));
-                this.isLoggedIn = true;
-            } else {
-                this.isLoggedIn = false;
-            }
-        });
+        // this.afAuth.auth.onAuthStateChanged(user => {
+        //     if (user) {
+        //         this.user = new User(user);
+        //         user.getIdToken(true).then(idToken => {
+        //             this.user.user_idToken = idToken;
+        //             // this.logger.info(this.user);
+        //             this.localStorageService.set(Constants.token, idToken);
+        //             this.tokenStored = true;
+        //         });
+        //         const route_2 = this.menuService.getRouteHistoryUrls_2();
+        //         // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
+        //         // this.ngZone.run(() => this.router.navigate([route_2]));
+        //         this.isLoggedIn = true;
+        //     } else {
+        //         this.isLoggedIn = false;
+        //     }
+        // });
     }
 
     signOut() {
-        this.afAuth.auth.signOut();
+        // this.afAuth.auth.signOut();
         this.isLoggedIn = false;
         this.user = undefined;
         const route_1 = this.menuService.getRouteHistoryUrls_1();

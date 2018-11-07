@@ -1,4 +1,3 @@
-// import {CoreModule} from './_core/core.module';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, ErrorHandler} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -20,6 +19,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HomeModule } from './home/home.module';
 import { PagesModule } from './_pages/pages.module';
+import { MdcModule } from './header/mdc.module';
+import { HeaderModule } from './header/header.module';
+import { LocalStorageService } from './_core/local-storage.service';
+import { CoreModule } from './_core/core.module';
+// import { HeaderModule } from './header/header.module';
 // import { HttpErrorHandler } from './_core/http-error-handler.service';
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 
@@ -36,12 +40,13 @@ import { PagesModule } from './_pages/pages.module';
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     LoadingBarHttpClientModule, LoadingBarRouterModule,
     ToastrModule.forRoot({timeOut: 0, preventDuplicates: true, closeButton: true, tapToDismiss: true, progressBar: true, newestOnTop: true }),
-    HomeModule, PagesModule // positionClass: 'toast-bottom-full-width'
-    // SharedModule, CoreModule,
+    HomeModule, PagesModule, MdcModule, HeaderModule, // positionClass: 'toast-bottom-full-width'
+    CoreModule,
+    // SharedModule,
   ],
   providers: [
     // HttpErrorHandler,
-    NGXLogger, ToastrService,
+    NGXLogger, ToastrService, LocalStorageService,
     // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
     // { provide: ErrorHandler, useClass: SentryErrorHandler }
   ],

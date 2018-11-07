@@ -7,8 +7,8 @@ import { HomeComponent } from './home/home/home.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  // { path: 'log-in', component: LogInComponent},
-  // { path: 'register', component: RegisterComponent},
+  { path: 'log-in', component: LogInComponent},
+  { path: 'register', component: RegisterComponent},
   // { path: 'ad-list', loadChildren: './ad/ad.module#AdModule'},
   // { path: 'article-list', loadChildren: './article/article.module#ArticleModule'},
   { path: '**', component: NotFoundComponent },
