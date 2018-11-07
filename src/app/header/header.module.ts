@@ -11,8 +11,9 @@ import { LogInComponent } from './log-in/log-in.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
 import { HeaderRouteHelperService } from './header-route-helper.service';
-import { MdcModule } from '../_core/mdc.module';
+import { MdcModule } from '../_core/mdc-module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MaterialModule } from '../_core/material-module';
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -55,6 +56,7 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
     FlexLayoutModule,
     MdcModule,
+    MaterialModule,
   ],
   declarations: [LogInComponent, HeaderComponent, RegisterComponent],
   exports: [LogInComponent, HeaderComponent, RegisterComponent],

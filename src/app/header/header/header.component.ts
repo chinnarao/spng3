@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
                 this.user = new User(user);
                 user.getIdToken(true).then(idToken => {
                     this.user.user_idToken = idToken;
-                    this.logger.info(this.user);
+                    // this.logger.info(this.user);
                     this.localStorageService.set(Constants.token, idToken);
                     this.tokenStored = true;
                 });

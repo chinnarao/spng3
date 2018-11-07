@@ -11,7 +11,7 @@ import {AdNotFoundComponent} from './ad-not-found/ad-not-found.component';
 import { AdService } from './ad.service';
 import { AdSearchComponent } from './ad-search/ad-search.component';
 import { AdSearchCriteriaComponent } from './ad-search-criteria/ad-search-criteria.component';
-import { MaterialModule } from '../shared/modules/material.module';
+import { MaterialModule } from '../_core/material-module';
 
 @NgModule({
   imports: [

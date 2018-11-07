@@ -16,7 +16,8 @@ import {HeaderModule } from './header/header.module';
 import {LocalStorageService } from './_core/local-storage.service';
 import {CoreModule } from './_core/core.module';
 import {HttpErrorHandler } from './_core/http-error-handler.service';
-import { MdcModule } from './_core/mdc.module';
+import { MdcModule } from './_core/mdc-module';
+import { MaterialModule } from './_core/material-module';
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 // import {SharedModule} from './shared/shared.module';
 // import {StackTraceOfflineErrorhandler} from './_error/stackTraceOfflineErrorhandler';
@@ -27,6 +28,7 @@ import { MdcModule } from './_core/mdc.module';
 // pending 1. if browser localstorage not supported then what?. 2. if internet offline 3. error interceptor 4.analytics.service.ts
 // offline: https://github.com/cyrilletuzi/ngx-pwa-offline
 // environment.apiLogglyLogURL
+// positionClass: 'toast-bottom-full-width'
 
 @NgModule({
   declarations: [ AppComponent, ],
@@ -35,7 +37,7 @@ import { MdcModule } from './_core/mdc.module';
     LoggerModule.forRoot({serverLoggingUrl: '', level: NgxLoggerLevel.INFO, serverLogLevel: NgxLoggerLevel.TRACE}),
     LoadingBarHttpClientModule, LoadingBarRouterModule,
     ToastrModule.forRoot({timeOut: 0, preventDuplicates: true, closeButton: true, tapToDismiss: true, progressBar: true, newestOnTop: true }),
-    HomeModule, PagesModule, MdcModule, HeaderModule, // positionClass: 'toast-bottom-full-width'
+    HomeModule, PagesModule, MdcModule, MaterialModule, HeaderModule,
     CoreModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
     // SharedModule,

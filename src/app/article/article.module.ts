@@ -12,7 +12,7 @@ import { ArticleNotFoundComponent } from './article-not-found/article-not-found.
 import { ArticleService } from './article.service';
 import { ArticleSearchComponent } from './article-search/article-search.component';
 import { ArticleSearchCriteriaComponent } from './article-search-criteria/article-search-criteria.component';
-import { MaterialModule } from '../shared/modules/material.module';
+import { MaterialModule } from '../_core/material-module';
 
 @NgModule({
   imports: [
