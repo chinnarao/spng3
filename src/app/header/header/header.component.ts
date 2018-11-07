@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-// import 'zone.js/dist/zone-patch-rxjs';
 import { NGXLogger } from 'ngx-logger';
 import { User } from 'src/app/_models/user';
 import { HeaderRouteHelperService } from '../header-route-helper.service';
@@ -20,7 +19,7 @@ export class HeaderComponent implements OnInit {
     constructor(
         private afAuth: AngularFireAuth,
         private router: Router,
-        private menuService: HeaderRouteHelperService,
+        private headerRouteHelperService: HeaderRouteHelperService,
         private ngZone: NgZone,
         private logger: NGXLogger,
         private localStorageService: LocalStorageService
@@ -30,12 +29,13 @@ export class HeaderComponent implements OnInit {
                 this.user = new User(user);
                 user.getIdToken(true).then(idToken => {
                     this.user.user_idToken = idToken;
-                    // this.logger.info(this.user);
+                    this.logger.info(this.user);
                     this.localStorageService.set(Constants.token, idToken);
                     this.tokenStored = true;
                 });
-                const route_2 = this.menuService.getRouteHistoryUrls_2();
+                const route_2 = this.headerRouteHelperService.getRouteHistoryUrls_2();
                 // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
+                // history: 1. fixed , 2. cause issue 3. commented
                 // this.ngZone.run(() => this.router.navigate([route_2]));
                 this.isLoggedIn = true;
             } else {
@@ -48,7 +48,7 @@ export class HeaderComponent implements OnInit {
         this.afAuth.auth.signOut();
         this.isLoggedIn = false;
         this.user = undefined;
-        const route_1 = this.menuService.getRouteHistoryUrls_1();
+        const route_1 = this.headerRouteHelperService.getRouteHistoryUrls_1();
         this.router.navigate([route_1]);
         this.localStorageService.remove(Constants.token);
         this.tokenStored = false;
