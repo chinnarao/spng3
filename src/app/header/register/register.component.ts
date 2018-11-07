@@ -8,9 +8,7 @@ import { NGXLogger } from 'ngx-logger';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private logger: NGXLogger) {
-    this.logger.info('RegisterComponent');
-  }
+  constructor(private logger: NGXLogger) {}
 
   ngOnInit() {}
 
