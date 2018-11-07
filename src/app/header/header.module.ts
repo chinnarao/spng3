@@ -10,8 +10,9 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import { LogInComponent } from './log-in/log-in.component';
 import { HeaderComponent } from './header/header.component';
 import { RegisterComponent } from './register/register.component';
-import { MdcModule } from './mdc.module';
 import { HeaderRouteHelperService } from './header-route-helper.service';
+import { MdcModule } from '../_core/mdc.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: 'popup',
@@ -52,6 +53,7 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     AngularFireModule.initializeApp( environment.firebaseConfig ),
     AngularFireAuthModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+    FlexLayoutModule,
     MdcModule,
   ],
   declarations: [LogInComponent, HeaderComponent, RegisterComponent],
