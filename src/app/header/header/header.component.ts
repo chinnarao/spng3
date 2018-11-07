@@ -1,4 +1,4 @@
-import { Component, OnInit, NgZone } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
         private afAuth: AngularFireAuth,
         private router: Router,
         private headerRouteHelperService: HeaderRouteHelperService,
-        private ngZone: NgZone,
         private logger: NGXLogger,
         private localStorageService: LocalStorageService
     ) {
@@ -35,7 +34,7 @@ export class HeaderComponent implements OnInit {
                 });
                 const route_2 = this.headerRouteHelperService.getRouteHistoryUrls_2();
                 // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
-                // history: 1. fixed , 2. cause issue 3. commented
+                // history: 1. fixed 2. cause issue 3. commented
                 // this.ngZone.run(() => this.router.navigate([route_2]));
                 this.isLoggedIn = true;
             } else {

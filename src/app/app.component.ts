@@ -4,6 +4,7 @@ import {ObservableMedia, MediaChange} from '@angular/flex-layout';
 import { NGXLogger } from 'ngx-logger';
 // import { MenuService } from './menu/menu.service';
 import { HttpHeaders } from '@angular/common/http';
+import { HeaderRouteHelperService } from './header/header-route-helper.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,9 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnDestroy {
-  constructor(media: ObservableMedia, private logger: NGXLogger ) {  // , menuService: MenuService
+  constructor(media: ObservableMedia, private logger: NGXLogger, headerRouteHelperService: HeaderRouteHelperService) {
     this.logger.setCustomHttpHeaders(new HttpHeaders({'Content-Type': 'text/plain'}));
-    // menuService.loadRouting();
+    headerRouteHelperService.loadRouting();
   }
 
   loadMobileContent() { /* .... */ }
