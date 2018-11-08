@@ -1,24 +1,33 @@
-<div fxLayout="row" class="container" fxLayoutAlign="center">
-        <div fxFlex="33%"></div>
-        <div fxLayout="column" fxFlex="34%" style="min-width: 300px;">
-          <div fxLayout="row" style="height: 40px;">
-              <div fxFlex="66%">
-                  <input type="text" style="width:100%; height: 85%; font-size: 20px;">
-                </div>
-                <div fxLayout="row" fxFlex="170px" fxLayoutAlign="space-around center">
-                  <button (click)="showSearchBarClick()">
-                      Advanced Search<mat-icon>arrow_drop_down</mat-icon>
-                    </button>
-                </div>
-                <div fxFlex="40px" fxLayoutAlign="space-around center">
-                    <button (click)="search()">
-                      <mat-icon>search</mat-icon>
-                    </button>
-                </div>
-          </div>
-          <div fxLayout="row" style="height: 360px; background-color: gainsboro;" *ngIf="showSearchBarMenu">
-            <app-ad-search-criteria></app-ad-search-criteria>
-          </div>
+<div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center" fxFlex="599px" style="background-color: gainsboro;">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <div>
+          <input type="text" style="width: 330px; font-size: 20px; ">
         </div>
-        <div fxFlex="33%"></div>
+        <div style="margin-left: 1px;">
+          <button mdc-button class="mdc-button-color-sp" (click)="showSearchBarClick()">
+            Advanced Search<mdc-icon>arrow_drop_down</mdc-icon>
+          </button>
+        </div>
+        <div>
+          <button mdc-button class="mdc-button-color-sp" (click)="search()">
+            <mdc-icon>search</mdc-icon>
+          </button>
+        </div>
       </div>
+      <div style="height: auto; background-color: gainsboro;" *ngIf="showSearchBarMenu">
+          <app-ad-search-criteria></app-ad-search-criteria>
+      </div>
+    </div>
+  </div>
+  <div style="width: 100%; height: 30px;"></div>
+  
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="column" fxFlex="800px">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+      labore et dolore magna aliqua.
+      Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </div>
+  </div>

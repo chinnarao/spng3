@@ -1,3 +1,31 @@
-<p>
-  ad-search-criteria works!
-</p>
+<div fxLayout="column" fxLayoutAlign="start" fxFlex="100%" style="background-color: green;" style="margin-left: 10px;">
+  <div fxLayout="row" fxFlex="100%" style="background-color: red;">
+      <mat-form-field>
+        <select matNativeControl placeholder="Choose Country" [(ngModel)]="selectedCountry" name="country">
+          <option value="" disabled selected></option>
+          <option *ngFor="let c of countries" [value]="c">
+            {{c.name}}
+          </option>
+        </select>
+      </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput placeholder="City Name" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Zip Code" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Miles Around" value="">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput placeholder="Min Price" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Max Price" value="">
+    </mat-form-field>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+import { Countries, Country } from './../../_models/countries-data';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdSearchCriteriaComponent implements OnInit {
 
+  selectedCountry: Country;
+  countries = Countries;
   constructor() { }
 
   ngOnInit() {

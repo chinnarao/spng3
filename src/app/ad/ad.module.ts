@@ -1,3 +1,4 @@
+import { MdcModule } from './../_core/mdc-module';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -12,12 +13,16 @@ import { AdService } from './ad.service';
 import { AdSearchComponent } from './ad-search/ad-search.component';
 import { AdSearchCriteriaComponent } from './ad-search-criteria/ad-search-criteria.component';
 import { MaterialModule } from '../_core/material-module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     AdRoutingModule,
     FlexLayoutModule,
+    MdcModule,
     MaterialModule,
   ],
   declarations: [AdCreateComponent, AdReadComponent, AdUpdateComponent, AdDeleteComponent, AdListComponent, AdNotFoundComponent, AdSearchComponent,
