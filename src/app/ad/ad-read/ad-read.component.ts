@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NGXLogger } from 'ngx-logger';
 import { ToastrService } from 'ngx-toastr';
 import { AdService } from '../ad.service';
-import { AdModel } from 'src/app/_models/ad.model';
+import { AdModel } from 'src/app/_models/ad.models';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

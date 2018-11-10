@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { AdService } from '../ad.service';
-import { AdModel } from 'src/app/_models/ad.model';
+import { AdModel, AdSearchModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
-import { HttpErrorResponse, HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-ad-list',
@@ -17,10 +17,9 @@ export class AdListComponent implements OnInit {
     adModel: AdModel;
 
     constructor(
-        private logger: NGXLogger,
+        private nGXLogger: NGXLogger,
         private toastrService: ToastrService,
         private adService: AdService,
-        private http1: HttpClient
     ) {}
 
     ngOnInit() {
@@ -73,15 +72,16 @@ export class AdListComponent implements OnInit {
         );
     }
 
-    searchAds(): void {
-        this.adService.updateAd(undefined).subscribe(
-            ad => {
-                this.data = ad;
-            },
-            error => {
-                console.log('please check where i am6?');
-            }
-        );
+    searchAds(model: AdSearchModel): void {
+        this.nGXLogger.log(model);
+        // this.adService.updateAd(undefined).subscribe(
+        //     ad => {
+        //         this.data = ad;
+        //     },
+        //     error => {
+        //         console.log('please check where i am6?');
+        //     }
+        // );
     }
 
     createAdModel(): AdModel {

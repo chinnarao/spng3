@@ -5,18 +5,20 @@
           <input type="text" style="width: 330px; font-size: 20px; ">
         </div>
         <div style="margin-left: 1px;">
-          <button mdc-button class="mdc-button-color-sp" (click)="showSearchBarClick()">
+          <button mdc-button class="mdc-button-color-sp" (click)="onToggleAdvancedSearchClick()">
             Advanced Search<mdc-icon>arrow_drop_down</mdc-icon>
           </button>
         </div>
         <div>
-          <button mdc-button class="mdc-button-color-sp" (click)="search()">
+          <button mdc-button class="mdc-button-color-sp" (notityOnUpdateSearchClick)="onUpdateSeachClick($event)">
             <mdc-icon>search</mdc-icon>
           </button>
         </div>
       </div>
-      <div style="height: auto; background-color: gainsboro;" *ngIf="showSearchBarMenu">
-          <app-ad-search-criteria></app-ad-search-criteria>
+      <div style="height: auto; background-color: gainsboro;" *ngIf="showSearchBarMenu"> 
+          <!-- (notifyToggleAdvanceSeachClick)="toggleAdvancedSearch($event)" -->
+          <app-ad-search-criteria (notityOnUpdateSearchClick)="onUpdateSeachClick($event)" 
+          (notifyToggleAdvanceSeachClick)="onToggleAdvancedSearchClick($event)"></app-ad-search-criteria> 
       </div>
     </div>
   </div>

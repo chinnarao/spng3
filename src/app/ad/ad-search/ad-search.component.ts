@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
+import { AdSearchModel } from 'src/app/_models/ad.models';
 
 @Component({
   selector: 'app-ad-search',
@@ -15,12 +16,14 @@ export class AdSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  showSearchBarClick(): void {
+  onToggleAdvancedSearchClick(param: string) {
     this.showSearchBarMenu = !this.showSearchBarMenu;
   }
 
-  search(): void {
-    // some event emitter.
+  @Output() notifyOnUpdateSeachClick : EventEmitter<AdSearchModel> = new EventEmitter<AdSearchModel>();
+  onUpdateSeachClick(param: AdSearchModel) {
+    this.onToggleAdvancedSearchClick('');
+    this.notifyOnUpdateSeachClick.emit(param);
   }
 
 }

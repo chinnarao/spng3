@@ -1,7 +1,37 @@
-export interface Country {
-  cca2: string;
-  name: string;
-}
+import { Category, Country, Country1 } from "../ad-lookup.models";
+
+export const Conditions: String[] = ["Old", "New"];
+
+export const Categories: Category[] = [
+  { key: 1, value: "Automobile" },
+  { key: 1, value: "Electronics" },
+  { key: 1, value: "Real Estate" },
+  { key: 1, value: "Others" }
+];
+
+export const Countries1: Country1[] = [
+  {
+    countryName: "United States of America",
+    countryCca2: "US",
+    countryCallingCode: "1",
+    currencySymbol: "$",
+    currencyName: "US dollars",
+    currencyCode: "USD",
+    lattitude: 38,
+    longitude: -97
+  },
+  {
+    countryName: "India",
+    countryCca2: "IN",
+    countryCallingCode: "91",
+    currencySymbol: "₹",
+    currencyName: "Indian Rupee",
+    currencyCode: "INR",
+    lattitude: 20,
+    longitude: 77
+  }
+]
+
 export const Countries: Country[] = [
   {
     cca2: "AD",

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
-import { AdModel } from 'src/app/_models/ad.model';
+import { AdModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
 import { AdService } from '../ad.service';
 import { HttpErrorResponse } from '@angular/common/http';

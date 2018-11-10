@@ -1,31 +1,67 @@
 <div fxLayout="column" fxLayoutAlign="start" fxFlex="100%" style="background-color: green;" style="margin-left: 10px;">
-  <div fxLayout="row" fxFlex="100%" style="background-color: red;">
+  <div fxLayout="row" fxFlex="100%" fxLayoutGap="20px" fxLayoutAlign="end">
+    <div>
+      <button mat-icon-button (click)="onToggleAdvancedSeachClick()">
+        <mat-icon (click)="expression">close</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxLayout="row" fxFlex="100%" fxLayoutGap="20px">
+    <mat-form-field>
+      <select matNativeControl placeholder="Select Country" [(ngModel)]="adSearchModel.countryName" name="country">
+        <option value="" disabled selected></option>
+        <option *ngFor="let country of countries" [value]="country.name">
+          {{country.name}}
+        </option>
+      </select>
+    </mat-form-field>
+    <mat-form-field>
+      <select matNativeControl placeholder="Select Category" [(ngModel)]="adSearchModel.categoryName" name="category">
+        <option value="" disabled selected></option>
+        <option *ngFor="let category of categories" [value]="category.value">
+          {{category.value}}
+        </option>
+      </select>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput placeholder="City Name" [(ngModel)]="adSearchModel.cityName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Zip Code" [(ngModel)]="adSearchModel.zipCode">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Miles Around" [(ngModel)]="adSearchModel.milesAround">
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
       <mat-form-field>
-        <select matNativeControl placeholder="Choose Country" [(ngModel)]="selectedCountry" name="country">
-          <option value="" disabled selected></option>
-          <option *ngFor="let c of countries" [value]="c">
-            {{c.name}}
-          </option>
-        </select>
-      </mat-form-field>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
+          <input type="text" placeholder="select currency" matInput [formControl]="currencyControl" [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency">
+              {{currency}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="City Name" value="">
+      <input matInput placeholder="Min Price" [(ngModel)]="adSearchModel.minPrice">
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Zip Code" value="">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Miles Around" value="">
+      <input matInput placeholder="Max Price" [(ngModel)]="adSearchModel.maxPrice">
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
-    <mat-form-field>
-      <input matInput placeholder="Min Price" value="">
-    </mat-form-field>
-    <mat-form-field>
-      <input matInput placeholder="Max Price" value="">
-    </mat-form-field>
+    <mat-radio-group [(ngModel)]="adSearchModel.condition">
+      <mat-radio-button *ngFor="let condition of condtions" [value]="condition" style="margin-right: 15px;">
+        {{condition}}
+      </mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <div fxLayout="row" fxFlex="100%" fxLayoutAlign="end">
+    <div fxLayoutGap="20px" style="margin-right: 20px;">
+      <button mat-raised-button (click)="reset()">reset</button>
+      <button mat-raised-button (click)="onUpdateSearchClick()">update search</button>
+    </div>
   </div>
 </div>

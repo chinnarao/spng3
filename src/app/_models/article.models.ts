@@ -1,3 +1,30 @@
+export interface ArticleCommentModel {
+    articleCommentId:    number;
+    articleId:           number;
+    comment:             string;
+    userIdOrEmail:       string;
+    userSocialAvatarUrl: string;
+    isAdminCommented:    boolean;
+    commentedDate:       string;
+}
+
+export interface ArticleLicenseModel {
+    articleLicenseId: number;
+    license:          string;
+    licensedDate:     string;
+    articleId:        number;
+}
+
+export interface ArticleCommitModel {
+    articleCommitId:     number;
+    commit:              string;
+    committedDate:       string;
+    userIdOrEmail:       string;
+    userSocialAvatarUrl: string;
+    isAdminCommited:     boolean;
+    articleId:           number;
+}
+
 export interface ArticleModel {
     articleId:                                   string;
     title:                                       string;

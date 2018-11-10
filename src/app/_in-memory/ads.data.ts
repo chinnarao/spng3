@@ -1,4 +1,4 @@
-import { AdModel } from "../_models/ad.model";
+import { AdModel } from "../_models/ad.models";
 export const ads: AdModel[] = [
     {
         adId: '636671112867386100',

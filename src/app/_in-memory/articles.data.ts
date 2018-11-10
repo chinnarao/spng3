@@ -1,4 +1,4 @@
-import { ArticleModel } from "../_models/article.model";
+import { ArticleModel } from "../_models/article.models";
 export const articles: ArticleModel[] = [
     {
         articleId: '636671112867386100',

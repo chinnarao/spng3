@@ -1,0 +1,17 @@
+//   .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+//     background-color: black;
+// }
+
+/deep/ .mat-radio-outer-circle {
+  .mat-radio-checked & {
+    border-color: #3f51b5 !important;
+  }
+}
+
+/deep/ .mat-radio-inner-circle {
+  background-color: #3f51b5 !important;
+}
+
+/deep/ .mat-radio-ripple .mat-ripple-element {
+  background-color: rgba(#3f51b5, 0.26) !important;
+}

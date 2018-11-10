@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { tap, catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import { CustomHttpClient } from '../_core/custom-http-client';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { NGXLogger } from 'ngx-logger';
-import { HttpHeaders } from '@angular/common/http';
-import { AdModel } from '../_models/ad.model';
-import { environment } from 'src/environments/environment';
+import { AdModel, AdSearchModel } from '../_models/ad.models';
 import { HttpErrorHandler, HandleError } from '../_core/http-error-handler.service';
-import { AdSortFilterPageOptionsModel } from '../_models/ad-sort-filter-page-options.model';
 
 @Injectable()
 export class AdService {
@@ -44,7 +41,7 @@ export class AdService {
     return this.http.post<AdModel>(url, ad).pipe(catchError(this.handleError<any>('updateAd', [])));
   }
 
-  searchAds(searchCriteria: AdSortFilterPageOptionsModel): Observable<AdModel> {
+  searchAds(searchCriteria: AdSearchModel): Observable<AdModel> {
     const url = 'https://localhost:44394/api/ad/SearchAds';
     return this.http.post<AdModel>(url, searchCriteria).pipe(catchError(this.handleError<any>('searchAds', [])));
   }
