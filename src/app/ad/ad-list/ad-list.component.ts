@@ -25,12 +25,6 @@ export class AdListComponent implements OnInit {
 
     ngOnInit() {
         this.getAllAds();
-        //this.adService.getUsers();
-        console.log('TTTTTTTTTTTTTTTTT');
-        console.log(usersJson);
-        console.log(usersJson.users);
-        console.log(usersJson.users[0]);
-        console.log(usersJson.users[0].cardNumber);
     }
 
     getAllAds(): void {

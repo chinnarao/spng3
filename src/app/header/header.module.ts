@@ -1,33 +1,28 @@
-import { environment} from 'src/environments/environment';
-import { NgModule} from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
-import {AngularFireModule} from '@angular/fire';
-import {AngularFireAuthModule} from '@angular/fire/auth';
-import { LogInComponent } from './log-in/log-in.component';
-import { HeaderComponent } from './header/header.component';
-import { RegisterComponent } from './register/register.component';
-import { HeaderRouteHelperService } from './header-route-helper.service';
-import { MdcModule } from '../_core/mdc-module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from '../_core/material-module';
+import { environment } from "src/environments/environment";
+import { NgModule } from "@angular/core";
+import { BrowserModule } from "@angular/platform-browser";
+import { FormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { FirebaseUIModule, firebase, firebaseui } from "firebaseui-angular";
+import { AngularFireModule } from "@angular/fire";
+import { AngularFireAuthModule } from "@angular/fire/auth";
+import { LogInComponent } from "./log-in/log-in.component";
+import { HeaderComponent } from "./header/header.component";
+import { RegisterComponent } from "./register/register.component";
+import { HeaderRouteHelperService } from "./header-route-helper.service";
+import { MdcModule } from "../_core/mdc-module";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MaterialModule } from "../_core/material-module";
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
-  signInFlow: 'popup',
+  signInFlow: "popup",
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     {
-      scopes: [
-        'public_profile',
-        'email',
-        'user_likes',
-        'user_friends'
-      ],
+      scopes: ["public_profile", "email", "user_likes", "user_friends"],
       customParameters: {
-        'auth_type': 'reauthenticate'
+        auth_type: "reauthenticate"
       },
       provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID
     },
@@ -40,26 +35,31 @@ export const firebaseUiAuthConfig: firebaseui.auth.Config = {
     firebase.auth.PhoneAuthProvider.PROVIDER_ID,
     firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
   ],
-  tosUrl: 'https://www.google.com',
-  privacyPolicyUrl: 'https://www.google.com',
+  tosUrl: "https://www.google.com",
+  privacyPolicyUrl: "https://www.google.com",
   credentialHelper: firebaseui.auth.CredentialHelper.ACCOUNT_CHOOSER_COM
 };
 
+const IMPORTS = [
+  BrowserModule,
+  FormsModule,
+  RouterModule,
+  CommonModule,
+  AngularFireModule.initializeApp(environment.firebaseConfig),
+  AngularFireAuthModule,
+  FirebaseUIModule.forRoot(firebaseUiAuthConfig),
+  FlexLayoutModule,
+  MdcModule,
+  MaterialModule
+];
+const DECLARATIONS = [LogInComponent, HeaderComponent, RegisterComponent];
+const EXPORTS = [LogInComponent, HeaderComponent, RegisterComponent];
+const PROVIDERS = [HeaderRouteHelperService];
+
 @NgModule({
-  imports: [
-    BrowserModule,
-    FormsModule,
-    RouterModule,
-    CommonModule,
-    AngularFireModule.initializeApp( environment.firebaseConfig ),
-    AngularFireAuthModule,
-    FirebaseUIModule.forRoot(firebaseUiAuthConfig),
-    FlexLayoutModule,
-    MdcModule,
-    MaterialModule,
-  ],
-  declarations: [LogInComponent, HeaderComponent, RegisterComponent],
-  exports: [LogInComponent, HeaderComponent, RegisterComponent],
-  providers: [HeaderRouteHelperService]
+  imports: [IMPORTS],
+  declarations: [DECLARATIONS],
+  exports: [EXPORTS],
+  providers: [PROVIDERS]
 })
-export class HeaderModule { }
+export class HeaderModule {}

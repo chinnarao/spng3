@@ -1,23 +1,23 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {LoggerModule, NgxLoggerLevel, NGXLogger} from 'ngx-logger';
-import {HttpClientModule} from '@angular/common/http';
-import {LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
-import {LoadingBarRouterModule } from '@ngx-loading-bar/router';
-import {BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {ToastrModule, ToastrService } from 'ngx-toastr';
-import {HomeModule } from './home/home.module';
-import {PagesModule } from './_pages/pages.module';
-import {HeaderModule } from './header/header.module';
-import {LocalStorageService } from './_core/local-storage.service';
-import {CoreModule } from './_core/core.module';
-import {HttpErrorHandler } from './_core/http-error-handler.service';
-import { MdcModule } from './_core/mdc-module';
-import { MaterialModule } from './_core/material-module';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AppComponent } from "./app.component";
+import { AppRoutingModule } from "./app-routing.module";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { LoggerModule, NgxLoggerLevel, NGXLogger } from "ngx-logger";
+import { HttpClientModule } from "@angular/common/http";
+import { LoadingBarHttpClientModule } from "@ngx-loading-bar/http-client";
+import { LoadingBarRouterModule } from "@ngx-loading-bar/router";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ToastrModule, ToastrService } from "ngx-toastr";
+import { HomeModule } from "./home/home.module";
+import { PagesModule } from "./_pages/pages.module";
+import { HeaderModule } from "./header/header.module";
+import { LocalStorageService } from "./_core/local-storage.service";
+import { CoreModule } from "./_core/core.module";
+import { HttpErrorHandler } from "./_core/http-error-handler.service";
+import { MdcModule } from "./_core/mdc-module";
+import { MaterialModule } from "./_core/material-module";
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 // import {SharedModule} from './shared/shared.module';
 // import {StackTraceOfflineErrorhandler} from './_error/stackTraceOfflineErrorhandler';
@@ -30,23 +30,51 @@ import { MaterialModule } from './_core/material-module';
 // environment.apiLogglyLogURL
 // positionClass: 'toast-bottom-full-width'
 
+const PROVIDERS = [
+  NGXLogger,
+  ToastrService,
+  LocalStorageService,
+  HttpErrorHandler
+  // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
+  // { provide: ErrorHandler, useClass: SentryErrorHandler }
+];
+
+const IMPORTS = [
+  BrowserModule,
+  AppRoutingModule,
+  FlexLayoutModule,
+  FormsModule,
+  ReactiveFormsModule,
+  HttpClientModule,
+  BrowserAnimationsModule,
+  LoggerModule.forRoot({
+    serverLoggingUrl: "",
+    level: NgxLoggerLevel.INFO,
+    serverLogLevel: NgxLoggerLevel.TRACE
+  }),
+  LoadingBarHttpClientModule,
+  LoadingBarRouterModule,
+  ToastrModule.forRoot({
+    timeOut: 0,
+    preventDuplicates: true,
+    closeButton: true,
+    tapToDismiss: true,
+    progressBar: true,
+    newestOnTop: true
+  }),
+  HomeModule,
+  PagesModule,
+  MdcModule,
+  MaterialModule,
+  HeaderModule,
+  CoreModule.forRoot()
+  // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
+];
+
 @NgModule({
-  declarations: [ AppComponent, ],
-  imports: [
-    BrowserModule, AppRoutingModule, FlexLayoutModule, FormsModule, ReactiveFormsModule, HttpClientModule, BrowserAnimationsModule,
-    LoggerModule.forRoot({serverLoggingUrl: '', level: NgxLoggerLevel.INFO, serverLogLevel: NgxLoggerLevel.TRACE}),
-    LoadingBarHttpClientModule, LoadingBarRouterModule,
-    ToastrModule.forRoot({timeOut: 0, preventDuplicates: true, closeButton: true, tapToDismiss: true, progressBar: true, newestOnTop: true }),
-    HomeModule, PagesModule, MdcModule, MaterialModule, HeaderModule,
-    CoreModule,
-    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-  ],
-  providers: [
-    NGXLogger, ToastrService, LocalStorageService,
-    HttpErrorHandler,
-    // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
-    // { provide: ErrorHandler, useClass: SentryErrorHandler }
-  ],
+  declarations: [AppComponent],
+  imports: [IMPORTS],
+  providers: [PROVIDERS],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
