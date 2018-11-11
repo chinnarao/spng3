@@ -13,7 +13,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class AdCreateComponent implements OnInit {
 
   adModel: AdModel;
-  private errors = [];
+  errors = [];
   constructor(private logger: NGXLogger, private toastrService: ToastrService, private adService: AdService) {
   }
 

@@ -1,0 +1,793 @@
+{
+  "countries": [{
+      "countryCca2": "AD",
+      "countryName": "Andorra",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "AR",
+      "countryName": "Argentina",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "AS",
+      "countryName": "AmericanSamoa",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "AT",
+      "countryName": "Austria",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "AU",
+      "countryName": "Australia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "AX",
+      "countryName": "Åland Islands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "BD",
+      "countryName": "Bangladesh",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "BE",
+      "countryName": "Belgium",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "BG",
+      "countryName": "Bulgaria",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "BR",
+      "countryName": "Brazil",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "BY",
+      "countryName": "Belarus",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "CA",
+      "countryName": "Canada",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "CH",
+      "countryName": "Switzerland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "CO",
+      "countryName": "Colombia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "CR",
+      "countryName": "CostaRica",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "CZ",
+      "countryName": "Czechia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "DE",
+      "countryName": "Germany",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "DK",
+      "countryName": "Denmark",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "DO",
+      "countryName": "DominicanRepublic",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "DZ",
+      "countryName": "Algeria",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "ES",
+      "countryName": "Spain",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "FI",
+      "countryName": "Finland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "FO",
+      "countryName": "FaroeIslands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "FR",
+      "countryName": "France",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GB",
+      "countryName": "UnitedKingdom",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GF",
+      "countryName": "FrenchGuiana",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GG",
+      "countryName": "Guernsey",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GL",
+      "countryName": "Greenland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GP",
+      "countryName": "Guadeloupe",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GT",
+      "countryName": "Guatemala",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "GU",
+      "countryName": "Guam",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "HR",
+      "countryName": "Croatia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "HU",
+      "countryName": "Hungary",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "IE",
+      "countryName": "Ireland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "IM",
+      "countryName": "IsleofMan",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "IN",
+      "countryName": "India",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "IS",
+      "countryName": "Iceland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "IT",
+      "countryName": "Italy",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "JE",
+      "countryName": "Jersey",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "JP",
+      "countryName": "Japan",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "LI",
+      "countryName": "Liechtenstein",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "LK",
+      "countryName": "SriLanka",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "LT",
+      "countryName": "Lithuania",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "LU",
+      "countryName": "Luxembourg",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MC",
+      "countryName": "Monaco",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MD",
+      "countryName": "Moldova",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MH",
+      "countryName": "MarshallIslands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MK",
+      "countryName": "Macedonia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MP",
+      "countryName": "NorthernMarianaIslands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MQ",
+      "countryName": "Martinique",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MT",
+      "countryName": "Malta",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MX",
+      "countryName": "Mexico",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "MY",
+      "countryName": "Malaysia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "NC",
+      "countryName": "NewCaledonia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "NL",
+      "countryName": "Netherlands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "NO",
+      "countryName": "Norway",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "NZ",
+      "countryName": "NewZealand",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PH",
+      "countryName": "Philippines",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PK",
+      "countryName": "Pakistan",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PL",
+      "countryName": "Poland",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PM",
+      "countryName": "St.Pierre&Miquelon",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PR",
+      "countryName": "PuertoRico",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "PT",
+      "countryName": "Portugal",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "RE",
+      "countryName": "Réunion",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "RO",
+      "countryName": "Romania",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "RU",
+      "countryName": "Russia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "SE",
+      "countryName": "Sweden",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "SI",
+      "countryName": "Slovenia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "SJ",
+      "countryName": "Svalbard&JanMayen",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "SK",
+      "countryName": "Slovakia",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "SM",
+      "countryName": "SanMarino",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "TH",
+      "countryName": "Thailand",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "TR",
+      "countryName": "Turkey",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "US",
+      "countryName": "UnitedStates",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "VA",
+      "countryName": "VaticanCity",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "VI",
+      "countryName": "U.S.VirginIslands",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "WF",
+      "countryName": "Wallis&Futuna",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "YT",
+      "countryName": "Mayotte",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    },
+    {
+      "countryCca2": "ZA",
+      "countryName": "SouthAfrica",
+      "countryCallingCode": "91",
+      "currencySymbol": "₹",
+      "currencyName": "Indian Rupee",
+      "currencyCode": "INR",
+      "lattitude": 20,
+      "longitude": 77
+    }
+  ]
+}

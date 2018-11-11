@@ -40,7 +40,6 @@ import { MaterialModule } from './_core/material-module';
     HomeModule, PagesModule, MdcModule, MaterialModule, HeaderModule,
     CoreModule,
     // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false }),
-    // SharedModule,
   ],
   providers: [
     NGXLogger, ToastrService, LocalStorageService,

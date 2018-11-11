@@ -1,0 +1,10 @@
+
+{ 
+  "conditions" : ["Old", "New"],
+  "categories" : [
+    { "key": 1, "value": "Automobile" },
+    { "key": 1, "value": "Electronics" },
+    { "key": 1, "value": "Real Estate" },
+    { "key": 1, "value": "Others" }
+  ]
+}

@@ -9,6 +9,7 @@ import {
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { startWith, map } from "rxjs/operators";
+import countriesJson from 'src/assets/data/country.json';
 
 @Component({
   selector: "app-ad-search-criteria",
@@ -31,6 +32,8 @@ export class AdSearchCriteriaComponent implements OnInit {
   ngOnInit() {
     this._initCurrencies();
     this.init();
+
+    //countriesJson.countries[0].countryCca2
   }
 
   _initCurrencies(): void {
