@@ -1,12 +1,18 @@
-import { Category, Country, Country1 } from "../ad-lookup.models";
+import { Category, Country, Country1, CurrencyType } from "../ad-lookup.models";
 
 export const Conditions: String[] = ["Old", "New"];
 
 export const Categories: Category[] = [
   { key: 1, value: "Automobile" },
-  { key: 1, value: "Electronics" },
-  { key: 1, value: "Real Estate" },
-  { key: 1, value: "Others" }
+  { key: 2, value: "Electronics" },
+  { key: 3, value: "Real Estate" },
+  { key: 4, value: "Others" }
+];
+
+export const CurrencyTypes: CurrencyType[] = [
+  { key: 1, value: "USD [$]" },
+  { key: 2, value: "INR [₹]" },
+  { key: 3, value: "EUR [€]" },
 ];
 
 export const Countries1: Country1[] = [

@@ -14,6 +14,7 @@ import { AdSearchComponent } from "./ad-search/ad-search.component";
 import { AdSearchCriteriaComponent } from "./ad-search-criteria/ad-search-criteria.component";
 import { MaterialModule } from "../_core/material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { AdRuntime } from "./ad.runtime";
 
 const IMPORTS = [
   CommonModule,
@@ -36,7 +37,7 @@ const DECLARATIONS = [
   AdSearchCriteriaComponent
 ];
 
-const PROVIDERS = [AdService];
+const PROVIDERS = [AdService, AdRuntime];
 
 @NgModule({
   imports: [IMPORTS],

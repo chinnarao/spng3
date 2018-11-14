@@ -18,3 +18,8 @@ export class Country1 {
   lattitude: number;
   longitude: number;
 }
+
+export class CurrencyType {
+  key: number;
+  value: string;
+}

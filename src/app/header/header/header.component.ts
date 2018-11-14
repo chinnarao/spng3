@@ -5,6 +5,7 @@ import { NGXLogger } from 'ngx-logger';
 import { User } from 'src/app/_models/user';
 import { HeaderRouteHelperService } from '../header-route-helper.service';
 import { LocalStorageService } from 'src/app/_core/local-storage.service';
+import { Constants } from 'src/app/_core/constants';
 
 @Component({
     selector: 'app-header',
@@ -29,7 +30,7 @@ export class HeaderComponent implements OnInit {
                 user.getIdToken(true).then(idToken => {
                     this.user.user_idToken = idToken;
                     // this.logger.info(this.user);
-                    this.localStorageService.set(Constants.token, idToken);
+                    this.localStorageService.set(Constants.TOKEN, idToken);
                     this.tokenStored = true;
                 });
                 const route_2 = this.headerRouteHelperService.getRouteHistoryUrls_2();
@@ -49,7 +50,7 @@ export class HeaderComponent implements OnInit {
         this.user = undefined;
         const route_1 = this.headerRouteHelperService.getRouteHistoryUrls_1();
         this.router.navigate([route_1]);
-        this.localStorageService.remove(Constants.token);
+        this.localStorageService.remove(Constants.TOKEN);
         this.tokenStored = false;
     }
 

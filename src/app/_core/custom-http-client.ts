@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHandler, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {Headers_Content_Type_Json} from 'src/app/_core/constants'
 
 
 // import { environment } from '../../environments/environment';
@@ -20,7 +21,8 @@ export class CustomHttpClient extends HttpClient {
     // }
 
     post<T>(url: string, body: any): Observable<T> {
-        return super.post<T>(url, body, { headers: new HttpHeaders({'Content-Type':  'application/json'}) });
+        // return super.post<T>(url, body, { headers: new HttpHeaders({'Content-Type':  'application/json'}) });
+        return super.post<T>(url, body, { headers: Headers_Content_Type_Json });
     }
 
     // post<T>(url: string, body: any): Observable<T> {

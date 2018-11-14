@@ -1,7 +1,7 @@
+import { Headers_Content_Type_Text } from 'src/app/_core/constants';
 import { Component, OnDestroy, ViewChild } from "@angular/core";
 import { ObservableMedia, MediaChange } from "@angular/flex-layout";
 import { NGXLogger } from "ngx-logger";
-import { HttpHeaders } from "@angular/common/http";
 import { HeaderRouteHelperService } from "./header/header-route-helper.service";
 
 @Component({
@@ -15,9 +15,7 @@ export class AppComponent implements OnDestroy {
     private logger: NGXLogger,
     headerRouteHelperService: HeaderRouteHelperService
   ) {
-    this.logger.setCustomHttpHeaders(
-      new HttpHeaders({ "Content-Type": "text/plain" })
-    );
+    this.logger.setCustomHttpHeaders( Headers_Content_Type_Text);
     headerRouteHelperService.loadRouting();
   }
 

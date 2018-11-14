@@ -21,9 +21,9 @@ export class AdSearchComponent implements OnInit {
   }
 
   @Output() notifyOnUpdateSeachClick : EventEmitter<AdSearchModel> = new EventEmitter<AdSearchModel>();
-  onUpdateSeachClick(param: AdSearchModel) {
+  onUpdateSeachClick(model: AdSearchModel) {
     this.onToggleAdvancedSearchClick('');
-    this.notifyOnUpdateSeachClick.emit(param);
+    this.notifyOnUpdateSeachClick.emit(model);
   }
 
 }

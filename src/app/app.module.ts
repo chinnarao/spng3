@@ -28,7 +28,6 @@ import { MaterialModule } from "./_core/material-module";
 // pending 1. if browser localstorage not supported then what?. 2. if internet offline 3. error interceptor 4.analytics.service.ts
 // offline: https://github.com/cyrilletuzi/ngx-pwa-offline
 // environment.apiLogglyLogURL
-// positionClass: 'toast-bottom-full-width'
 
 const PROVIDERS = [
   NGXLogger,

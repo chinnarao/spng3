@@ -16,6 +16,7 @@ export class AdSearchModel {
     maxPrice: number;
     condition: string; //old or new
     priceType: string;  // dollar or rupee
+    selectedCurrency: string;
 
     mapAddress: string;
     mapLongitude: string;
@@ -42,8 +43,8 @@ export class AdModel {
     addressLatitude:                           number;
     addressLongitude:                          number;
     itemCost:                                  number;
-    itemCostCurrencyName:                      string;
-    itemCurrencyISO_4217:                      string;
+    itemCostCurrencyName:                      string;  //
+    itemCurrencyISO_4217:                      string;  //INR
     attachedAssetsInCloudCount:                number;
     attachedAssetsInCloudStorageId:            string;
     attachedAssetsStoredInCloudBaseFolderPath: string;

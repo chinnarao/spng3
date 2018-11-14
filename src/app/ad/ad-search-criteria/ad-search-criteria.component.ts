@@ -1,15 +1,18 @@
+import { AdRuntime } from './../ad.runtime';
 import { NGXLogger } from "ngx-logger";
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { AdSearchModel } from "src/app/_models/ad.models";
 import {
   Conditions,
   Countries,
-  Categories
+  Categories,
+  CurrencyTypes
 } from "src/app/_models/_data/ad-lookup-data";
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
-import { startWith, map } from "rxjs/operators";
+import { startWith, map, share } from "rxjs/operators";
 import countriesJson from 'src/assets/data/country.json';
+import { CurrencyType } from 'src/app/_models/ad-lookup.models';
 
 @Component({
   selector: "app-ad-search-criteria",
@@ -20,19 +23,19 @@ export class AdSearchCriteriaComponent implements OnInit {
   condtions = Conditions;
   countries = Countries;
   categories = Categories;
+  currencyTypes = CurrencyTypes;
 
   currencyControl = new FormControl();
-  currencies: string[] = ["USD [$]", "INR [₹]", "EUR [€]"];
-  filteredCurrencies: Observable<string[]>;
+  filteredCurrencies: Observable<CurrencyType[]>;
+  adSearchModel: AdSearchModel = new AdSearchModel();
 
-  adSearchModel: AdSearchModel;
-
-  constructor(private nGXLogger: NGXLogger) {}
+  constructor(private nGXLogger: NGXLogger, private adRuntime: AdRuntime) {
+    this.adRuntime.getAdSearchModel().subscribe( m => this.adSearchModel = m);
+  }
 
   ngOnInit() {
     this._initCurrencies();
     this.init();
-
     //countriesJson.countries[0].countryCca2
   }
 
@@ -43,17 +46,29 @@ export class AdSearchCriteriaComponent implements OnInit {
     );
   }
 
-  _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.currencies.filter(option =>
-      option.toLowerCase().includes(filterValue)
+  // _filter(value: string): string[] {
+  //   const filterValue = value.toLowerCase();
+  //   return this.currencyTypes.filter(option =>
+  //     option.value.toLowerCase().includes(filterValue)
+  //   );
+  // }
+
+  // [(ngModel)]="adSearchModel.selectedCurrency"
+  _filter(currencyType: CurrencyType): CurrencyType[] {
+    const filterValue = currencyType.value.toLowerCase();
+    return this.currencyTypes.filter(option =>
+      option.value.toLowerCase().includes(filterValue)
     );
   }
 
   init(): void {
-    if (this.adSearchModel === undefined) {
-      this.adSearchModel = new AdSearchModel();
-    }
+  }
+
+  // (optionSelected)="setSelectedCurrency($event.option.value)"
+  setSelectedCurrency(selectedCurrency: string) : void {
+    // https://stackblitz.com/edit/angular-mat-autocomp-dependent
+    // "USD [$]"  , have to build obj 
+    this.adSearchModel.selectedCurrency = selectedCurrency;
   }
 
   @Output()
