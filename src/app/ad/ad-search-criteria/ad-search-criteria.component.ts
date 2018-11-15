@@ -1,4 +1,4 @@
-import { AdRuntime } from './../ad.runtime';
+import { AdRuntime } from "./../ad.runtime";
 import { NGXLogger } from "ngx-logger";
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { AdSearchModel } from "src/app/_models/ad.models";
@@ -11,8 +11,8 @@ import {
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { startWith, map, share } from "rxjs/operators";
-import countriesJson from 'src/assets/data/country.json';
-import { CurrencyType } from 'src/app/_models/ad-lookup.models';
+import countriesJson from "src/assets/data/country.json";
+import { CurrencyType } from "src/app/_models/ad-lookup.models";
 
 @Component({
   selector: "app-ad-search-criteria",
@@ -30,7 +30,7 @@ export class AdSearchCriteriaComponent implements OnInit {
   adSearchModel: AdSearchModel = new AdSearchModel();
 
   constructor(private nGXLogger: NGXLogger, private adRuntime: AdRuntime) {
-    this.adRuntime.getAdSearchModel().subscribe( m => this.adSearchModel = m);
+    this.adRuntime.getAdSearchModel().subscribe(m => (this.adSearchModel = m));
   }
 
   ngOnInit() {
@@ -46,30 +46,17 @@ export class AdSearchCriteriaComponent implements OnInit {
     );
   }
 
-  // _filter(value: string): string[] {
-  //   const filterValue = value.toLowerCase();
-  //   return this.currencyTypes.filter(option =>
-  //     option.value.toLowerCase().includes(filterValue)
-  //   );
-  // }
-
-  // [(ngModel)]="adSearchModel.selectedCurrency"
-  _filter(currencyType: CurrencyType): CurrencyType[] {
-    const filterValue = currencyType.value.toLowerCase();
-    return this.currencyTypes.filter(option =>
-      option.value.toLowerCase().includes(filterValue)
-    );
+  _filter(input: string): CurrencyType[] {
+    if (input) {
+      const filterValue = input.toLowerCase();
+      return this.currencyTypes.filter(option =>
+        option.value.toLowerCase().includes(filterValue)
+      );
+    }
+    return this.currencyTypes;
   }
 
-  init(): void {
-  }
-
-  // (optionSelected)="setSelectedCurrency($event.option.value)"
-  setSelectedCurrency(selectedCurrency: string) : void {
-    // https://stackblitz.com/edit/angular-mat-autocomp-dependent
-    // "USD [$]"  , have to build obj 
-    this.adSearchModel.selectedCurrency = selectedCurrency;
-  }
+  init(): void {}
 
   @Output()
   notifyToggleAdvanceSeachClick: EventEmitter<string> = new EventEmitter<

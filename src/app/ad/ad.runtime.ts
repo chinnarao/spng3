@@ -1,18 +1,13 @@
-import { Constants } from 'src/app/_core/constants';
-import { AdSearchModel } from "src/app/_models/ad.models";
-import { combineLatest } from "rxjs";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { LocalStorageState } from "src/app/_core/local-storage.state";
 import { Store } from "src/app/_core/store";
+import { AdSearchModel } from "src/app/_models/ad.models";
 
 export interface AdState {
   v: number;
   adSearchModel: AdSearchModel;
 }
-
-export type ListType = "nice" | "naughty";
 
 @Injectable({
   providedIn: "root"
@@ -24,36 +19,41 @@ export class AdRuntime {
 
   constructor(appStorage: LocalStorageState) {
     this.appStorage = appStorage;
-    this.appStorageKey = Constants.AD_LIST_SEARCH_CRIT_STORAGE_STATE;
-    console.log("testing: AD_LIST_SEARCH_CRIT_STORAGE_STATE: " + this.appStorageKey);
+    this.appStorageKey = "ad_runtime_storage";
     this.store = new Store(this.getInitialState());
     this.appStorage.registerUnloadCallback(this.saveToStorage);
   }
 
   private getInitialState(): AdState {
-    var adSearchModel = new AdSearchModel();
-    adSearchModel.minPrice = 9;
-    adSearchModel.maxPrice = 99;
-	adSearchModel.condition = "Old";
-	adSearchModel.countryName = "";
-	adSearchModel.categoryName = "";
-	adSearchModel.cityName = "";
-	adSearchModel.zipCode = "";
-	adSearchModel.milesAround = 10;
-	adSearchModel.selectedCurrency = "";
+    let state = this.appStorage.loadData<AdState>(this.appStorageKey);
+    state = this.DefaultOrSavedState(state);
+    return state;
+  }
 
+  private DefaultOrSavedState(adState: AdState): AdState {
+    let version: number = 0;
+    var adSearchModel = new AdSearchModel();
+    if (
+      adState &&
+      adState.adSearchModel != null &&
+      adState.adSearchModel != undefined
+    ) {
+      adSearchModel.countryName = adState.adSearchModel.countryName;
+      adSearchModel.cityName = adState.adSearchModel.cityName;
+      adSearchModel.zipCode = adState.adSearchModel.zipCode;
+      adSearchModel.milesAround = adState.adSearchModel.milesAround;
+      adSearchModel.categoryName = adState.adSearchModel.categoryName;
+      adSearchModel.minPrice = adState.adSearchModel.minPrice;
+      adSearchModel.maxPrice = adState.adSearchModel.maxPrice;
+      adSearchModel.selectedCurrency = adState.adSearchModel.selectedCurrency;
+      adSearchModel.condition = adState.adSearchModel.condition;
+      version = adState.v;
+    }
     var initialState: AdState = {
-      v: 0,
+      v: version,
       adSearchModel: adSearchModel
     };
-	var savedState = this.appStorage.loadData<AdState>(this.appStorageKey);
-	console.log("countryName error: " + savedState);
-    if (savedState && savedState.v === initialState.v) {
-		console.log("saved stated log: " + savedState);
-		return savedState;
-    } else {
-      return initialState;
-    }
+    return initialState;
   }
 
   public getAdSearchModel(): Observable<AdSearchModel> {
@@ -61,6 +61,6 @@ export class AdRuntime {
   }
 
   private saveToStorage = (): void => {
-    this.appStorage.saveData(this.appStorageKey, this.store.getSnapshot());
+    this.appStorage.removeAndSaveData(this.appStorageKey, this.store.getSnapshot());
   };
 }

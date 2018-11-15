@@ -1,26 +1,26 @@
 export class AdSearchModel {
-    orderByOptions:  number;
-    filterBy:        number;
-    filterValue:     string;
-    pageNumber:      number;
-    defaultPageSize: number;
-    prevCheckState:  string;
+    orderByOptions:  number = 0;
+    filterBy:        number = 0;
+    filterValue:     string = '';
+    pageNumber:      number = 0;
+    defaultPageSize: number = 10;
+    prevCheckState:  string = '';
 
-    categoryName   : string;
-    countryCca2   : string;
-    countryName   : string;
-    cityName: string;
-    zipCode: string;
-    milesAround: number;
-    minPrice: number;
-    maxPrice: number;
-    condition: string; //old or new
-    priceType: string;  // dollar or rupee
-    selectedCurrency: string;
+    categoryName   : string = '';
+    countryCca2   : string = '';
+    countryName   : string = '';
+    cityName: string = '';
+    zipCode: string = '';
+    milesAround: number = 10;
+    minPrice: number = 9;
+    maxPrice: number = 100;
+    condition: string = 'Old'; //old or new
+    priceType: string = '';  // dollar or rupee
+    selectedCurrency: string = '';
 
-    mapAddress: string;
-    mapLongitude: string;
-    mapLattitude: string;
+    mapAddress: string = '';
+    mapLongitude: string = '';
+    mapLattitude: string = '';
 }
 
 export class AdModel {

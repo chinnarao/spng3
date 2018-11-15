@@ -1,9 +1,10 @@
 import { HttpHeaders } from "@angular/common/http";
 
 export const enum Constants {
-  AD_LIST_SEARCH_CRIT_STORAGE_STATE = "ad_l_s_c_s_s",
   TOKEN = 'token',
 }
+
+//export const AD_LIST_SEARCH_CRIT_STORAGE_STATE1: string = "ad_l_s_c_s_s";
 
 const enum Breakpoints { xs = 'xs', sm = 'sm', md = 'md', lg = 'lg' }
 enum Direction { Up = 'UP', Down = 'DOWN', Left = 'LEFT', Right = 'RIGHT' }

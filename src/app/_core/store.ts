@@ -2,7 +2,6 @@ import { BehaviorSubject } from "rxjs";
 import { distinctUntilChanged } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Injectable } from "@angular/core";
 
 // When updating the state, the caller has the option to define the new state partial
 // using a a callback. This callback will provide the current state snapshot.

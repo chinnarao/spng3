@@ -37,9 +37,10 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="start" fxFlex="100%" fxLayoutGap="20px">
       <mat-form-field>
-          <input type="text" placeholder="select currency" matInput [formControl]="currencyControl" [matAutocomplete]="auto" name="adSearchCriteriaCurrency">
+          <input type="text" placeholder="select currency" matInput [formControl]="currencyControl" [matAutocomplete]="auto" name="adSearchCriteriaCurrency" 
+          [(ngModel)]="adSearchModel.selectedCurrency">
           <mat-autocomplete #auto="matAutocomplete" >
-            <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency.key">
+            <mat-option *ngFor="let currency of filteredCurrencies | async" [value]="currency.value">
               {{currency.value}}
             </mat-option>
           </mat-autocomplete>
