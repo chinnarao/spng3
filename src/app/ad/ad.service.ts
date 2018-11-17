@@ -1,9 +1,7 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError } from "rxjs/operators";
 import { CustomHttpClient } from "../_core/custom-http-client";
 import { Observable } from "rxjs";
-import { NGXLogger } from "ngx-logger";
 import { AdModel, AdSearchModel } from "../_models/ad.models";
 import {
   HttpErrorHandler,
@@ -15,10 +13,8 @@ export class AdService {
   private handleError: HandleError;
 
   constructor(
-    private logger: NGXLogger,
     private http: CustomHttpClient,
-    httpErrorHandler: HttpErrorHandler,
-    private _http: HttpClient
+    httpErrorHandler: HttpErrorHandler
   ) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
   }
@@ -39,7 +35,6 @@ export class AdService {
 
   createAd(ad: AdModel): Observable<AdModel> {
     const url = "https://localhost:44394/api/ad/CreateAd";
-    // console.log(ad);
     return this.http
       .post<AdModel>(url, JSON.stringify(ad))
       .pipe(catchError(this.handleError<any>("createAd", [])));
@@ -65,11 +60,4 @@ export class AdService {
       .post<any>(url, searchCriteria)
       .pipe(catchError(this.handleError<any>("searchAds", [])));
   }
-
-  //http://localhost:4200/assets/data/user.json
-
-  // getUsers(): void {
-  //   console.log('tttttttttttttttttttttttttttttttttttttttt');
-  //   this._http.get<any>("http://localhost:4200/assets/data/user.json").subscribe( res => console.log(res), err => console.error(err));
-  // }
 }
