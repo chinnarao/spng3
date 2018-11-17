@@ -45,7 +45,7 @@
           [(ngModel)]="adSearchModel.currencyCode">
           <mat-autocomplete #auto="matAutocomplete" >
             <mat-option *ngFor="let country of filteredCountries | async" [value]="country.currencyCode">
-              {{country.currencyCode}} -- {{country.countryName}}
+              {{country.currencyCode}} -- {{country.countryName}} -- {{country.countryCallingCode}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>
