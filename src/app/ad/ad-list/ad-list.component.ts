@@ -80,11 +80,11 @@ export class AdListComponent implements OnInit {
     this.adService.searchAds(model).subscribe(
       searchResult => {
         this.data = searchResult;
-        if (searchResult && searchResult.ads) {
-          this.ads = searchResult.ads;
+        if (searchResult && searchResult.records) {
+          this.ads = searchResult.records;
         }
-        // if (searchResult && searchResult.option) {
-        //     console.log("search ads success: " + JSON.stringify(this.data.option));
+        // if (searchResult && searchResult.options) {
+        //     console.log("search ads success: " + JSON.stringify(this.data.options));
         // }
       },
       error => {

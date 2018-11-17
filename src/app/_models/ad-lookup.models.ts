@@ -1,16 +1,12 @@
-export class Country {
-  cca2: string;
-  name: string;
-}
 
 export class Category {
   key: number;
   value: string;
 }
 
-export class Country1 {
+export class Country {
   countryName: string;
-  countryCca2: string;
+  countryCode: string;
   currencyCode: string;
   countryCallingCode: string;
   currencySymbol: string;

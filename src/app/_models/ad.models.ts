@@ -1,9 +1,9 @@
 export class AdSearchModel {
   sortOptionsBy: string = 'NewestFirst';
   mileOptionsBy: string = 'Maximum';  // related to milesAround
-  pageNumber: number = 0;
+  pageNumber: number = 1;
   defaultPageSize: number = 10;
-  totalPagesBasedOnAvailableQueryDataRecords: number = 1;
+  SearchResultCount: number = 0;
 
   categoryName: string = "";  // related to categoryOptionsBy
   countryCode: string = "";
