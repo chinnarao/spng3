@@ -38,15 +38,15 @@ export class AdRuntime {
       adState.adSearchModel != null &&
       adState.adSearchModel != undefined
     ) {
-      adSearchModel.countryName = adState.adSearchModel.countryName;
+      adSearchModel.countryCode = adState.adSearchModel.countryCode;
       adSearchModel.cityName = adState.adSearchModel.cityName;
       adSearchModel.zipCode = adState.adSearchModel.zipCode;
-      adSearchModel.milesAround = adState.adSearchModel.milesAround;
+      adSearchModel.mileOptionsBy = adState.adSearchModel.mileOptionsBy;
       adSearchModel.categoryName = adState.adSearchModel.categoryName;
       adSearchModel.minPrice = adState.adSearchModel.minPrice;
       adSearchModel.maxPrice = adState.adSearchModel.maxPrice;
-      adSearchModel.selectedCurrency = adState.adSearchModel.selectedCurrency;
-      adSearchModel.condition = adState.adSearchModel.condition;
+      adSearchModel.currencyCode = adState.adSearchModel.currencyCode;
+      adSearchModel.conditionName = adState.adSearchModel.conditionName;
       version = adState.v;
     }
     var initialState: AdState = {

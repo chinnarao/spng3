@@ -6,7 +6,6 @@ export const Countries2: Country1[] = [
       countryCca2: "US",
       countryCallingCode: "1",
       currencySymbol: "$",
-      currencyName: "US dollars",
       currencyCode: "USD",
       lattitude: 38,
       longitude: -97
@@ -16,7 +15,6 @@ export const Countries2: Country1[] = [
       countryCca2: "IN",
       countryCallingCode: "91",
       currencySymbol: "₹",
-      currencyName: "Indian Rupee",
       currencyCode: "INR",
       lattitude: 20,
       longitude: 77

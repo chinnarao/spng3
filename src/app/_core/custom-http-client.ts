@@ -22,7 +22,9 @@ export class CustomHttpClient extends HttpClient {
 
     post<T>(url: string, body: any): Observable<T> {
         // return super.post<T>(url, body, { headers: new HttpHeaders({'Content-Type':  'application/json'}) });
-        return super.post<T>(url, body, { headers: Headers_Content_Type_Json });
+        //return super.post<T>(url, body, { headers: Headers_Content_Type_Json });
+        console.log("custome http post called:" + body);
+        return super.post<T>(url, body);
     }
 
     // post<T>(url: string, body: any): Observable<T> {

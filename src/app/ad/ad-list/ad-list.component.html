@@ -9,6 +9,15 @@
           <app-ad-search (notifyOnUpdateSeachClick)="searchAds($event)"></app-ad-search>
         </div>
         <div>
+          <div>
+              <mat-form-field>
+                  <select matNativeControl placeholder="Select Miles" name="miles" [(ngModel)]="selectedSortOptionBy">
+                    <option *ngFor="let sort of sortOptionsBy" [value]="sort.value">
+                      {{sort.description}}
+                    </option>
+                  </select>
+                </mat-form-field>
+          </div>
             <div><H1>Displayed Advertisements Total: {{ads?.length}}</H1></div>
             <div *ngFor="let ad of ads">
                 <a [routerLink]="['/ad-list/read/']" [queryParams]="{ id: ad.adId}">{{ad.adId}} - {{ad.adTitle}}</a>

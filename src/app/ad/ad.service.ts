@@ -59,10 +59,10 @@ export class AdService {
       .pipe(catchError(this.handleError<any>("updateAd", [])));
   }
 
-  searchAds(searchCriteria: AdSearchModel): Observable<AdModel> {
+  searchAds(searchCriteria: AdSearchModel): Observable<any> {
     const url = "https://localhost:44394/api/ad/SearchAds";
     return this.http
-      .post<AdModel>(url, searchCriteria)
+      .post<any>(url, searchCriteria)
       .pipe(catchError(this.handleError<any>("searchAds", [])));
   }
 

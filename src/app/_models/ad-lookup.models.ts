@@ -11,10 +11,9 @@ export class Category {
 export class Country1 {
   countryName: string;
   countryCca2: string;
+  currencyCode: string;
   countryCallingCode: string;
   currencySymbol: string;
-  currencyName: string;
-  currencyCode: string;
   lattitude: number;
   longitude: number;
 }

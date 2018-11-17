@@ -4,7 +4,7 @@ import { AdService } from '../ad.service';
 import { AdModel, AdSearchModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
 import { HttpErrorResponse} from '@angular/common/http';
-import usersJson from 'src/assets/data/users.json';
+import lookup from "src/assets/data/ad.json";
 
 @Component({
     selector: 'app-ad-list',
@@ -12,11 +12,12 @@ import usersJson from 'src/assets/data/users.json';
     styleUrls: ['./ad-list.component.scss'],
 })
 export class AdListComponent implements OnInit {
+    sortOptionsBy = lookup.sortOptionsBy;
     ads: AdModel[];
     data: any;
     oldData: any;
     adModel: AdModel;
-
+    selectedSortOptionBy: string = lookup.sortOptionsBy[0].value;
     constructor(
         private nGXLogger: NGXLogger,
         private toastrService: ToastrService,
@@ -74,15 +75,22 @@ export class AdListComponent implements OnInit {
     }
 
     searchAds(model: AdSearchModel): void {
+        model.sortOptionsBy = this.selectedSortOptionBy;
         this.nGXLogger.log(model);
-        // this.adService.updateAd(undefined).subscribe(
-        //     ad => {
-        //         this.data = ad;
-        //     },
-        //     error => {
-        //         console.log('please check where i am6?');
-        //     }
-        // );
+        this.adService.searchAds(model).subscribe(
+            searchResult => {
+                this.data = searchResult;
+                if (searchResult && searchResult.ads) {
+                    this.ads = searchResult.ads;
+                }
+                // if (searchResult && searchResult.option) {
+                //     console.log("search ads success: " + JSON.stringify(this.data.option));
+                // }
+            },
+            error => {
+                console.log('please check where i am6?');
+            }
+        );
     }
 
     createAdModel(): AdModel {

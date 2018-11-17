@@ -2,17 +2,11 @@ import { AdRuntime } from "./../ad.runtime";
 import { NGXLogger } from "ngx-logger";
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 import { AdSearchModel } from "src/app/_models/ad.models";
-import {
-  Conditions,
-  Countries,
-  Categories,
-  CurrencyTypes
-} from "src/app/_models/_data/ad-lookup-data";
 import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
-import { startWith, map, share } from "rxjs/operators";
-import countriesJson from "src/assets/data/country.json";
-import { CurrencyType } from "src/app/_models/ad-lookup.models";
+import { startWith, map } from "rxjs/operators";
+import countryJson from "src/assets/data/country.json";
+import lookup from "src/assets/data/ad.json";
 
 @Component({
   selector: "app-ad-search-criteria",
@@ -20,13 +14,15 @@ import { CurrencyType } from "src/app/_models/ad-lookup.models";
   styleUrls: ["./ad-search-criteria.component.scss"]
 })
 export class AdSearchCriteriaComponent implements OnInit {
-  condtions = Conditions;
-  countries = Countries;
-  categories = Categories;
-  currencyTypes = CurrencyTypes;
-
+  
   currencyControl = new FormControl();
-  filteredCurrencies: Observable<CurrencyType[]>;
+  
+  condtions = lookup.conditionOptionsBy;
+  mileOptionsBy = lookup.mileOptionsBy;
+  countries = countryJson.country;
+  categories = lookup.categoryOptionsBy;
+  filteredCountries: Observable<any[]>;
+
   adSearchModel: AdSearchModel = new AdSearchModel();
 
   constructor(private nGXLogger: NGXLogger, private adRuntime: AdRuntime) {
@@ -36,24 +32,22 @@ export class AdSearchCriteriaComponent implements OnInit {
   ngOnInit() {
     this._initCurrencies();
     this.init();
-    //countriesJson.countries[0].countryCca2
   }
 
   _initCurrencies(): void {
-    this.filteredCurrencies = this.currencyControl.valueChanges.pipe(
+    this.filteredCountries = this.currencyControl.valueChanges.pipe(
       startWith(""),
       map(value => this._filter(value))
     );
   }
-
-  _filter(input: string): CurrencyType[] {
+  
+  _filter(input: string): any[] {
     if (input) {
-      const filterValue = input.toLowerCase();
-      return this.currencyTypes.filter(option =>
-        option.value.toLowerCase().includes(filterValue)
+      return countryJson.country.filter(option =>
+        option.currencyCode.toLowerCase().includes(input.toLowerCase())
       );
     }
-    return this.currencyTypes;
+    return countryJson.country;
   }
 
   init(): void {}
