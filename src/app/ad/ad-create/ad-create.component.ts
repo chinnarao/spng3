@@ -4,21 +4,44 @@ import { AdModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
 import { AdService } from '../ad.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup } from '@angular/forms';
+import { AdCreateFormService } from './ad-create-form.service';
+import lookup from "src/assets/data/lookup.json";
+import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
+import { Category } from 'src/app/_models/ad-lookup.models';
 
 @Component({
   selector: 'app-ad-create',
   templateUrl: './ad-create.component.html',
-  styleUrls: ['./ad-create.component.scss']
+  styleUrls: ['./ad-create.component.scss'],
+  providers: [
+  ]
 })
 export class AdCreateComponent implements OnInit {
 
+  condtions = lookup.conditionOptionsBy;
+  categories = lookup.categoryOptionsBy;
+  get form(): FormGroup {
+    return this.adCreateFormService.form;
+    //return this.adCreateFormService.GetDefaultForm(this.DefaultAdModel);
+  }
   adModel: AdModel;
   errors = [];
-  constructor(private logger: NGXLogger, private toastrService: ToastrService, private adService: AdService) {
+  constructor(private logger: NGXLogger, private toastrService: ToastrService, private adService: AdService,
+    private adCreateFormService: AdCreateFormService) {
   }
 
   ngOnInit() {
-    this.createAdModel();
+    //this.createAdModel();
+    //this.adCreateFormService.loadDefaults();
+  }
+
+  onSubmit() {
+    // Make sure to create a deep copy of the form-model
+    const result: AdModel = Object.assign({}, this.form.value);
+
+    // Do useful stuff with the gathered data
+    console.log(result);
   }
 
   createAd(): void {
@@ -44,6 +67,19 @@ export class AdCreateComponent implements OnInit {
           }
         }
     );
+  }
+
+  get DefaultAdModel(): AdModel {
+    let m: AdModel = new AdModel();
+    m.adDisplayDays = 30;
+    m.itemCost = 0;
+    m.addressLongitude = -118.263970;
+    m.addressLatitude = 34.153520;
+    m.category = this.categories[0];
+    // m.category.key = 0;
+    // m.category.value = "All";
+    // this.categories[0];
+    return m;
   }
 
   createAdModel(): AdModel {

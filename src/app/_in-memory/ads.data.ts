@@ -46,6 +46,7 @@ export const ads: AdModel[] = [
         tag8: 'laborum',
         tag9: 'ea',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386101',
@@ -93,6 +94,7 @@ export const ads: AdModel[] = [
         tag8: 'irure',
         tag9: 'nostrud',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386102',
@@ -140,6 +142,7 @@ export const ads: AdModel[] = [
         tag8: 'qui',
         tag9: 'incididunt',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386103',
@@ -187,6 +190,7 @@ export const ads: AdModel[] = [
         tag8: 'laborum',
         tag9: 'ex',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386104',
@@ -234,6 +238,7 @@ export const ads: AdModel[] = [
         tag8: 'quis',
         tag9: 'sit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386105',
@@ -281,6 +286,7 @@ export const ads: AdModel[] = [
         tag8: 'dolor',
         tag9: 'consequat',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386106',
@@ -328,6 +334,7 @@ export const ads: AdModel[] = [
         tag8: 'qui',
         tag9: 'dolor',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386107',
@@ -375,6 +382,7 @@ export const ads: AdModel[] = [
         tag8: 'aute',
         tag9: 'proident',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386108',
@@ -422,6 +430,7 @@ export const ads: AdModel[] = [
         tag8: 'nostrud',
         tag9: 'esse',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '636671112867386109',
@@ -469,6 +478,7 @@ export const ads: AdModel[] = [
         tag8: 'velit',
         tag9: 'cupidatat',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '6366711128673861010',
@@ -516,6 +526,7 @@ export const ads: AdModel[] = [
         tag8: 'amet',
         tag9: 'reprehenderit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '6366711128673861011',
@@ -563,6 +574,7 @@ export const ads: AdModel[] = [
         tag8: 'labore',
         tag9: 'et',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '6366711128673861012',
@@ -610,6 +622,7 @@ export const ads: AdModel[] = [
         tag8: 'magna',
         tag9: 'deserunt',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '6366711128673861013',
@@ -657,6 +670,7 @@ export const ads: AdModel[] = [
         tag8: 'ut',
         tag9: 'qui',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null
     },
     {
         adId: '6366711128673861014',
@@ -704,6 +718,7 @@ export const ads: AdModel[] = [
         tag8: 'anim',
         tag9: 'velit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861015',
@@ -751,6 +766,7 @@ export const ads: AdModel[] = [
         tag8: 'ipsum',
         tag9: 'sunt',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861016',
@@ -798,6 +814,7 @@ export const ads: AdModel[] = [
         tag8: 'Lorem',
         tag9: 'nisi',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861017',
@@ -845,6 +862,7 @@ export const ads: AdModel[] = [
         tag8: 'proident',
         tag9: 'est',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861018',
@@ -892,6 +910,7 @@ export const ads: AdModel[] = [
         tag8: 'fugiat',
         tag9: 'qui',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861019',
@@ -939,6 +958,7 @@ export const ads: AdModel[] = [
         tag8: 'id',
         tag9: 'sunt',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861020',
@@ -986,6 +1006,7 @@ export const ads: AdModel[] = [
         tag8: 'esse',
         tag9: 'nisi',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861021',
@@ -1033,6 +1054,7 @@ export const ads: AdModel[] = [
         tag8: 'ullamco',
         tag9: 'velit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861022',
@@ -1080,6 +1102,7 @@ export const ads: AdModel[] = [
         tag8: 'enim',
         tag9: 'magna',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861023',
@@ -1127,6 +1150,7 @@ export const ads: AdModel[] = [
         tag8: 'consequat',
         tag9: 'esse',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861024',
@@ -1174,6 +1198,7 @@ export const ads: AdModel[] = [
         tag8: 'sint',
         tag9: 'exercitation',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861025',
@@ -1221,6 +1246,7 @@ export const ads: AdModel[] = [
         tag8: 'veniam',
         tag9: 'reprehenderit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861026',
@@ -1268,6 +1294,7 @@ export const ads: AdModel[] = [
         tag8: 'irure',
         tag9: 'anim',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861027',
@@ -1315,6 +1342,7 @@ export const ads: AdModel[] = [
         tag8: 'esse',
         tag9: 'nostrud',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861028',
@@ -1362,6 +1390,7 @@ export const ads: AdModel[] = [
         tag8: 'voluptate',
         tag9: 'id',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861029',
@@ -1409,6 +1438,7 @@ export const ads: AdModel[] = [
         tag8: 'ipsum',
         tag9: 'esse',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861030',
@@ -1456,6 +1486,7 @@ export const ads: AdModel[] = [
         tag8: 'officia',
         tag9: 'exercitation',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861031',
@@ -1503,6 +1534,7 @@ export const ads: AdModel[] = [
         tag8: 'deserunt',
         tag9: 'cillum',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861032',
@@ -1550,6 +1582,7 @@ export const ads: AdModel[] = [
         tag8: 'laborum',
         tag9: 'reprehenderit',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861033',
@@ -1597,6 +1630,7 @@ export const ads: AdModel[] = [
         tag8: 'occaecat',
         tag9: 'excepteur',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861034',
@@ -1644,6 +1678,7 @@ export const ads: AdModel[] = [
         tag8: 'qui',
         tag9: 'laboris',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861035',
@@ -1691,6 +1726,7 @@ export const ads: AdModel[] = [
         tag8: 'laborum',
         tag9: 'excepteur',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861036',
@@ -1738,6 +1774,7 @@ export const ads: AdModel[] = [
         tag8: 'adipisicing',
         tag9: 'voluptate',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861037',
@@ -1785,6 +1822,7 @@ export const ads: AdModel[] = [
         tag8: 'qui',
         tag9: 'officia',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861038',
@@ -1832,6 +1870,7 @@ export const ads: AdModel[] = [
         tag8: 'adipisicing',
         tag9: 'incididunt',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861039',
@@ -1879,6 +1918,7 @@ export const ads: AdModel[] = [
         tag8: 'anim',
         tag9: 'commodo',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861040',
@@ -1926,6 +1966,7 @@ export const ads: AdModel[] = [
         tag8: 'nisi',
         tag9: 'irure',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
     {
         adId: '6366711128673861041',
@@ -1973,5 +2014,6 @@ export const ads: AdModel[] = [
         tag8: 'nulla',
         tag9: 'dolor',
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
+        category: null,
     },
 ];

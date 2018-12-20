@@ -1,3 +1,4 @@
+import { AdCreateFormService } from './ad-create/ad-create-form.service';
 import { MdcModule } from "./../_core/mdc-module";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
@@ -37,7 +38,7 @@ const DECLARATIONS = [
   AdSearchCriteriaComponent
 ];
 
-const PROVIDERS = [AdService, AdRuntime];
+const PROVIDERS = [AdService, AdRuntime, AdCreateFormService];
 
 @NgModule({
   imports: [IMPORTS],

@@ -1,5 +1,110 @@
 <div fxLayout="column">
   <div fxLayout="row" style="text-align:center;">
+    <nav fxFlex="25" fxFlexOrder.xs="2">
+      <div></div>
+    </nav>
+    <article fxFlex="50" fxFlexOrder.xs="1">
+      <div>
+        <H1>Create Advertisement</H1>
+      </div>
+      <div>
+        <form [formGroup]='form' (ngSubmit)="onSubmit(form.value)" class="example-form">
+          <div>
+            <img src="https://avatars3.githubusercontent.com/u/11062426?s=200&v=4" [ngStyle]="{'height': 50}">
+          </div>
+          <div><label>{{userSocialProviderName}}</label></div>
+          <div>
+            <mat-radio-group formControlName='conditionName'>
+              <mat-radio-button *ngFor="let condition of condtions" [value]="condition.value" style="margin-right: 15px;">
+                {{condition.description}}
+              </mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field>
+              <select matNativeControl placeholder="Select Category" formControlName="category">
+                <option value="" disabled selected></option>
+                <option *ngFor="let category of categories" [value]="category">
+                  {{category.description}}
+                </option>
+              </select>
+            </mat-form-field>
+            <div><mat-form-field>
+              <input matInput formControlName='title' placeholder="Title of your advertisement:">
+            </mat-form-field></div>
+            
+            <div> <mat-form-field>
+              <input matInput formControlName='content' placeholder="Details of your advertisement:">
+            </mat-form-field></div>
+           
+            <mat-form-field >
+              <input matInput formControlName='displayDays' placeholder="Days to Display:">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName='userIdOrEmail' placeholder="User Id or Email:">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName='phoneCountryCode' placeholder="Phone Calling Code:">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName='phoneNumber' placeholder="Phone Number:">
+            </mat-form-field>
+
+            <div>
+              <h3>Address</h3>
+              <mat-form-field>
+                <input matInput formControlName='addressStreet' placeholder="Street:">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressPartiesMeetingLandmark' placeholder="Address Parties Meeting Land mark:">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressCity' placeholder="City Name">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressState' placeholder="State Name">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressZipCode' placeholder="Zip Code">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressCountryCode' placeholder="Country Code">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='addressCountryName' placeholder="Country Name">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='longitude' placeholder="longitude">
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput formControlName='latitude' placeholder="latitude">
+              </mat-form-field>
+            </div>
+            <mat-form-field>
+              <input matInput formControlName='itemCurrencyCode' placeholder="Currency Code:">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput formControlName='itemCost' placeholder="Cost:">
+            </mat-form-field>
+            <div>
+              <input type="Submit" value="Create Advertisement" [disabled]="!form.valid">
+            </div>
+          </div>
+        </form>
+      </div>
+    </article>
+    <aside fxFlex="25" fxFlexOrder.xs="3">
+      <div></div>
+    </aside>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- <div fxLayout="column">
+  <div fxLayout="row" style="text-align:center;">
     <nav fxFlex="15" fxFlexOrder.xs="2">
       <div></div>
     </nav>
@@ -23,4 +128,4 @@
       <div></div>
     </aside>
   </div>
-</div>
+</div> -->

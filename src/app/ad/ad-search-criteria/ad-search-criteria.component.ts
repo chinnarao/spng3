@@ -1,3 +1,4 @@
+import { Country } from './../../_models/ad-lookup.models';
 import { AdRuntime } from "./../ad.runtime";
 import { NGXLogger } from "ngx-logger";
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
@@ -6,7 +7,7 @@ import { Observable } from "rxjs";
 import { FormControl } from "@angular/forms";
 import { startWith, map } from "rxjs/operators";
 import countryJson from "src/assets/data/country.json";
-import lookup from "src/assets/data/ad.json";
+import lookup from "src/assets/data/lookup.json";
 
 @Component({
   selector: "app-ad-search-criteria",
@@ -19,7 +20,7 @@ export class AdSearchCriteriaComponent implements OnInit {
   
   condtions = lookup.conditionOptionsBy;
   mileOptionsBy = lookup.mileOptionsBy;
-  countries = countryJson.country;
+  countries = countryJson.Country;
   categories = lookup.categoryOptionsBy;
   filteredCountries: Observable<any[]>;
 
@@ -43,11 +44,11 @@ export class AdSearchCriteriaComponent implements OnInit {
   
   _filter(input: string): any[] {
     if (input) {
-      return countryJson.country.filter(option =>
-        option.currencyCode.toLowerCase().includes(input.toLowerCase())
+      return countryJson.Country.filter(option =>
+        option.CurrencyCode.toLowerCase().includes(input.toLowerCase())
       );
     }
-    return countryJson.country;
+    return countryJson.Country;
   }
 
   init(): void {}

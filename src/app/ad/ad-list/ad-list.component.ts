@@ -4,7 +4,7 @@ import { AdService } from "../ad.service";
 import { AdModel, AdSearchModel } from "src/app/_models/ad.models";
 import { ToastrService } from "ngx-toastr";
 import { HttpErrorResponse } from "@angular/common/http";
-import lookup from "src/assets/data/ad.json";
+import lookup from "src/assets/data/lookup.json";
 
 @Component({
   selector: "app-ad-list",

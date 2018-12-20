@@ -1,3 +1,4 @@
+import { Category } from './ad-lookup.models';
 export class AdSearchModel {
   sortOptionsBy: string = 'NewestFirst';
   mileOptionsBy: string = 'Maximum';  // related to milesAround
@@ -65,4 +66,5 @@ export class AdModel {
   tag8: string;
   tag9: string;
   updatedDateTimeString: string;
+  category: Category;
 }
