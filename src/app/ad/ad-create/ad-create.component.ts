@@ -22,12 +22,6 @@ import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 export class AdCreateComponent implements OnInit, OnDestroy {
   user: User;
   userSource$: Subscription;
-  condtions = lookup.conditionOptionsBy;
-  categories = lookup.categoryOptionsBy;
-  // get form(): FormGroup {
-  //   return this.adCreateFormService.form;
-  //   //return this.adCreateFormService.GetDefaultForm(this.DefaultAdModel);
-  // }
   adModel: AdModel;
   formSvc: AdCreateFormService;
   errors = [];
@@ -38,25 +32,13 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //this.createAdModel();
-    //this.adCreateFormService.loadDefaults();
     this.user = this.sharedService.getUser();
     console.log(this.user);
   }
 
   onSubmit() {
-    
-    if( !this.adCreateFormService.AdForm.valid)
-    {
-      
-    }
-
     // Make sure to create a deep copy of the form-model
     const result: AdModel = Object.assign({}, this.adCreateFormService.AdForm.value);
-
-    // Do useful stuff with the gathered data
-    console.log(result);
-    console.log("hey what is this amma");
   }
 
   onClear() {
@@ -96,7 +78,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     m.itemCost = 0;
     m.addressLongitude = -118.263970;
     m.addressLatitude = 34.153520;
-    m.category = this.categories[0];
+    m.category = this.formSvc.categories[0];
     // m.category.key = 0;
     // m.category.value = "All";
     // this.categories[0];

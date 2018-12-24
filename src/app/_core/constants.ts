@@ -3,6 +3,10 @@ import { HttpHeaders } from "@angular/common/http";
 export const enum Constants {
   TOKEN = 'token',
   USER_OBJECT = 'user',
+  FIELD_MSG_REQ = "this field is required",
+  FIELD_MSG_MIN = "Minimum 2 charactors needed",
+  FIELD_MSG_DISPLAYDAYS_MAX = "1 - 255 allowed",
+  FIELD_MSG_PHONECOUNTRYCode_MAX = "1 - 995 allowed",
 }
 
 //export const AD_LIST_SEARCH_CRIT_STORAGE_STATE1: string = "ad_l_s_c_s_s";

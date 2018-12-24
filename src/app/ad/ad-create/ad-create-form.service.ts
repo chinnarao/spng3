@@ -11,6 +11,7 @@ import {
 import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
 import { range } from "src/app/_core/validators";
+import { Constants } from "src/app/_core/constants";
 
 @Injectable()
 export class AdCreateFormService {
@@ -18,17 +19,15 @@ export class AdCreateFormService {
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
   
-  FIELD_MSG_REQ = "this field is required";
-  FIELD_MSG_MIN = "Minimum 2 charactors needed"
-  FIELD_MSG_DISPLAYDAYS_MAX = "1 - 255 allowed"
-  FIELD_MSG_PHONECOUNTRYCode_MAX = "1 - 995 allowed"
+  FIELD_MSG_REQ = Constants.FIELD_MSG_REQ;
+  FIELD_MSG_MIN = Constants.FIELD_MSG_MIN;
+  FIELD_MSG_DISPLAYDAYS_MAX = Constants.FIELD_MSG_DISPLAYDAYS_MAX;
+  FIELD_MSG_PHONECOUNTRYCode_MAX = Constants.FIELD_MSG_PHONECOUNTRYCode_MAX;
 
   constructor(private fb: FormBuilder) {
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
   }
-
-
 
   GetDefaultForm(ad: AdModel) {
     this.form = this.fb.group(
