@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
                     // this.logger.info(this.user);
                     this.localStorageService.set(Constants.TOKEN, idToken);
                     this.tokenStored = true;
-                    this.sharedService.user = this.user;
+                    this.sharedService.setUser(this.user);
                 });
                 const route_2 = this.headerRouteHelperService.getRouteHistoryUrls_2();
                 // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
         const route_1 = this.headerRouteHelperService.getRouteHistoryUrls_1();
         this.router.navigate([route_1]);
         this.localStorageService.remove(Constants.TOKEN);
+        this.sharedService.setUser(null);
         this.tokenStored = false;
     }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { AdModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
@@ -10,6 +10,7 @@ import lookup from "src/assets/data/lookup.json";
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
 import { SharedService } from 'src/app/_core/SharedService';
 import { User } from 'src/app/_models/user';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ad-create',
@@ -18,26 +19,29 @@ import { User } from 'src/app/_models/user';
   providers: [
   ]
 })
-export class AdCreateComponent implements OnInit {
+export class AdCreateComponent implements OnInit, OnDestroy {
   user: User;
+  userSource$: Subscription;
   condtions = lookup.conditionOptionsBy;
   categories = lookup.categoryOptionsBy;
-  get form(): FormGroup {
-    return this.adCreateFormService.form;
-    //return this.adCreateFormService.GetDefaultForm(this.DefaultAdModel);
-  }
+  // get form(): FormGroup {
+  //   return this.adCreateFormService.form;
+  //   //return this.adCreateFormService.GetDefaultForm(this.DefaultAdModel);
+  // }
   adModel: AdModel;
   formSvc: AdCreateFormService;
   errors = [];
   constructor(private toastrService: ToastrService, private adService: AdService, 
     private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
       this.formSvc = adCreateFormService;
+      this.userSource$ = sharedService.userLatest$.subscribe(data => { this.user = data; });
   }
 
   ngOnInit() {
     //this.createAdModel();
     //this.adCreateFormService.loadDefaults();
-    this.user = this.sharedService.user;
+    this.user = this.sharedService.getUser();
+    console.log(this.user);
   }
 
   onSubmit() {
@@ -139,5 +143,7 @@ export class AdCreateComponent implements OnInit {
     this.adModel.tag9 = 'nostrud';
     return this.adModel;
   }
+
+  ngOnDestroy() { this.userSource$.unsubscribe(); }
 
 }

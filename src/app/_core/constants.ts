@@ -2,6 +2,7 @@ import { HttpHeaders } from "@angular/common/http";
 
 export const enum Constants {
   TOKEN = 'token',
+  USER_OBJECT = 'user',
 }
 
 //export const AD_LIST_SEARCH_CRIT_STORAGE_STATE1: string = "ad_l_s_c_s_s";
