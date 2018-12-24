@@ -8,7 +8,8 @@ import { FormGroup } from '@angular/forms';
 import { AdCreateFormService } from './ad-create-form.service';
 import lookup from "src/assets/data/lookup.json";
 import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
-import { Category } from 'src/app/_models/ad-lookup.models';
+import { SharedService } from 'src/app/_core/SharedService';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-ad-create',
@@ -18,7 +19,7 @@ import { Category } from 'src/app/_models/ad-lookup.models';
   ]
 })
 export class AdCreateComponent implements OnInit {
-
+  user: User;
   condtions = lookup.conditionOptionsBy;
   categories = lookup.categoryOptionsBy;
   get form(): FormGroup {
@@ -26,22 +27,38 @@ export class AdCreateComponent implements OnInit {
     //return this.adCreateFormService.GetDefaultForm(this.DefaultAdModel);
   }
   adModel: AdModel;
+  formSvc: AdCreateFormService;
   errors = [];
-  constructor(private logger: NGXLogger, private toastrService: ToastrService, private adService: AdService,
-    private adCreateFormService: AdCreateFormService) {
+  constructor(private toastrService: ToastrService, private adService: AdService, 
+    private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
+      this.formSvc = adCreateFormService;
   }
 
   ngOnInit() {
     //this.createAdModel();
     //this.adCreateFormService.loadDefaults();
+    this.user = this.sharedService.user;
   }
 
   onSubmit() {
+    
+    if( !this.adCreateFormService.AdForm.valid)
+    {
+      
+    }
+
     // Make sure to create a deep copy of the form-model
-    const result: AdModel = Object.assign({}, this.form.value);
+    const result: AdModel = Object.assign({}, this.adCreateFormService.AdForm.value);
 
     // Do useful stuff with the gathered data
     console.log(result);
+    console.log("hey what is this amma");
+  }
+
+  onClear() {
+    console.log("hey what is this amma 325353");
+    this.adCreateFormService.form.reset();
+    this.adCreateFormService.form.patchValue(this.adCreateFormService.AdFormDefaultData);
   }
 
   createAd(): void {

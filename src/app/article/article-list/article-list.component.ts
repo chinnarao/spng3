@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from 'src/app/_core/SharedService';
 
 @Component({
     selector: 'app-article-list',
@@ -8,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./article-list.component.scss'],
 })
 export class ArticleListComponent implements OnInit {
-    constructor(private logger: NGXLogger, private toastrService: ToastrService) {}
+    constructor(private logger: NGXLogger, private toastrService: ToastrService, private sharedService: SharedService) {}
 
     ngOnInit() {}
 

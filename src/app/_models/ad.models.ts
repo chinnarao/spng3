@@ -1,4 +1,4 @@
-import { Category } from './ad-lookup.models';
+import { KeyValueDescription } from './ad-lookup.models';
 export class AdSearchModel {
   sortOptionsBy: string = 'NewestFirst';
   mileOptionsBy: string = 'Maximum';  // related to milesAround
@@ -41,8 +41,8 @@ export class AdModel {
   addressLatitude: number;
   addressLongitude: number;
   itemCost: number;
-  itemCostCurrencyName: string; //
-  itemCurrencyISO_4217: string; //INR
+  itemCostCurrencyName: string;
+  itemCurrencyISO_4217: string;
   attachedAssetsInCloudCount: number;
   attachedAssetsInCloudStorageId: string;
   attachedAssetsStoredInCloudBaseFolderPath: string;
@@ -66,5 +66,6 @@ export class AdModel {
   tag8: string;
   tag9: string;
   updatedDateTimeString: string;
-  category: Category;
+  category: KeyValueDescription;
+  condition: KeyValueDescription;
 }

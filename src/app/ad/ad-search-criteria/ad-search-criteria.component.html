@@ -10,8 +10,8 @@
     <mat-form-field>
       <select matNativeControl placeholder="Select Country" name="country" [(ngModel)]="adSearchModel.countryCode">
         <option value="" disabled selected></option>
-        <option *ngFor="let country of countries" [value]="country.countryCode">
-          {{country.countryName}}
+        <option *ngFor="let country of countries" [value]="country.CountryCode">
+          {{country.CountryName}}
         </option>
       </select>
     </mat-form-field>

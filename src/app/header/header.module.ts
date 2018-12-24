@@ -14,6 +14,11 @@ import { HeaderRouteHelperService } from "./header-route-helper.service";
 import { MdcModule } from "../_core/mdc-module";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from "../_core/material-module";
+import { MyDashboardComponent } from './my-dashboard/my-dashboard.component';
+import { DataService } from "./my-dashboard/services/data.service";
+import { EditDialogComponent } from "./my-dashboard/dialogs/edit/edit.dialog.component";
+import { DeleteDialogComponent } from "./my-dashboard/dialogs/delete/delete.dialog.component";
+import { AddDialogComponent } from "./my-dashboard/dialogs/add/add.dialog.component";
 
 export const firebaseUiAuthConfig: firebaseui.auth.Config = {
   signInFlow: "popup",
@@ -52,14 +57,19 @@ const IMPORTS = [
   MdcModule,
   MaterialModule
 ];
-const DECLARATIONS = [LogInComponent, HeaderComponent, RegisterComponent];
-const EXPORTS = [LogInComponent, HeaderComponent, RegisterComponent];
-const PROVIDERS = [HeaderRouteHelperService];
+const DECLARATIONS = [LogInComponent, HeaderComponent, RegisterComponent, EditDialogComponent, DeleteDialogComponent, AddDialogComponent];
+const EXPORTS = [LogInComponent, HeaderComponent, RegisterComponent, EditDialogComponent, DeleteDialogComponent, AddDialogComponent];
+const PROVIDERS = [HeaderRouteHelperService, DataService];
 
 @NgModule({
   imports: [IMPORTS],
-  declarations: [DECLARATIONS],
+  declarations: [DECLARATIONS, MyDashboardComponent],
   exports: [EXPORTS],
-  providers: [PROVIDERS]
+  providers: [PROVIDERS],
+  entryComponents: [
+    AddDialogComponent,
+    EditDialogComponent,
+    DeleteDialogComponent
+  ]
 })
 export class HeaderModule {}

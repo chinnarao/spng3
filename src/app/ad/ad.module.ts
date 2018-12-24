@@ -16,6 +16,8 @@ import { AdSearchCriteriaComponent } from "./ad-search-criteria/ad-search-criter
 import { MaterialModule } from "../_core/material-module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdRuntime } from "./ad.runtime";
+import { NumberDirective } from '../_directives/numbers-only.directive';
+import { DecimalsOnlyDirective } from '../_directives/decimals-only.directive';
 
 const IMPORTS = [
   CommonModule,
@@ -35,7 +37,9 @@ const DECLARATIONS = [
   AdListComponent,
   AdNotFoundComponent,
   AdSearchComponent,
-  AdSearchCriteriaComponent
+  AdSearchCriteriaComponent,
+  NumberDirective,
+  DecimalsOnlyDirective,
 ];
 
 const PROVIDERS = [AdService, AdRuntime, AdCreateFormService];

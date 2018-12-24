@@ -18,6 +18,7 @@ import { CoreModule } from "./_core/core.module";
 import { HttpErrorHandler } from "./_core/http-error-handler.service";
 import { MdcModule } from "./_core/mdc-module";
 import { MaterialModule } from "./_core/material-module";
+import { SharedService } from "./_core/SharedService";
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 // import {SharedModule} from './shared/shared.module';
 // import {StackTraceOfflineErrorhandler} from './_error/stackTraceOfflineErrorhandler';
@@ -33,6 +34,7 @@ const PROVIDERS = [
   NGXLogger,
   ToastrService,
   LocalStorageService,
+  SharedService,
   HttpErrorHandler
   // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
   // { provide: ErrorHandler, useClass: SentryErrorHandler }

@@ -11,7 +11,7 @@ export class JwtInterceptor implements HttpInterceptor {
         const token = this.localStorageService.get(Constants.TOKEN);
         if (token !== 'null') {
             // set('Cache-Control', 'no-cache').set('Access-Control-Allow-Origin', '*').set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
-            request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token).set('Content-type', 'application/json') });
+            //request = request.clone({ headers: request.headers.set('Authorization', 'Bearer ' + token).set('Content-type', 'application/json') });
         }
         return next.handle(request);
     }

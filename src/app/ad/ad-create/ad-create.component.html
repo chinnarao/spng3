@@ -8,14 +8,14 @@
         <H1>Create Advertisement</H1>
       </div>
       <div>
-        <form [formGroup]='form' (ngSubmit)="onSubmit(form.value)" class="example-form">
+        <form [formGroup]='formSvc.form' (ngSubmit)="formSvc.form.valid && onSubmit()" novalidate>
           <div>
             <img src="https://avatars3.githubusercontent.com/u/11062426?s=200&v=4" [ngStyle]="{'height': 50}">
           </div>
           <div><label>{{userSocialProviderName}}</label></div>
           <div>
-            <mat-radio-group formControlName='conditionName'>
-              <mat-radio-button *ngFor="let condition of condtions" [value]="condition.value" style="margin-right: 15px;">
+            <mat-radio-group formControlName='condition'>
+              <mat-radio-button *ngFor="let condition of condtions" [value]="condition" style="margin-right: 15px;">
                 {{condition.description}}
               </mat-radio-button>
             </mat-radio-group>
@@ -27,27 +27,38 @@
                 </option>
               </select>
             </mat-form-field>
-            <div><mat-form-field>
-              <input matInput formControlName='title' placeholder="Title of your advertisement:">
-            </mat-form-field></div>
-            
-            <div> <mat-form-field>
-              <input matInput formControlName='content' placeholder="Details of your advertisement:">
-            </mat-form-field></div>
-           
-            <mat-form-field >
-              <input matInput formControlName='displayDays' placeholder="Days to Display:">
+            <div class="form">
+              <mat-form-field color="accent">
+                <textarea matInput #inputTitle formControlName='title' placeholder="Title" name="title" minlength="2" maxlength="500"  required></textarea>
+                <mat-error *ngIf="formSvc.form.controls['title'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
+                <mat-error *ngIf="formSvc.form.controls['title'].errors?.minlength">{{formSvc.FIELD_MSG_MIN}}</mat-error>
+                <mat-hint align="end">{{inputTitle.value?.length || 0}}/500</mat-hint>
+              </mat-form-field>
+            </div>
+            <div class="form">
+              <mat-form-field color="accent">
+                <textarea matInput #inputContent formControlName='content' placeholder="Content" name="content" minlength="2" maxlength="8000" required></textarea>
+                <mat-error *ngIf="formSvc.form.controls['content'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
+                <mat-error *ngIf="formSvc.form.controls['content'].errors?.minlength">{{formSvc.FIELD_MSG_MIN}}</mat-error>
+                <mat-hint align="end">{{inputContent.value?.length || 0}}/8000</mat-hint>
+              </mat-form-field>
+            </div>
+            <mat-form-field>
+              <input matInput formControlName='adDisplayDays' placeholder="Days to Display(1-255):" numbersOnly required>
+              <mat-error *ngIf="formSvc.form.controls['adDisplayDays'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
+              <mat-error *ngIf="formSvc.form.controls['adDisplayDays'].hasError('range')">{{formSvc.FIELD_MSG_DISPLAYDAYS_MAX}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName='userIdOrEmail' placeholder="User Id or Email:">
+              <input matInput formControlName='userIdOrEmail' placeholder="User Id or Email:" required>
+              <mat-error *ngIf="formSvc.form.controls['userIdOrEmail'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName='phoneCountryCode' placeholder="Phone Calling Code:">
+              <input matInput formControlName='phoneCountryCode' placeholder="Phone Calling Code(1-995):" maxlength="3" numbersOnly>
+              <mat-error *ngIf="formSvc.form.controls['phoneCountryCode'].hasError('range')">{{formSvc.FIELD_MSG_PHONECOUNTRYCode_MAX}}</mat-error>
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName='phoneNumber' placeholder="Phone Number:">
+              <input matInput formControlName='phoneNumber' placeholder="Phone Number:" maxlength="10" numbersOnly>
             </mat-form-field>
-
             <div>
               <h3>Address</h3>
               <mat-form-field>
@@ -82,10 +93,11 @@
               <input matInput formControlName='itemCurrencyCode' placeholder="Currency Code:">
             </mat-form-field>
             <mat-form-field>
-              <input matInput formControlName='itemCost' placeholder="Cost:">
+              <input matInput #inputCost formControlName='itemCost' placeholder="Cost:" decimalsOnly>
             </mat-form-field>
             <div>
-              <input type="Submit" value="Create Advertisement" [disabled]="!form.valid">
+              <input type="Submit" value="Create Advertisement" [disabled]="formSvc.form.invalid">
+              <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </div>
           </div>
         </form>

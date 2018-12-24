@@ -6,6 +6,7 @@ import { User } from 'src/app/_models/user';
 import { HeaderRouteHelperService } from '../header-route-helper.service';
 import { LocalStorageService } from 'src/app/_core/local-storage.service';
 import { Constants } from 'src/app/_core/constants';
+import { SharedService } from 'src/app/_core/SharedService';
 
 @Component({
     selector: 'app-header',
@@ -22,7 +23,8 @@ export class HeaderComponent implements OnInit {
         private router: Router,
         private headerRouteHelperService: HeaderRouteHelperService,
         private logger: NGXLogger,
-        private localStorageService: LocalStorageService
+        private localStorageService: LocalStorageService,
+        private sharedService: SharedService
     ) {
         this.afAuth.auth.onAuthStateChanged(user => {
             if (user) {
@@ -32,6 +34,7 @@ export class HeaderComponent implements OnInit {
                     // this.logger.info(this.user);
                     this.localStorageService.set(Constants.TOKEN, idToken);
                     this.tokenStored = true;
+                    this.sharedService.user = this.user;
                 });
                 const route_2 = this.headerRouteHelperService.getRouteHistoryUrls_2();
                 // warning: fix: Navigation triggered outside Angular zone, did you forget to call 'ngZone.run()'
