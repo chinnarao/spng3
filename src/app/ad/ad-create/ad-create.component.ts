@@ -34,6 +34,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.user = this.sharedService.getUser();
     //console.log(this.user);
+    this.formSvc._initCategories();
     this.formSvc._initCurrencies();
   }
 

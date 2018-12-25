@@ -19,20 +19,32 @@
           
           <div>
             <mat-form-field>
-              <select matNativeControl placeholder="Select Condition" formControlName="condition">
+              <select matNativeControl placeholder="Select Condition" formControlName="condition" required>
                 <option *ngFor="let condition of formSvc.conditions" [value]="condition">
                   {{condition.description}}
                 </option>
               </select>
+              <mat-error *ngIf="formSvc.form.controls['condition'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
             </mat-form-field>
-            <mat-form-field>
-              <select matNativeControl placeholder="Select Category" formControlName="category">
+            <!-- <mat-form-field>
+              <select matNativeControl placeholder="Select Category:" formControlName="category">
                 <option value="" disabled selected></option>
                 <option *ngFor="let category of formSvc.categories" [value]="category">
                   {{category.description}}
                 </option>
               </select>
-            </mat-form-field>
+            </mat-form-field> -->
+            <div>
+                <mat-form-field>
+                    <input matInput type="text" formControlName="category" placeholder="Select Category:" [matAutocomplete]="category" required>
+                    <mat-autocomplete #category="matAutocomplete" [displayWith]="formSvc.categoryDisplayFn">
+                      <mat-option *ngFor="let category of formSvc.filteredCategories | async" [value]="category">
+                        {{category.description}}
+                      </mat-option>
+                    </mat-autocomplete>
+                    <mat-error *ngIf="formSvc.form.controls['category'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
+                  </mat-form-field>
+            </div>
             <div class="form">
               <mat-form-field color="accent">
                 <textarea matInput #inputTitle formControlName='title' placeholder="Title" name="title" minlength="2" maxlength="500"  required></textarea>
@@ -97,8 +109,8 @@
             </div>
             <div>
                 <mat-form-field>
-                    <input type="text" placeholder="currency code" matInput formControlName="itemCurrencyCode" [matAutocomplete]="auto" [ngStyle]="{'text-transform': 'uppercase'}">
-                    <mat-autocomplete #auto="matAutocomplete" >
+                    <input matInput type="text" placeholder="currency code" formControlName="itemCurrencyCode" [matAutocomplete]="itemCurrencyCode" [ngStyle]="{'text-transform': 'uppercase'}">
+                    <mat-autocomplete #itemCurrencyCode="matAutocomplete" >
                       <mat-option *ngFor="let itemCurrencyCode of formSvc.filteredCurrencyCodes | async" [value]="itemCurrencyCode">
                         {{itemCurrencyCode}}
                       </mat-option>
@@ -121,36 +133,3 @@
     </aside>
   </div>
 </div>
-
-
-
-
-
-
-
-<!-- <div fxLayout="column">
-  <div fxLayout="row" style="text-align:center;">
-    <nav fxFlex="15" fxFlexOrder.xs="2">
-      <div></div>
-    </nav>
-    <article fxFlex="70" fxFlexOrder.xs="1">
-      <div>
-        <H1>Create Advertisement</H1><button (click)="createAd()">CreateAd</button>
-      </div>
-      <div>
-        <div>Please fix below fields:</div>
-        <ul>
-          <li *ngFor="let error of errors" style="color: red;"> 
-            {{ error }}
-          </li>
-        </ul>
-      </div>
-      <div>
-        <textarea rows="40" cols="100">{{adModel | json:2}}</textarea>
-      </div>
-    </article>
-    <aside fxFlex="15" fxFlexOrder.xs="3">
-      <div></div>
-    </aside>
-  </div>
-</div> -->

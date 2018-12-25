@@ -3,7 +3,6 @@ import countryJson from "src/assets/data/country.json";
 import { KeyValueDescription } from "../_models/ad-lookup.models";
 
 export class Util {
-    
     static GetCurrencyCodesFromJson() : Array<string> {
       // tsconfig.json, setting is required : "downlevelIteration": true
       const uniques = [...new Set(countryJson.Country.map(c => c.CurrencyCode))].sort();

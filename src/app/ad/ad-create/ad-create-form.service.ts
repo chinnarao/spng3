@@ -4,9 +4,6 @@ import {
   FormGroup,
   FormControl,
   Validators,
-  ValidatorFn,
-  ValidationErrors,
-  AbstractControl
 } from "@angular/forms";
 import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
@@ -14,15 +11,15 @@ import { range } from "src/app/_core/validators";
 import { Constants } from "src/app/_core/constants";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
-import countryJson from "src/assets/data/country.json";
 import { Util } from "src/app/_core/util";
+import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
-  
+
   FIELD_MSG_REQ = Constants.FIELD_MSG_REQ;
   FIELD_MSG_MIN = Constants.FIELD_MSG_MIN;
   FIELD_MSG_DISPLAYDAYS_MAX = Constants.FIELD_MSG_DISPLAYDAYS_MAX;
@@ -33,21 +30,37 @@ export class AdCreateFormService {
     this.form.patchValue(this.AdFormDefaultData);
   }
 
-  filteredCurrencyCodes: Observable<any[]>;
+  filteredCurrencyCodes: Observable<string[]>;
   _initCurrencies(): void {
     this.filteredCurrencyCodes = this.form.controls['itemCurrencyCode'].valueChanges.pipe(
       startWith(""),
-      map(value => this._filter(value))
+      map(value => this._filterCurrencies(value))
     );
   }
-  _filter(input: string): any[] {
+  _filterCurrencies(input: string): string[] {
     const uniqueCurrencyCodes = Util.GetCurrencyCodesFromJson();
     if (input) {
-      return uniqueCurrencyCodes.filter(option =>
-        option.toLowerCase().includes(input.toLowerCase())
+      return uniqueCurrencyCodes.filter(c => c.toLowerCase().includes(input.toLowerCase())
       );
     }
     return uniqueCurrencyCodes;
+  }
+
+  filteredCategories: Observable<any[]>;
+  _initCategories(): void {
+    this.filteredCategories = this.form.controls['category'].valueChanges.pipe(
+      startWith(null),
+      map(value => this._filterCategories(value))
+    );
+  }
+  _filterCategories(input: any): any[] {
+    if (input != null && input.value) {
+      return this.categories.filter(c => c.value.toLowerCase().includes(input.value.toLowerCase()));
+    }
+    return this.categories;
+  }
+  categoryDisplayFn(kvd: KeyValueDescription) {
+    if (kvd) { return kvd.value; }
   }
 
   GetDefaultForm(ad: AdModel) {
@@ -171,7 +184,6 @@ export class AdCreateFormService {
   } 
 
   get AdFormDefaultData() : AdModel {
-
     let m: AdModel = new AdModel();
     m.adDisplayDays = 30;
     m.itemCost = 0;
