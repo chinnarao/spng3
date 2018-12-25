@@ -12,6 +12,10 @@ import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
 import { range } from "src/app/_core/validators";
 import { Constants } from "src/app/_core/constants";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import countryJson from "src/assets/data/country.json";
+import { Util } from "src/app/_core/util";
 
 @Injectable()
 export class AdCreateFormService {
@@ -27,6 +31,23 @@ export class AdCreateFormService {
   constructor(private fb: FormBuilder) {
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
+  }
+
+  filteredCurrencyCodes: Observable<any[]>;
+  _initCurrencies(): void {
+    this.filteredCurrencyCodes = this.form.controls['itemCurrencyCode'].valueChanges.pipe(
+      startWith(""),
+      map(value => this._filter(value))
+    );
+  }
+  _filter(input: string): any[] {
+    const uniqueCurrencyCodes = Util.GetCurrencyCodesFromJson();
+    if (input) {
+      return uniqueCurrencyCodes.filter(option =>
+        option.toLowerCase().includes(input.toLowerCase())
+      );
+    }
+    return uniqueCurrencyCodes;
   }
 
   GetDefaultForm(ad: AdModel) {

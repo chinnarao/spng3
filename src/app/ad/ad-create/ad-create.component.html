@@ -16,12 +16,15 @@
           <div><label>{{user?.user_email}}</label></div>
           <div><label>{{user?.providerData_providerId}}</label></div>
           <div><label>{{user?.user_phoneNumber}}</label></div>
+          
           <div>
-            <mat-radio-group formControlName='condition'>
-              <mat-radio-button *ngFor="let condition of formSvc.conditions" [value]="condition" style="margin-right: 15px;">
-                {{condition.description}}
-              </mat-radio-button>
-            </mat-radio-group>
+            <mat-form-field>
+              <select matNativeControl placeholder="Select Condition" formControlName="condition">
+                <option *ngFor="let condition of formSvc.conditions" [value]="condition">
+                  {{condition.description}}
+                </option>
+              </select>
+            </mat-form-field>
             <mat-form-field>
               <select matNativeControl placeholder="Select Category" formControlName="category">
                 <option value="" disabled selected></option>
@@ -92,9 +95,16 @@
                 <input matInput formControlName='latitude' placeholder="latitude">
               </mat-form-field>
             </div>
-            <mat-form-field>
-              <input matInput formControlName='itemCurrencyCode' placeholder="Currency Code:">
-            </mat-form-field>
+            <div>
+                <mat-form-field>
+                    <input type="text" placeholder="currency code" matInput formControlName="itemCurrencyCode" [matAutocomplete]="auto" [ngStyle]="{'text-transform': 'uppercase'}">
+                    <mat-autocomplete #auto="matAutocomplete" >
+                      <mat-option *ngFor="let itemCurrencyCode of formSvc.filteredCurrencyCodes | async" [value]="itemCurrencyCode">
+                        {{itemCurrencyCode}}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </mat-form-field>
+            </div>
             <mat-form-field>
               <input matInput #inputCost formControlName='itemCost' placeholder="Cost:" decimalsOnly>
             </mat-form-field>
