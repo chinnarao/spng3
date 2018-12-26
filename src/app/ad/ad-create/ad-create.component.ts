@@ -25,6 +25,8 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   adModel: AdModel;
   formSvc: AdCreateFormService;
   errors = [];
+
+  test1 = "this is chinna";
   constructor(private toastrService: ToastrService, private adService: AdService, 
     private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
       this.formSvc = adCreateFormService;

@@ -7,12 +7,12 @@ import {
 } from "@angular/forms";
 import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
-import { range } from "src/app/_core/validators";
 import { Constants } from "src/app/_core/constants";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
 import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
+import { range } from "src/app/_core/validators";
 
 @Injectable()
 export class AdCreateFormService {
@@ -22,8 +22,12 @@ export class AdCreateFormService {
 
   FIELD_MSG_REQ = Constants.FIELD_MSG_REQ;
   FIELD_MSG_MIN = Constants.FIELD_MSG_MIN;
-  FIELD_MSG_DISPLAYDAYS_MAX = Constants.FIELD_MSG_DISPLAYDAYS_MAX;
-  FIELD_MSG_PHONECOUNTRYCode_MAX = Constants.FIELD_MSG_PHONECOUNTRYCode_MAX;
+  FIELD_HINT_DISPLAYDAYS = Constants.FIELD_HINT_DISPLAYDAYS;
+  FIELD_HINT_PHONECOUNTRYCODE = Constants.FIELD_HINT_PHONECOUNTRYCODE;
+  FIELD_HINT_PHONENUMBER = Constants.FIELD_HINT_PHONENUMBER;
+  FIELD_HINT_ITEMCOST = Constants.FIELD_HINT_ITEMCOST;
+  FIELD_HINT_ITEMCURRENCYCODE = Constants.FIELD_HINT_ITEMCURRENCYCODE;
+  DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
   constructor(private fb: FormBuilder) {
     this.form = this.AdForm;
@@ -54,8 +58,9 @@ export class AdCreateFormService {
     );
   }
   _filterCategories(input: any): any[] {
-    if (input != null && input.value) {
-      return this.categories.filter(c => c.value.toLowerCase().includes(input.value.toLowerCase()));
+    if (input != null) {
+      const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
+      return cats;
     }
     return this.categories;
   }
@@ -143,8 +148,6 @@ export class AdCreateFormService {
   get AdForm(): FormGroup {
     this.form = this.fb.group(
       {
-        userSocialAvatarUrl: [null, Validators.required],
-        userSocialProviderName: [null, Validators.required],
         condition: [null, Validators.required],
         category: [null, Validators.required],
         title: [
@@ -163,51 +166,29 @@ export class AdCreateFormService {
             Validators.required
           ])
         ],
-        adDisplayDays: [null, [Validators.required, range(1,255)]], // should allow only digits // 1 to 255
-        userIdOrEmail: [null, Validators.required],
-        phoneCountryCode: [null, range(1,995)], // should allow only digits
-        phoneNumber: [null], // should allow only digits
+        adDisplayDays: [null, [Validators.required, range(1,255)]],
+        phoneCountryCode: [null], 
+        phoneNumber: [null], 
         itemCurrencyCode: [null],
-        itemCost: [null], // 0 means free or donation, plan: this is not mandate but if 0 should warn , are you forget cost? //, this.hasExclamationMark
+        itemCost: [null],
         addressStreet: [null],
-        addressPartiesMeetingLandmark: [null],
         addressCity: [null],
         addressState: [null],
         addressZipCode: [null],
-        addressCountryCode: [null],
         addressCountryName: [null],
-        longitude: [null],
-        latitude: [null]
+        addressLongitude: [null],
+        addressLatitude: [null]
       }
     );
     return this.form;
   } 
 
+  //Number('123'); +'123'; parseInt('123'); parseFloat('123.45')
   get AdFormDefaultData() : AdModel {
     let m: AdModel = new AdModel();
-    m.adDisplayDays = 30;
-    m.itemCost = 0;
-    m.addressLongitude = -118.263970;
-    m.addressLatitude = 34.153520;
+    m.adDisplayDays = +this.DAYS_TO_DISPLAY; 
     m.category = this.categories[0];
     m.condition = this.conditions[0];
-    // m.category.key = 0;
-    // m.category.value = "All";
-    // this.categories[0];
     return m;
   }
-
-// isDisplaysDaysGT255(input: FormControl) {
-//   let isMaxLimitFailed: boolean = false;
-//   if (input.value && parseInt(input.value) > 255)
-//       isMaxLimitFailed = true;
-//   return isMaxLimitFailed ? { maxLimitFailed: true } : null;
-// }
-// ValidateUrl(control: AbstractControl) {
-//   if (!control.value.startsWith('https') || !control.value.includes('.io')) {
-//     return { validUrl: true };
-//   }
-//   return null;
-// }
-
 }

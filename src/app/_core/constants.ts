@@ -2,11 +2,15 @@ import { HttpHeaders } from "@angular/common/http";
 
 export const enum Constants {
   TOKEN = 'token',
+  DAYS_TO_DISPLAY = 30,
   USER_OBJECT = 'user',
-  FIELD_MSG_REQ = "this field is required",
+  FIELD_MSG_REQ = "Required",
   FIELD_MSG_MIN = "Minimum 2 charactors needed",
-  FIELD_MSG_DISPLAYDAYS_MAX = "1 - 255 allowed",
-  FIELD_MSG_PHONECOUNTRYCode_MAX = "1 - 995 allowed",
+  FIELD_HINT_DISPLAYDAYS = "Digits only allowed (1-255)",
+  FIELD_HINT_PHONECOUNTRYCODE = "Digits only allowed (1-995)",
+  FIELD_HINT_PHONENUMBER = "10 Digits only allowed (1234567890)",
+  FIELD_HINT_ITEMCOST = "Digits only allowed(0.99)",
+  FIELD_HINT_ITEMCURRENCYCODE = "Currency Type($)"
 }
 
 //export const AD_LIST_SEARCH_CRIT_STORAGE_STATE1: string = "ad_l_s_c_s_s";
