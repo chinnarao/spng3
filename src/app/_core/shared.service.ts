@@ -14,6 +14,7 @@ export class SharedService {
   private user$ = new BehaviorSubject<any>(null);
   private changeUser(user: User){
     this.user$.next(user);
+    this.user$.complete();
   }
   
   public userLatest$ = this.user$.asObservable();

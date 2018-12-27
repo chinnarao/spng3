@@ -6,7 +6,7 @@ import { User } from 'src/app/_models/user';
 import { HeaderRouteHelperService } from '../header-route-helper.service';
 import { LocalStorageService } from 'src/app/_core/local-storage.service';
 import { Constants } from 'src/app/_core/constants';
-import { SharedService } from 'src/app/_core/SharedService';
+import { SharedService } from 'src/app/_core/shared.service';
 
 @Component({
     selector: 'app-header',

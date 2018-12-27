@@ -1,16 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
 import { AdModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
 import { AdService } from '../ad.service';
 import { HttpErrorResponse } from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
 import { AdCreateFormService } from './ad-create-form.service';
-import lookup from "src/assets/data/lookup.json";
-import { modelGroupProvider } from '@angular/forms/src/directives/ng_model_group';
-import { SharedService } from 'src/app/_core/SharedService';
+import { SharedService } from 'src/app/_core/shared.service';
 import { User } from 'src/app/_models/user';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ad-create',
@@ -26,7 +22,6 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   formSvc: AdCreateFormService;
   errors = [];
 
-  test1 = "this is chinna";
   constructor(private toastrService: ToastrService, private adService: AdService, 
     private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
       this.formSvc = adCreateFormService;
@@ -35,7 +30,6 @@ export class AdCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.sharedService.getUser();
-    //console.log(this.user);
     this.formSvc._initCategories();
     this.formSvc._initCurrencies();
   }

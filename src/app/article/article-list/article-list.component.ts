@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { ToastrService } from 'ngx-toastr';
-import { SharedService } from 'src/app/_core/SharedService';
+import { SharedService } from 'src/app/_core/shared.service';
 
 @Component({
     selector: 'app-article-list',

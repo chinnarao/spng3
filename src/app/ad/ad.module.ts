@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AdRuntime } from "./ad.runtime";
 import { NumberDirective } from '../_directives/numbers-only.directive';
 import { DecimalsOnlyDirective } from '../_directives/decimals-only.directive';
+import { MapModule } from '../_map/map.module';
 
 const IMPORTS = [
   CommonModule,
@@ -26,7 +27,8 @@ const IMPORTS = [
   AdRoutingModule,
   FlexLayoutModule,
   MdcModule,
-  MaterialModule
+  MaterialModule,
+  MapModule.forRoot()
 ];
 
 const DECLARATIONS = [

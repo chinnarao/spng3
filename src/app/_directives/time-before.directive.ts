@@ -25,7 +25,5 @@ export function timebeforeValidator(dateCtrl:string): ValidatorFn {
 export class TimeBeforeValidatorDirective implements Validator {
     @Input('timebefore') timebefore: string;
 
-    validate(control: AbstractControl): { [key: string]: any } | null {
-        return timebeforeValidator(this.timebefore)(control);
-    }
+    validate(control: AbstractControl): { [key: string]: any } | null { return timebeforeValidator(this.timebefore)(control); }
 }

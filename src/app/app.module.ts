@@ -13,12 +13,10 @@ import { ToastrModule, ToastrService } from "ngx-toastr";
 import { HomeModule } from "./home/home.module";
 import { PagesModule } from "./_pages/pages.module";
 import { HeaderModule } from "./header/header.module";
-import { LocalStorageService } from "./_core/local-storage.service";
 import { CoreModule } from "./_core/core.module";
 import { HttpErrorHandler } from "./_core/http-error-handler.service";
 import { MdcModule } from "./_core/mdc-module";
 import { MaterialModule } from "./_core/material-module";
-import { SharedService } from "./_core/SharedService";
 // import { SentryErrorHandler } from './_error/sentryErrorHandler';
 // import {SharedModule} from './shared/shared.module';
 // import {StackTraceOfflineErrorhandler} from './_error/stackTraceOfflineErrorhandler';
@@ -33,8 +31,6 @@ import { SharedService } from "./_core/SharedService";
 const PROVIDERS = [
   NGXLogger,
   ToastrService,
-  LocalStorageService,
-  SharedService,
   HttpErrorHandler
   // {provide: ErrorHandler, useClass: StackTraceOfflineErrorhandler},
   // { provide: ErrorHandler, useClass: SentryErrorHandler }
