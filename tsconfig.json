@@ -39,6 +39,9 @@
     "lib": ["es2017", "dom"],
     "paths": {
       "@igo2/*": ["dist/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "downlevelIteration": true,
   }
 }

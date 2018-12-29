@@ -29,6 +29,7 @@
     "@ngx-loading-bar/http-client": "^2.2.0",
     "@ngx-loading-bar/router": "^2.2.0",
     "@sentry/browser": "^4.2.4",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "dexie": "^2.0.4",
     "firebase": "^5.5.7",
