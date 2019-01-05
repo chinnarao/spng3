@@ -6,7 +6,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AdCreateFormService } from './ad-create-form.service';
 import { SharedService } from 'src/app/_core/shared.service';
 import { User } from 'src/app/_models/user';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { Util } from 'src/app/_core/util';
+import { Items } from 'src/app/_models/ad-lookup.models';
 
 @Component({
   selector: 'app-ad-create',
@@ -21,6 +23,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   adModel: AdModel;
   formSvc: AdCreateFormService;
   errors = [];
+  githubAutoComplete$ : Observable<Items> = null;
 
   constructor(private toastrService: ToastrService, private adService: AdService, 
     private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
@@ -32,6 +35,8 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     this.user = this.sharedService.getUser();
     this.formSvc._initCategories();
     this.formSvc._initCurrencies();
+    this.formSvc._initHereGeos();
+    this.githubAutoComplete$ = this.formSvc.githubAutoComplete$;
   }
 
   onSubmit() {
@@ -125,5 +130,18 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() { this.userSource$.unsubscribe(); }
+
+  xhrCallBack(data: any){
+    alert("success xhr callback");
+    alert(JSON.parse(data));
+  }
+  xhr(){
+    alert("hey chinna");
+    const data : any = {};
+    //success test : "https://jsonplaceholder.typicode.com/posts"
+    let url : string = "https://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=wiSaJwgTMCWhOmkvEXxc&app_code=6e19RoRJT_hw4Gi-8gnvHw&query=Pariser+1+Berl";
+    //url = "https://jsonplaceholder.typicode.com/posts";
+    const uniqueCurrencyCodes = Util.httpCall("GET", url, data, this.xhrCallBack);
+  }
 
 }

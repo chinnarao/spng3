@@ -8,18 +8,22 @@ import {
 import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
 import { Constants } from "src/app/_core/constants";
-import { Observable } from "rxjs";
-import { map, startWith } from "rxjs/operators";
+import { Observable, of } from "rxjs";
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
-import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
+import { KeyValueDescription, HereGeo, Items, GithubResponse } from "src/app/_models/ad-lookup.models";
 import { range } from "src/app/_core/validators";
 import { GeoLocationService } from "src/app/_map/geo-location.service";
+import { HttpClient } from "@angular/common/http";
+import { HandleError, HttpErrorHandler } from "src/app/_core/http-error-handler.service";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
+
+  private handleError: HandleError;
 
   FIELD_MSG_REQ = Constants.FIELD_MSG_REQ;
   FIELD_MSG_MIN = Constants.FIELD_MSG_MIN;
@@ -30,9 +34,61 @@ export class AdCreateFormService {
   FIELD_HINT_ITEMCURRENCYCODE = Constants.FIELD_HINT_ITEMCURRENCYCODE;
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
-  constructor(private fb: FormBuilder,private geoLocationService : GeoLocationService) {
+  githubAutoComplete$: Observable<Items> = null;
+  public autoCompleteControl = new FormControl();
+
+  
+
+  constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private httpClient: HttpClient, 
+    httpErrorHandler: HttpErrorHandler) {
+    this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
+
+    this.githubAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
+      startWith(''),
+      // delay emits
+      debounceTime(300),
+      // use switch map so as to cancel previous subscribed events, before creating new once
+      switchMap(value => {
+        if (value !== '') {
+          // lookup from github
+          return this.lookup(value);
+        } else {
+          // if no value is pressent, return null
+          return of(null);
+        }
+      })
+    );
+  }
+
+  lookup(value: string): Observable<Items> {
+    return this.search(value.toLowerCase()).pipe(
+      // map the item property of the github results as our return object
+      map(results => results.items),
+      // catch errors
+      catchError(_ => {
+        return of(null);
+      })
+    );
+  }
+
+  search(query: string): Observable<GithubResponse> {
+    const url = 'https://api.github.com/search/repositories';
+    return this.httpClient
+      .get<GithubResponse>(url, {
+        observe: 'response',
+        params: {
+          q: query,
+          sort: 'stars',
+          order: 'desc'
+        }
+      })
+      .pipe(
+        map(res => {
+          return res.body;
+        })
+      );
   }
 
   filteredCurrencyCodes: Observable<string[]>;
@@ -178,7 +234,8 @@ export class AdCreateFormService {
         addressZipCode: [null],
         addressCountryName: [null],
         addressLongitude: [null],
-        addressLatitude: [null]
+        addressLatitude: [null],
+        hereGeo: [null],
       }
     );
     return this.form;
@@ -192,4 +249,49 @@ export class AdCreateFormService {
     m.condition = this.conditions[0];
     return m;
   }
+
+  filteredHereGeos: Observable<any[]>;
+  _initHereGeos(): void {
+    this.filteredHereGeos = this.form.controls['hereGeo'].valueChanges.pipe(
+      startWith(null),
+      debounceTime(200),
+      distinctUntilChanged(),
+      switchMap(val => this._filterHereGeos(val || ''))
+    );
+  }
+  // _filterHereGeos(val: string): any[] {
+  //   if (input != null) {
+  //     const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
+  //     return cats;
+  //   }
+  //   return this.categories;
+  // }
+
+  // const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
+  _filterHereGeos(val: string): Observable<any[]> {
+    // let abc : any;
+    // const res = this.getUsers().pipe( map( (data) => console.log(data)));
+    return this.getUsers()
+    .pipe(
+      map(response => response.filter(option => { return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0 })
+        ),
+      catchError(this.handleError<any>("_filterHereGeos", []))
+    );
+    
+  }
+
+  hereGeoDisplayFn(hereGeo: any) {
+    if (hereGeo) 
+    { 
+      return "aaaaaaaa___bbbb";//hereGeo.label; 
+    }
+  }
+
+  //https://api.github.com/users/seeschweiler
+  //https://jsonplaceholder.typicode.com/users
+  getUsers(): Observable<any> {
+    return this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users')
+  }
+
+  
 }

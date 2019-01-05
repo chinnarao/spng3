@@ -19,6 +19,7 @@ import { AdRuntime } from "./ad.runtime";
 import { NumberDirective } from '../_directives/numbers-only.directive';
 import { DecimalsOnlyDirective } from '../_directives/decimals-only.directive';
 import { MapModule } from '../_map/map.module';
+import { AdCreateMapComponent } from './ad-create-map/ad-create-map.component';
 
 const IMPORTS = [
   CommonModule,
@@ -49,7 +50,7 @@ const PROVIDERS = [AdService, AdRuntime, AdCreateFormService];
 @NgModule({
   imports: [IMPORTS],
   exports: [],
-  declarations: [DECLARATIONS],
+  declarations: [DECLARATIONS, AdCreateMapComponent],
   providers: [PROVIDERS]
 })
 export class AdModule {}

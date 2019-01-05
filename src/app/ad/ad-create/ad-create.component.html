@@ -80,16 +80,25 @@
                   <mat-error *ngIf="formSvc.form.controls['adDisplayDays'].hasError('range')">{{formSvc.FIELD_HINT_DISPLAYDAYS}}</mat-error>
               </mat-form-field>
               <mat-form-field hintLabel="{{formSvc.FIELD_HINT_ITEMCURRENCYCODE}}" style="width:60px !important; margin-left: 5px;">
-                  <input matInput type="text" placeholder="Code" formControlName="itemCurrencyCode" [matAutocomplete]="itemCurrencyCode" [ngStyle]="{'text-transform': 'uppercase'}">
-                  <mat-autocomplete #itemCurrencyCode="matAutocomplete" >
-                    <mat-option *ngFor="let itemCurrencyCode of formSvc.filteredCurrencyCodes | async" [value]="itemCurrencyCode">
-                      {{itemCurrencyCode}}
-                    </mat-option>
-                  </mat-autocomplete>
-                </mat-form-field>
-                <mat-form-field hintLabel="{{formSvc.FIELD_HINT_ITEMCOST}}" style="width:100px !important; margin-left: 5px;">
-                  <input matInput #inputCost formControlName='itemCost' placeholder="Cost" decimalsOnly>
-                </mat-form-field>
+                <input matInput type="text" placeholder="Code" formControlName="itemCurrencyCode" [matAutocomplete]="itemCurrencyCode" [ngStyle]="{'text-transform': 'uppercase'}">
+                <mat-autocomplete #itemCurrencyCode="matAutocomplete" >
+                  <mat-option *ngFor="let itemCurrencyCode of formSvc.filteredCurrencyCodes | async" [value]="itemCurrencyCode">
+                    {{itemCurrencyCode}}
+                  </mat-option>
+                </mat-autocomplete>
+              </mat-form-field>
+              <mat-form-field hintLabel="{{formSvc.FIELD_HINT_ITEMCOST}}" style="width:100px !important; margin-left: 5px;">
+                <input matInput #inputCost formControlName='itemCost' placeholder="Cost" decimalsOnly>
+              </mat-form-field>
+              <mat-form-field style="width:200px !important; margin-left: 5px;">
+                <input matInput type="text" formControlName="hereGeo" placeholder="Location" [matAutocomplete]="HereAutoComplete">
+                <mat-autocomplete #HereAutoComplete="matAutocomplete" [displayWith]="formSvc.hereGeoDisplayFn">
+                  <mat-option *ngFor="let hereGeo of formSvc.filteredHereGeos | async" [value]="hereGeo">
+                    {{hereGeo.label}}
+                  </mat-option>
+                </mat-autocomplete>
+                <mat-error *ngIf="formSvc.form.controls['category'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
+              </mat-form-field>
             </div>
            </fieldset>
           <div>
@@ -123,4 +132,17 @@
   </div>
 </div>
 
+<div>
+  <mat-form-field>
+    <input [formControl]="formSvc.autoCompleteControl" type="text" placeholder="Pick one" aria-label="Number" matInput [matAutocomplete]="auto">
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <mat-option *ngFor="let item of githubAutoComplete$ | async; let index = index" [value]="item.name">
+        {{ item.name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</div>
+
+<button mat-raised-button color="primary" (click)="xhr()">xhr call</button>
+<app-ad-create-map></app-ad-create-map>
 
