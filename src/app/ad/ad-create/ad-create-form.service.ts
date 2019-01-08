@@ -34,46 +34,41 @@ export class AdCreateFormService {
   FIELD_HINT_ITEMCURRENCYCODE = Constants.FIELD_HINT_ITEMCURRENCYCODE;
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
-  githubAutoComplete$: Observable<Items> = null;
-  public autoCompleteControl = new FormControl();
-
-  
-
   constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private httpClient: HttpClient, 
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
+  }
 
-    this.githubAutoComplete$ = this.autoCompleteControl.valueChanges.pipe(
+  hereGeo$: Observable<Items> = null;
+  autoCompleteControlForAddress = new FormControl();
+  _initHereGeos(): void {
+    this.hereGeo$ = this.autoCompleteControlForAddress.valueChanges.pipe(
       startWith(''),
-      // delay emits
       debounceTime(300),
       // use switch map so as to cancel previous subscribed events, before creating new once
       switchMap(value => {
         if (value !== '') {
-          // lookup from github
-          return this.lookup(value);
+          return this.filteredHereGeos(value);
         } else {
-          // if no value is pressent, return null
           return of(null);
         }
       })
     );
   }
 
-  lookup(value: string): Observable<Items> {
-    return this.search(value.toLowerCase()).pipe(
-      // map the item property of the github results as our return object
+  filteredHereGeos(value: string): Observable<Items> {
+    return this.hereGeoFind(value.toLowerCase()).pipe(
       map(results => results.items),
-      // catch errors
       catchError(_ => {
         return of(null);
       })
     );
   }
 
-  search(query: string): Observable<GithubResponse> {
+  //https://theinfogrid.com/tech/developers/angular/ng-material-autocomplete-http-lookup/
+  hereGeoFind(query: string): Observable<GithubResponse> {
     const url = 'https://api.github.com/search/repositories';
     return this.httpClient
       .get<GithubResponse>(url, {
@@ -235,7 +230,6 @@ export class AdCreateFormService {
         addressCountryName: [null],
         addressLongitude: [null],
         addressLatitude: [null],
-        hereGeo: [null],
       }
     );
     return this.form;
@@ -250,48 +244,9 @@ export class AdCreateFormService {
     return m;
   }
 
-  filteredHereGeos: Observable<any[]>;
-  _initHereGeos(): void {
-    this.filteredHereGeos = this.form.controls['hereGeo'].valueChanges.pipe(
-      startWith(null),
-      debounceTime(200),
-      distinctUntilChanged(),
-      switchMap(val => this._filterHereGeos(val || ''))
-    );
-  }
-  // _filterHereGeos(val: string): any[] {
-  //   if (input != null) {
-  //     const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
-  //     return cats;
-  //   }
-  //   return this.categories;
-  // }
-
-  // const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
-  _filterHereGeos(val: string): Observable<any[]> {
-    // let abc : any;
-    // const res = this.getUsers().pipe( map( (data) => console.log(data)));
-    return this.getUsers()
-    .pipe(
-      map(response => response.filter(option => { return option.name.toLowerCase().indexOf(val.toLowerCase()) === 0 })
-        ),
-      catchError(this.handleError<any>("_filterHereGeos", []))
-    );
-    
-  }
-
-  hereGeoDisplayFn(hereGeo: any) {
-    if (hereGeo) 
-    { 
-      return "aaaaaaaa___bbbb";//hereGeo.label; 
-    }
-  }
-
   //https://api.github.com/users/seeschweiler
   //https://jsonplaceholder.typicode.com/users
   getUsers(): Observable<any> {
     return this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users')
   }
-
-  
 }

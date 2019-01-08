@@ -23,7 +23,6 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   adModel: AdModel;
   formSvc: AdCreateFormService;
   errors = [];
-  githubAutoComplete$ : Observable<Items> = null;
 
   constructor(private toastrService: ToastrService, private adService: AdService, 
     private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
@@ -36,7 +35,6 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     this.formSvc._initCategories();
     this.formSvc._initCurrencies();
     this.formSvc._initHereGeos();
-    this.githubAutoComplete$ = this.formSvc.githubAutoComplete$;
   }
 
   onSubmit() {
