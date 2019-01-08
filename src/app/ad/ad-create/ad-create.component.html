@@ -93,8 +93,8 @@
               <mat-form-field style="width:200px !important; margin-left: 5px;">
                 <input matInput type="text" [formControl]="formSvc.autoCompleteControlForAddress" placeholder="find your address" [matAutocomplete]="HereAutoComplete">
                 <mat-autocomplete autoActiveFirstOption #HereAutoComplete="matAutocomplete">
-                  <mat-option *ngFor="let hereGeo of formSvc.hereGeo$ | async; let index = index" [value]="hereGeo.name">
-                    {{ hereGeo.name}}
+                  <mat-option *ngFor="let hereGeo of formSvc.hereGeo$ | async; let index = index" [value]="hereGeo.label">
+                    {{ hereGeo.label}}
                   </mat-option>
                 </mat-autocomplete>
                 <mat-error *ngIf="formSvc.form.controls['category'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>

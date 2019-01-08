@@ -11,7 +11,7 @@ import { Constants } from "src/app/_core/constants";
 import { Observable, of } from "rxjs";
 import { map, startWith, debounceTime, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
-import { KeyValueDescription, RootObject } from "src/app/_models/ad-lookup.models";
+import { KeyValueDescription, RootObject, RootObject1, Suggestion, Address } from "src/app/_models/ad-lookup.models";
 import { range } from "src/app/_core/validators";
 import { GeoLocationService } from "src/app/_map/geo-location.service";
 import { HttpClient } from "@angular/common/http";
@@ -41,7 +41,7 @@ export class AdCreateFormService {
     this.form.patchValue(this.AdFormDefaultData);
   }
 
-  hereGeo$: Observable<RootObject[]> = null;
+  hereGeo$: Observable<RootObject1> = null;
   autoCompleteControlForAddress = new FormControl();
   _initHereGeos(): void {
     this.hereGeo$ = this.autoCompleteControlForAddress.valueChanges.pipe(
@@ -58,9 +58,9 @@ export class AdCreateFormService {
     );
   }
 
-  filteredHereGeos(value: string): Observable<RootObject[]> {
+  filteredHereGeos(value: string): Observable<Suggestion[]> {
     return this.hereGeoFind(value.toLowerCase()).pipe(
-      map(results => results),
+      map(results => results.suggestions),
       catchError(_ => {
         return of(null);
       })
@@ -69,10 +69,10 @@ export class AdCreateFormService {
 
   //https://api.github.com/search/repositories?q=a&sort=stars&order=desc
   //https://theinfogrid.com/tech/developers/angular/ng-material-autocomplete-http-lookup/
-  hereGeoFind(query: string): Observable<RootObject[]> {
-    const url = 'https://jsonplaceholder.typicode.com/users';
+  hereGeoFind(query: string): Observable<RootObject1> {
+    const url = 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=wiSaJwgTMCWhOmkvEXxc&app_code=6e19RoRJT_hw4Gi-8gnvHw&query=Pariser+1+Berl';
     return this.httpClient
-      .get<RootObject[]>(url, {
+      .get<RootObject1>(url, {
         observe: 'response',
         params: {
           q: query,
