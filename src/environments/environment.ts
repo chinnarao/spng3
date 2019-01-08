@@ -23,6 +23,11 @@ export const environment = {
       defaultLongitude: -118.263307,
       defaultZoomPercentage: 10
   },
+  hereGeo: {
+    autoCompleteUrl: 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json',
+    app_id: 'wiSaJwgTMCWhOmkvEXxc',
+    app_code: '6e19RoRJT_hw4Gi-8gnvHw',
+  },
 };
 
 /*

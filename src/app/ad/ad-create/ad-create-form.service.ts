@@ -11,17 +11,19 @@ import { Constants } from "src/app/_core/constants";
 import { Observable, of } from "rxjs";
 import { map, startWith, debounceTime, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
-import { KeyValueDescription, RootObject, RootObject1, Suggestion, Address } from "src/app/_models/ad-lookup.models";
 import { range } from "src/app/_core/validators";
 import { GeoLocationService } from "src/app/_map/geo-location.service";
-import { HttpClient } from "@angular/common/http";
 import { HandleError, HttpErrorHandler } from "src/app/_core/http-error-handler.service";
+import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
+import { HereGeo, Suggestion, Address } from "src/app/_models/here-geo.models";
+import { HereService } from "src/app/_core/here.service";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
+  herGeoUrl = Util.hereGeoUrl();
 
   private handleError: HandleError;
 
@@ -34,14 +36,14 @@ export class AdCreateFormService {
   FIELD_HINT_ITEMCURRENCYCODE = Constants.FIELD_HINT_ITEMCURRENCYCODE;
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
-  constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private httpClient: HttpClient, 
+  constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private hereService: HereService, 
     httpErrorHandler: HttpErrorHandler) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
   }
 
-  hereGeo$: Observable<RootObject1> = null;
+  hereGeo$: Observable<HereGeo> = null;
   autoCompleteControlForAddress = new FormControl();
   _initHereGeos(): void {
     this.hereGeo$ = this.autoCompleteControlForAddress.valueChanges.pipe(
@@ -66,26 +68,12 @@ export class AdCreateFormService {
       })
     );
   }
-
-  //https://api.github.com/search/repositories?q=a&sort=stars&order=desc
-  //https://theinfogrid.com/tech/developers/angular/ng-material-autocomplete-http-lookup/
-  hereGeoFind(query: string): Observable<RootObject1> {
-    const url = 'https://autocomplete.geocoder.api.here.com/6.2/suggest.json?app_id=wiSaJwgTMCWhOmkvEXxc&app_code=6e19RoRJT_hw4Gi-8gnvHw&query=Pariser+1+Berl';
-    return this.httpClient
-      .get<RootObject1>(url, {
-        observe: 'response',
-        params: {
-          q: query,
-          sort: 'stars',
-          order: 'desc'
-        }
-      })
-      .pipe(
-        map(res => {
-          return res.body;
-        })
-      );
+  
+  hereGeoFind(query: string): Observable<HereGeo> {
+    return this.hereService.getAutoComplete(this.herGeoUrl, query);
   }
+
+  
 
   filteredCurrencyCodes: Observable<string[]>;
   _initCurrencies(): void {

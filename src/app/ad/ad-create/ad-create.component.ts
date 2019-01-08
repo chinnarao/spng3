@@ -7,8 +7,6 @@ import { AdCreateFormService } from './ad-create-form.service';
 import { SharedService } from 'src/app/_core/shared.service';
 import { User } from 'src/app/_models/user';
 import { Subscription } from 'rxjs';
-import { Util } from 'src/app/_core/util';
-import { XhrService } from 'src/app/_core/xhr.service';
 
 @Component({
   selector: 'app-ad-create',
@@ -25,8 +23,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   errors = [];
 
   constructor(private toastrService: ToastrService, private adService: AdService, 
-    private adCreateFormService: AdCreateFormService, private sharedService: SharedService,
-    private xhrService: XhrService ) {
+    private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
       this.formSvc = adCreateFormService;
       this.userSource$ = sharedService.userLatest$.subscribe(data => { this.user = data; });
   }
@@ -36,7 +33,6 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     this.formSvc._initCategories();
     this.formSvc._initCurrencies();
     this.formSvc._initHereGeos();
-    //makeCorsRequest
   }
 
   onSubmit() {
