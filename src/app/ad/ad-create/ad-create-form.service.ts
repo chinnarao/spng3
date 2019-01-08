@@ -9,9 +9,9 @@ import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
 import { Constants } from "src/app/_core/constants";
 import { Observable, of } from "rxjs";
-import { map, startWith, debounceTime, distinctUntilChanged, switchMap, catchError } from "rxjs/operators";
+import { map, startWith, debounceTime, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
-import { KeyValueDescription, HereGeo, Items, GithubResponse } from "src/app/_models/ad-lookup.models";
+import { KeyValueDescription, RootObject } from "src/app/_models/ad-lookup.models";
 import { range } from "src/app/_core/validators";
 import { GeoLocationService } from "src/app/_map/geo-location.service";
 import { HttpClient } from "@angular/common/http";
@@ -41,7 +41,7 @@ export class AdCreateFormService {
     this.form.patchValue(this.AdFormDefaultData);
   }
 
-  hereGeo$: Observable<Items> = null;
+  hereGeo$: Observable<RootObject[]> = null;
   autoCompleteControlForAddress = new FormControl();
   _initHereGeos(): void {
     this.hereGeo$ = this.autoCompleteControlForAddress.valueChanges.pipe(
@@ -58,20 +58,21 @@ export class AdCreateFormService {
     );
   }
 
-  filteredHereGeos(value: string): Observable<Items> {
+  filteredHereGeos(value: string): Observable<RootObject[]> {
     return this.hereGeoFind(value.toLowerCase()).pipe(
-      map(results => results.items),
+      map(results => results),
       catchError(_ => {
         return of(null);
       })
     );
   }
 
+  //https://api.github.com/search/repositories?q=a&sort=stars&order=desc
   //https://theinfogrid.com/tech/developers/angular/ng-material-autocomplete-http-lookup/
-  hereGeoFind(query: string): Observable<GithubResponse> {
-    const url = 'https://api.github.com/search/repositories';
+  hereGeoFind(query: string): Observable<RootObject[]> {
+    const url = 'https://jsonplaceholder.typicode.com/users';
     return this.httpClient
-      .get<GithubResponse>(url, {
+      .get<RootObject[]>(url, {
         observe: 'response',
         params: {
           q: query,
@@ -242,11 +243,5 @@ export class AdCreateFormService {
     m.category = this.categories[0];
     m.condition = this.conditions[0];
     return m;
-  }
-
-  //https://api.github.com/users/seeschweiler
-  //https://jsonplaceholder.typicode.com/users
-  getUsers(): Observable<any> {
-    return this.httpClient.get<any>('https://jsonplaceholder.typicode.com/users')
   }
 }
