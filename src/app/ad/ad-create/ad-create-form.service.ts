@@ -233,52 +233,13 @@ export class AdCreateFormService {
     return m;
   }
 
-  //fnPriceQuoteHandler: Function;
-
-  callback_BingMapAfterUserInputted(result){
-    console.log(result);
-  }
-  callback_BingMapLoaded(result){
+  callback_BingMapAddressAfterSelected(result){
     console.log("Bing Map Loaded successfully! and script registered successfully.");
     console.log(result);
-    //this.fnPriceQuoteHandler();
-    //this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer",this.callback_BingMapAfterUserInputted)
   }
 
-  //bingApiItems$: Observable<string[]> = null;
-  //autoCompleteControlForBingAddress = new FormControl();
   _initBingApi(): void {
     console.log("0000");
-    //this.fnPriceQuoteHandler= obj => this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer",this.callback_BingMapAfterUserInputted);
-    this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer", this.callback_BingMapLoaded);
-    // this.bingApiItems$ = this.autoCompleteControlForBingAddress.valueChanges.pipe(
-    //   startWith(''),
-    //   debounceTime(300),
-    //   // use switch map so as to cancel previous subscribed events, before creating new once
-    //   switchMap(value => {
-    //     if (value !== '') {
-    //       console.log("1111");
-    //       return this.filteredBingApiItems(value);
-    //     } else {
-    //       return of(null);
-    //     }
-    //   })
-    // );
+    this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer", this.callback_BingMapAddressAfterSelected);
   }
-
-  // filteredBingApiItems(value: string): Observable<string[]> {
-  //   console.log("2222");
-  //   return this.bingFind(value.toLowerCase()).pipe(
-  //     map(results => results.suggestions),
-  //     catchError(_ => {
-  //       console.log("error101");
-  //       return of(null);
-  //     })
-  //   );
-  // }
-  
-  // bingFind(query: string): Observable<HereGeo> {
-  //   console.log("3333");
-  //   return this.bingMapsService.autosuggest(query);
-  // }
 }
