@@ -7,13 +7,12 @@ import { JwtInterceptor } from "./jwt.interceptor";
 import { LocalStorageService } from "./local-storage.service";
 import { SharedService } from './shared.service';
 import { XhrService } from './xhr.service';
-import { HereService } from './here.service';
 
 const PROVIDERS = [
   CustomHttpClient,
   { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-  LocalStorageService, LocalStorageState, SharedService, XhrService, HereService
+  LocalStorageService, LocalStorageState, SharedService, XhrService
 ];
 
 @NgModule({

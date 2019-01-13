@@ -93,8 +93,8 @@
               <mat-form-field style="width:200px !important; margin-left: 5px;">
                 <input matInput type="text" [formControl]="formSvc.autoCompleteControlForAddress" placeholder="find your address" [matAutocomplete]="HereAutoComplete">
                 <mat-autocomplete autoActiveFirstOption #HereAutoComplete="matAutocomplete">
-                  <mat-option *ngFor="let hereGeo of formSvc.hereGeo$ | async; let index = index" [value]="hereGeo.label">
-                    {{ hereGeo.label}}
+                  <mat-option *ngFor="let hereGeo of formSvc.hereGeo$ | async; let index = index" [value]="hereGeo">
+                    {{ hereGeo}}
                   </mat-option>
                 </mat-autocomplete>
                 <mat-error *ngIf="formSvc.form.controls['category'].errors?.required">{{formSvc.FIELD_MSG_REQ}}</mat-error>
@@ -123,6 +123,12 @@
               <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </div>
           </div>
+          <span>=====================================================</span>
+          <div class="form-element location" id='searchBoxContainer'>
+            <label for="address">Address</label>
+            <input id='searchBox' formControlName="address" type="text" placeholder="Address" autocomplete="off">
+          </div>
+          <span>=====================================================</span>
         </form>
       </div>
     </article>
@@ -132,6 +138,6 @@
   </div>
 </div>
 
-<button mat-raised-button color="primary" (click)="xhr()">xhr call</button>
+<button mat-raised-button color="primary" (click)="onSubmit()">submit</button>
 <app-ad-create-map></app-ad-create-map>
 

@@ -1,3 +1,4 @@
+//https://developer.here.com/api-explorer/rest/geocoding_suggestions
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HereGeo } from '../_models/here-geo.models';
@@ -5,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 @Injectable()
-export class HereService {
+export class MapTilerCloudService {
 
   constructor(private httpClient: HttpClient) {}
 

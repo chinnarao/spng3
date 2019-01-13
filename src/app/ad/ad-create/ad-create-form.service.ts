@@ -16,14 +16,15 @@ import { GeoLocationService } from "src/app/_map/geo-location.service";
 import { HandleError, HttpErrorHandler } from "src/app/_core/http-error-handler.service";
 import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
 import { HereGeo, Suggestion, Address } from "src/app/_models/here-geo.models";
-import { HereService } from "src/app/_core/here.service";
+import { HereService } from "src/app/_map/here.service";
+import { BingMapsService } from "src/app/_map/bing-maps.service";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
-  herGeoUrl = Util.hereGeoUrl();
+  
 
   private handleError: HandleError;
 
@@ -37,7 +38,7 @@ export class AdCreateFormService {
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
   constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private hereService: HereService, 
-    httpErrorHandler: HttpErrorHandler) {
+    httpErrorHandler: HttpErrorHandler, private bingMapsService: BingMapsService) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
@@ -70,10 +71,8 @@ export class AdCreateFormService {
   }
   
   hereGeoFind(query: string): Observable<HereGeo> {
-    return this.hereService.getAutoComplete(this.herGeoUrl, query);
+    return this.hereService.getAutoComplete(query);
   }
-
-  
 
   filteredCurrencyCodes: Observable<string[]>;
   _initCurrencies(): void {
@@ -219,6 +218,7 @@ export class AdCreateFormService {
         addressCountryName: [null],
         addressLongitude: [null],
         addressLatitude: [null],
+        address: [''],
       }
     );
     return this.form;
@@ -232,4 +232,53 @@ export class AdCreateFormService {
     m.condition = this.conditions[0];
     return m;
   }
+
+  //fnPriceQuoteHandler: Function;
+
+  callback_BingMapAfterUserInputted(result){
+    console.log(result);
+  }
+  callback_BingMapLoaded(result){
+    console.log("Bing Map Loaded successfully! and script registered successfully.");
+    console.log(result);
+    //this.fnPriceQuoteHandler();
+    //this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer",this.callback_BingMapAfterUserInputted)
+  }
+
+  //bingApiItems$: Observable<string[]> = null;
+  //autoCompleteControlForBingAddress = new FormControl();
+  _initBingApi(): void {
+    console.log("0000");
+    //this.fnPriceQuoteHandler= obj => this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer",this.callback_BingMapAfterUserInputted);
+    this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer", this.callback_BingMapLoaded);
+    // this.bingApiItems$ = this.autoCompleteControlForBingAddress.valueChanges.pipe(
+    //   startWith(''),
+    //   debounceTime(300),
+    //   // use switch map so as to cancel previous subscribed events, before creating new once
+    //   switchMap(value => {
+    //     if (value !== '') {
+    //       console.log("1111");
+    //       return this.filteredBingApiItems(value);
+    //     } else {
+    //       return of(null);
+    //     }
+    //   })
+    // );
+  }
+
+  // filteredBingApiItems(value: string): Observable<string[]> {
+  //   console.log("2222");
+  //   return this.bingFind(value.toLowerCase()).pipe(
+  //     map(results => results.suggestions),
+  //     catchError(_ => {
+  //       console.log("error101");
+  //       return of(null);
+  //     })
+  //   );
+  // }
+  
+  // bingFind(query: string): Observable<HereGeo> {
+  //   console.log("3333");
+  //   return this.bingMapsService.autosuggest(query);
+  // }
 }

@@ -11,9 +11,7 @@ export class ScriptLoadService {
       script.type = 'text/javascript';
       script.src = url;
       script.id = id;
-      script.addEventListener('load', function (e) {
-        c(null, e);
-      }, false);
+      script.addEventListener('load', function (e) { c(null, e); }, false);
       document.head.appendChild(script);
     }
   }
