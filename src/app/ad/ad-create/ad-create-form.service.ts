@@ -17,7 +17,9 @@ import { HandleError, HttpErrorHandler } from "src/app/_core/http-error-handler.
 import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
 import { HereGeo, Suggestion, Address } from "src/app/_models/here-geo.models";
 import { HereService } from "src/app/_map/here.service";
-import { BingMapsService } from "src/app/_map/bing-maps.service";
+import { BingService } from "src/app/_map/bing.service";
+import { MapTilerService } from "src/app/_map/map-tiler.service";
+import { MapTilerModels, MapTilerModel } from "src/app/_map/map-tiler.model";
 
 @Injectable()
 export class AdCreateFormService {
@@ -38,7 +40,7 @@ export class AdCreateFormService {
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
   constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private hereService: HereService, 
-    httpErrorHandler: HttpErrorHandler, private bingMapsService: BingMapsService) {
+    httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
@@ -145,7 +147,8 @@ export class AdCreateFormService {
         addressCountryCode: [null],
         addressCountryName: [null],
         longitude: [ad.addressLongitude],
-        latitude: [ad.addressLatitude]
+        latitude: [ad.addressLatitude],
+        address: [null],
       }
     );
     return this.form;
@@ -233,13 +236,37 @@ export class AdCreateFormService {
     return m;
   }
 
-  callback_BingMapAddressAfterSelected(result){
+  callback_BingLocationSelected(result){
     console.log("Bing Map Loaded successfully! and script registered successfully.");
     console.log(result);
   }
 
-  _initBingApi(): void {
-    console.log("0000");
-    this.bingMapsService.initSuggestionsApi("#searchBox","#searchBoxContainer", this.callback_BingMapAddressAfterSelected);
+  typeaheadBing(): void {
+    this.bingService.typeaheadData("#bingTypeaheadInput","#bingTypeaheadDivContainer", this.callback_BingLocationSelected);
   }
+
+  typeaheadMapTilerList$: Observable<MapTilerModel[]> = null;
+  typeaheadMapTilerControl = new FormControl();
+  typeaheadMapTiler(): void {
+    this.typeaheadMapTilerList$ = this.typeaheadMapTilerControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      // use switch map so as to cancel previous subscribed events, before creating new once
+      switchMap(value => {
+        if (value !== '') {
+          return this.typeaheadMapTilerFilteredList(value);
+        } else {
+          return of(null);
+        }
+      })
+    );
+  }
+
+  typeaheadMapTilerFilteredList(value: string): Observable<MapTilerModel[]> {
+    return this.mapTilerService.typeaheadData(value.toLowerCase()).pipe(
+      map(results => results),
+      catchError(_ => of(null) )
+    );
+  }
+
 }

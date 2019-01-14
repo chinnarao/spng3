@@ -22,9 +22,10 @@ export const environment = {
     bing:{
       url: 'https://www.bing.com/api/maps/mapcontrol',
       branch: 'experimental',
-      key: 'AuZK107sn3Zl--InWSe139TSeFGHCyJciqUloRApHqGD98O9M55Nmn1i9G0zdfEI',
-      key_others1: 'AgPn8P9gDiOFuiw33ebWeLKdx29J1Z-dNh3PqN03rsgLvu4bTQZwiDvQuwxFhqcZ',
-      key_others2: 'AktQDKefhl630pH0Dfe5TQJ6GRUDoT16CHPs0BNpBBJxq1u7LBlJOEdhpzQ4TN3_',
+      key:          'AuZK107sn3Zl--InWSe139TSeFGHCyJciqUloRApHqGD98O9M55Nmn1i9G0zdfEI',
+      key_others1:  'AgPn8P9gDiOFuiw33ebWeLKdx29J1Z-dNh3PqN03rsgLvu4bTQZwiDvQuwxFhqcZ',
+      key_others2:  'AktQDKefhl630pH0Dfe5TQJ6GRUDoT16CHPs0BNpBBJxq1u7LBlJOEdhpzQ4TN3_',
+      key_others3:  'Ap0AObt84NcDaUThCeWOj52ZqUHv6k4TJhjLibR-DghC-semgoj-0uPbIi8r0E4j',
     },
     google: {},
     here: {
@@ -34,7 +35,7 @@ export const environment = {
     },
     mapTiler:{
       key: '1f5ewga5zToMPWGAnuFf',
-      url: 'https://geocoder.tilehosting.com/q/[query].js?key=1f5ewga5zToMPWGAnuFf'
+      url: 'https://geocoder.tilehosting.com'
     }
   }
 };

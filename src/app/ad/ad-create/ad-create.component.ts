@@ -32,8 +32,9 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     this.user = this.sharedService.getUser();
     this.formSvc._initCategories();
     this.formSvc._initCurrencies();
-    //this.formSvc._initHereGeos();
-    this.formSvc._initBingApi();
+    this.formSvc._initHereGeos();
+    this.formSvc.typeaheadBing();
+    this.formSvc.typeaheadMapTiler();
   }
 
   onSubmit() {

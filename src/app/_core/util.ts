@@ -17,7 +17,7 @@ export class Util {
     return country.CurrencySymbol;
   }
 
-  public static loadScript(src: string, id : string, isSync: boolean, isDefer: boolean, apiLoaderCallbackFnName: string, callback?: () => void): void {
+  public static scriptRegister(src: string, id : string, isSync: boolean, isDefer: boolean, apiLoaderCallbackFnName: string, callback?: () => void): void {
     if(!document.getElementById(id)){
       window[apiLoaderCallbackFnName] = callback || (() => {});
       if (!document.getElementById(id)) {
