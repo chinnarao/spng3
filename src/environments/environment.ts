@@ -36,6 +36,9 @@ export const environment = {
     mapTiler:{
       key: '1f5ewga5zToMPWGAnuFf',
       url: 'https://geocoder.tilehosting.com'
+    },
+    geoIPDb: {
+      url: "https://geoip-db.com/json"
     }
   }
 };

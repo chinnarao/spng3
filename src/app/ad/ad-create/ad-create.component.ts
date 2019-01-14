@@ -30,9 +30,9 @@ export class AdCreateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.user = this.sharedService.getUser();
-    this.formSvc._initCategories();
-    this.formSvc._initCurrencies();
-    this.formSvc._initHereGeos();
+    this.formSvc.typeaheadCategories();
+    this.formSvc.typeaheadCurrencies();
+    this.formSvc.typeaheadHere();
     this.formSvc.typeaheadBing();
     this.formSvc.typeaheadMapTiler();
   }

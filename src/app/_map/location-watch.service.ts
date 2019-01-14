@@ -3,7 +3,7 @@ import { Injectable, EventEmitter } from "@angular/core";
 declare type GeoLocationServiceState = "disabled" | "searching" | "tracking";
 
 @Injectable()
-export class GeoLocationService {
+export class LocationWatchService {
 
     private state: GeoLocationServiceState;
     private watchNumber: number;

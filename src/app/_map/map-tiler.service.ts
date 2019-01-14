@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-export interface MapTilerModel101 {
+export interface MapTilerModel {
   alternative_names: string;
   boundingbox?: (number)[] | null;
   city: string;
@@ -47,7 +47,7 @@ export class MapTilerService {
   typeaheadUrl(query: string): string {
     const url = environment.map.mapTiler.url;
     const key = environment.map.mapTiler.key;
-    query = encodeURI(query);
+    query = encodeURI(query.toLowerCase());
     const autoCompleteurl = `${url}/q/${query}.js?key=${key}`;
     return autoCompleteurl;
   }

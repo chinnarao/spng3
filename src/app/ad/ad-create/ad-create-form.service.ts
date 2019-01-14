@@ -12,21 +12,18 @@ import { Observable, of } from "rxjs";
 import { map, startWith, debounceTime, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
 import { range } from "src/app/_core/validators";
-import { GeoLocationService } from "src/app/_map/geo-location.service";
+import { LocationCurrentService } from "src/app/_map/location-current.service";
 import { HandleError, HttpErrorHandler } from "src/app/_core/http-error-handler.service";
 import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
-import { HereGeo, Suggestion, Address } from "src/app/_models/here-geo.models";
-import { HereService } from "src/app/_map/here.service";
+import { HereService, HereModel } from "src/app/_map/here.service";
 import { BingService } from "src/app/_map/bing.service";
-import { MapTilerService } from "src/app/_map/map-tiler.service";
-import { MapTilerModels, MapTilerModel } from "src/app/_map/map-tiler.model";
+import { MapTilerService, MapTilerModel } from "src/app/_map/map-tiler.service";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
-  
 
   private handleError: HandleError;
 
@@ -39,75 +36,11 @@ export class AdCreateFormService {
   FIELD_HINT_ITEMCURRENCYCODE = Constants.FIELD_HINT_ITEMCURRENCYCODE;
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
-  constructor(private fb: FormBuilder, private geoLocationService : GeoLocationService, private hereService: HereService, 
+  constructor(private fb: FormBuilder, private locationCurrentService : LocationCurrentService, private hereService: HereService, 
     httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
-  }
-
-  hereGeo$: Observable<HereGeo> = null;
-  autoCompleteControlForAddress = new FormControl();
-  _initHereGeos(): void {
-    this.hereGeo$ = this.autoCompleteControlForAddress.valueChanges.pipe(
-      startWith(''),
-      debounceTime(300),
-      // use switch map so as to cancel previous subscribed events, before creating new once
-      switchMap(value => {
-        if (value !== '') {
-          return this.filteredHereGeos(value);
-        } else {
-          return of(null);
-        }
-      })
-    );
-  }
-
-  filteredHereGeos(value: string): Observable<Suggestion[]> {
-    return this.hereGeoFind(value.toLowerCase()).pipe(
-      map(results => results.suggestions),
-      catchError(_ => {
-        return of(null);
-      })
-    );
-  }
-  
-  hereGeoFind(query: string): Observable<HereGeo> {
-    return this.hereService.getAutoComplete(query);
-  }
-
-  filteredCurrencyCodes: Observable<string[]>;
-  _initCurrencies(): void {
-    this.filteredCurrencyCodes = this.form.controls['itemCurrencyCode'].valueChanges.pipe(
-      startWith(""),
-      map(value => this._filterCurrencies(value))
-    );
-  }
-  _filterCurrencies(input: string): string[] {
-    const uniqueCurrencyCodes = Util.GetCurrencyCodesFromJson();
-    if (input) {
-      return uniqueCurrencyCodes.filter(c => c.toLowerCase().includes(input.toLowerCase())
-      );
-    }
-    return uniqueCurrencyCodes;
-  }
-
-  filteredCategories: Observable<any[]>;
-  _initCategories(): void {
-    this.filteredCategories = this.form.controls['category'].valueChanges.pipe(
-      startWith(null),
-      map(value => this._filterCategories(value))
-    );
-  }
-  _filterCategories(input: any): any[] {
-    if (input != null) {
-      const cats = this.categories.filter(c => c.value.toLowerCase().includes(input.toLowerCase()));
-      return cats;
-    }
-    return this.categories;
-  }
-  categoryDisplayFn(kvd: KeyValueDescription) {
-    if (kvd) { return kvd.value; }
   }
 
   GetDefaultForm(ad: AdModel) {
@@ -240,7 +173,6 @@ export class AdCreateFormService {
     console.log("Bing Map Loaded successfully! and script registered successfully.");
     console.log(result);
   }
-
   typeaheadBing(): void {
     this.bingService.typeaheadData("#bingTypeaheadInput","#bingTypeaheadDivContainer", this.callback_BingLocationSelected);
   }
@@ -254,7 +186,10 @@ export class AdCreateFormService {
       // use switch map so as to cancel previous subscribed events, before creating new once
       switchMap(value => {
         if (value !== '') {
-          return this.typeaheadMapTilerFilteredList(value);
+          return this.mapTilerService.typeaheadData(value).pipe(
+            map(results => results),
+            catchError(_ => of(null) )
+          );
         } else {
           return of(null);
         }
@@ -262,11 +197,77 @@ export class AdCreateFormService {
     );
   }
 
-  typeaheadMapTilerFilteredList(value: string): Observable<MapTilerModel[]> {
-    return this.mapTilerService.typeaheadData(value.toLowerCase()).pipe(
-      map(results => results),
-      catchError(_ => of(null) )
+  typeaheadHereList$: Observable<HereModel[]> = null;
+  typeaheadHereControl = new FormControl();
+  typeaheadHere(): void {
+    this.typeaheadHereList$ = this.typeaheadHereControl.valueChanges.pipe(
+      startWith(''),
+      debounceTime(300),
+      // use switch map so as to cancel previous subscribed events, before creating new once
+      switchMap(value => {
+        if (value !== '') {
+          return this.hereService.typeaheadData(value).pipe(
+            map(results => results.suggestions),
+            catchError(_ => of(null))
+          );
+        } else {
+          return of(null);
+        }
+      })
     );
+  }
+
+  typeaheadCategoryList$: Observable<any[]>;
+  typeaheadCategories(): void {
+    this.typeaheadCategoryList$ = this.form.controls['category'].valueChanges.pipe(
+      startWith(''),
+      map(input => {
+        if (input !== '') {
+          return this.categories.filter(c => c.value.toLowerCase().includes(input.value.toLowerCase()));
+        }
+        else {
+          return this.categories;
+        }
+      })
+    );
+  }
+  typeaheadCategoryDisplayFn(kvd: KeyValueDescription) {
+    if (kvd) { return kvd.value; }
+  }
+
+  typeaheadCurrencyList$: Observable<string[]>;
+  typeaheadCurrencies(): void {
+    this.typeaheadCurrencyList$ = this.form.controls['itemCurrencyCode'].valueChanges.pipe(
+      startWith(""),
+      map(value => {
+        const uniqueCurrencyCodes = Util.GetCurrencyCodesFromJson();
+        if (value !== '') {
+          return uniqueCurrencyCodes.filter(c => c.toLowerCase().includes(value.toLowerCase()));
+        } else {
+          return uniqueCurrencyCodes;
+        }
+      })
+    );
+  }
+
+  findLocation(){
+    const currentPosition$ = this.locationCurrentService.getLocationRxJs();
+    currentPosition$.subscribe(
+      position => {
+        if(position && position.coords){
+          this.BingLocationByPoint(position.coords.latitude, position.coords.longitude);
+        }
+      },
+      response => {console.log("GeoIPDb call in error", response);},
+      () => {console.log("The GeoIPDb call is now completed.");}
+    );
+  }
+
+  callback_BingLocationByPoint(answer: any, userData: any){
+    console.log(answer.address);
+  }
+  BingLocationByPoint(latitude: number, longitude: number): void {
+    this.bingService.searchData(latitude, longitude, this.callback_BingLocationByPoint);
   }
 
 }

@@ -25,17 +25,20 @@
            </fieldset>
            <fieldset style="text-align:left;">
             <legend>
-              Find Address: <span style="min-width: 10px;display: inline-block;"></span><mdc-icon>location_searching</mdc-icon>
+              Find Address: 
+              <!-- <span style="min-width: 10px;display: inline-block;"></span> -->
+              <button mat-icon-button (click)="formSvc.findLocation()">
+                <mdc-icon>location_searching</mdc-icon>
+              </button>
             </legend>
-            
               <div id='bingTypeaheadDivContainer'>
                   <input id='bingTypeaheadInput' formControlName="address" type="text" placeholder="find your Address" autocomplete="off">
                   <!-- <input id="searchBox" name="searchBox" matInput type="text" [formControl]="address" placeholder="find your address" [matAutocomplete]="HereAutoComplete"> -->
               </div>
             <mat-form-field style="width:200px !important; margin-left: 5px;">
-                <input matInput type="text" [formControl]="formSvc.autoCompleteControlForAddress" placeholder="find your address" [matAutocomplete]="HereAutoComplete">
+                <input matInput type="text" [formControl]="formSvc.typeaheadHereControl" placeholder="find your address" [matAutocomplete]="HereAutoComplete">
                 <mat-autocomplete autoActiveFirstOption #HereAutoComplete="matAutocomplete">
-                  <mat-option *ngFor="let hereGeo of formSvc.hereGeo$ | async; let index = index" [value]="hereGeo.label">
+                  <mat-option *ngFor="let hereGeo of formSvc.typeaheadHereList$ | async; let index = index" [value]="hereGeo.label">
                     {{ hereGeo.label}}
                   </mat-option>
                 </mat-autocomplete>
@@ -87,8 +90,8 @@
               </mat-form-field>
               <mat-form-field style="width:200px !important; margin-left: 5px;">
                 <input matInput type="text" formControlName="category" placeholder="Category" [matAutocomplete]="category" required>
-                <mat-autocomplete #category="matAutocomplete" [displayWith]="formSvc.categoryDisplayFn">
-                  <mat-option *ngFor="let category of formSvc.filteredCategories | async" [value]="category">
+                <mat-autocomplete #category="matAutocomplete" [displayWith]="formSvc.typeaheadCategoryDisplayFn">
+                  <mat-option *ngFor="let category of formSvc.typeaheadCategoryList$ | async" [value]="category">
                     {{category.description}}
                   </mat-option>
                 </mat-autocomplete>
@@ -102,7 +105,7 @@
               <mat-form-field hintLabel="{{formSvc.FIELD_HINT_ITEMCURRENCYCODE}}" style="width:60px !important; margin-left: 5px;">
                 <input matInput type="text" placeholder="Code" formControlName="itemCurrencyCode" [matAutocomplete]="itemCurrencyCode" [ngStyle]="{'text-transform': 'uppercase'}">
                 <mat-autocomplete #itemCurrencyCode="matAutocomplete" >
-                  <mat-option *ngFor="let itemCurrencyCode of formSvc.filteredCurrencyCodes | async" [value]="itemCurrencyCode">
+                  <mat-option *ngFor="let itemCurrencyCode of formSvc.typeaheadCurrencyList$ | async" [value]="itemCurrencyCode">
                     {{itemCurrencyCode}}
                   </mat-option>
                 </mat-autocomplete>
@@ -110,7 +113,6 @@
               <mat-form-field hintLabel="{{formSvc.FIELD_HINT_ITEMCOST}}" style="width:100px !important; margin-left: 5px;">
                 <input matInput #inputCost formControlName='itemCost' placeholder="Cost" decimalsOnly>
               </mat-form-field>
-              
             </div>
            </fieldset>
           <div>
@@ -135,9 +137,6 @@
               <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
             </div>
           </div>
-          <span>=====================================================</span>
-          
-          <span>=====================================================</span>
         </form>
       </div>
     </article>

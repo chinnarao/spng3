@@ -1,8 +1,9 @@
 import { HereService } from './here.service';
 import { NgModule, ModuleWithProviders } from "@angular/core";
-import { GeoLocationService } from "./geo-location.service";
+import { LocationCurrentService } from "./location-current.service";
 import { MapTilerService } from './map-tiler.service';
 import { BingService } from './bing.service';
+import { GeoIPDbService } from './geoip-db.service';
 
 @NgModule({
   imports: [],
@@ -14,7 +15,7 @@ export class MapModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: MapModule,
-      providers: [GeoLocationService, HereService, BingService, MapTilerService]
+      providers: [LocationCurrentService, HereService, BingService, MapTilerService, GeoIPDbService]
     };
   }
 }
