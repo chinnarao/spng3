@@ -1,38 +1,28 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
-import { CDK_CONNECTED_OVERLAY_SCROLL_STRATEGY } from "@angular/cdk/overlay/typings/overlay-directives";
-import { GeoIPDbService } from "./geoip-db.service";
 
 //https://www.w3schools.com/html/html5_geolocation.asp
 
-
-export interface Position {
-  coords: Coordinates, 
-  timestamp: number
-}
-
 //https://www.codingame.com/playgrounds/3799/html-geolocation
-export interface Coordinates {
-  latitude:number,
-  longitude:number,
-  accuracy:number,
-  // altitude?:number,
-  // altitudeAccuracy?:number
-  // heading?:string,
-  // speed?:number
-}
+// export interface Position {
+//   coords: Coordinates, 
+//   timestamp: number
+// }
+
+// export interface Coordinates {
+//   latitude:number,
+//   longitude:number,
+//   accuracy:number,
+//   // altitude?:number,
+//   // altitudeAccuracy?:number
+//   // heading?:string,
+//   // speed?:number
+// }
 
 @Injectable()
 export class LocationCurrentService {
 
   errorMsg : string;
-  // Default = {
-  //   latitude : 18.5793,
-  //   longitude : 18.5793,
-  //   center: true,
-  //   zoom: 15,
-  //   mapTypeId: google.maps.MapTypeId.ROADMAP
-  // };
 
   GEOLOCATION_ERRORS = {
     "errors.location.unsupportedBrowser": "Browser does not support location services",
@@ -41,7 +31,7 @@ export class LocationCurrentService {
     "errors.location.timeout": "Service timeout has been reached"
   };
 
-  constructor(private geoIPDbService: GeoIPDbService){}
+  constructor(){}
 
   public getLocationRxJs(geoLocationOptions?: any): Observable<any> {
     geoLocationOptions = geoLocationOptions || { timeout: 5000 };
@@ -87,12 +77,9 @@ export class LocationCurrentService {
     }
   }
   
- private showPosition(position) {
-  this.errorMsg = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
-  
-  var latlon = position.coords.latitude + "," + position.coords.longitude;
-  //var img_url = "https://maps.googleapis.com/maps/api/staticmap?center=" + latlon + "&zoom=14&size=400x300&sensor=false&key=YOUR_:KEY";
-  //document.getElementById("mapholder").innerHTML = "<img src='"+img_url+"'>";
+  private showPosition(position) {
+    const lat = position.coords.latitude ;
+    const lon = position.coords.longitude;
   }
   
   private showError(error) {
@@ -114,7 +101,3 @@ export class LocationCurrentService {
   }
 
 }
-
-// export let geolocationServiceInjectables: Array<any> = [
-//   { provide: GeoLocationService, useClass: GeoLocationService }
-// ];

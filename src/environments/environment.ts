@@ -26,6 +26,8 @@ export const environment = {
       key_others1:  'AgPn8P9gDiOFuiw33ebWeLKdx29J1Z-dNh3PqN03rsgLvu4bTQZwiDvQuwxFhqcZ',
       key_others2:  'AktQDKefhl630pH0Dfe5TQJ6GRUDoT16CHPs0BNpBBJxq1u7LBlJOEdhpzQ4TN3_',
       key_others3:  'Ap0AObt84NcDaUThCeWOj52ZqUHv6k4TJhjLibR-DghC-semgoj-0uPbIi8r0E4j',
+      key_others4:  'Av_ZYW1QE7oZPoRV_0Lgdmc93z6Km8TYzRRQI3RaoB5aRkT91oOsn7KTLo2TIcWQ',
+      autoSuggest: "https://github.com/AniMysore74/bing-autosuggest-angular/blob/master/src/app/services/bing-service.ts",
     },
     google: {},
     here: {

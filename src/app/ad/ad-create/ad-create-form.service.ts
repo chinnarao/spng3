@@ -18,6 +18,7 @@ import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
 import { HereService, HereModel } from "src/app/_map/here.service";
 import { BingService } from "src/app/_map/bing.service";
 import { MapTilerService, MapTilerModel } from "src/app/_map/map-tiler.service";
+import { GeoIPDbService } from "src/app/_map/geoip-db.service";
 
 @Injectable()
 export class AdCreateFormService {
@@ -37,7 +38,8 @@ export class AdCreateFormService {
   DAYS_TO_DISPLAY = Constants.DAYS_TO_DISPLAY;
 
   constructor(private fb: FormBuilder, private locationCurrentService : LocationCurrentService, private hereService: HereService, 
-    httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService) {
+    httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService,
+    private geoIPDbService: GeoIPDbService) {
     this.handleError = httpErrorHandler.createHandleError("AdService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
@@ -257,9 +259,15 @@ export class AdCreateFormService {
         if(position && position.coords){
           this.BingLocationByPoint(position.coords.latitude, position.coords.longitude);
         }
+        else{
+          this.addressPopulate();
+        }
       },
-      response => {console.log("GeoIPDb call in error", response);},
-      () => {console.log("The GeoIPDb call is now completed.");}
+      response => {
+        console.log("browser find location call in error", response);
+        this.addressPopulate();
+      },
+      () => {console.log("The browser find location call is now completed.");}
     );
   }
 
@@ -268,6 +276,10 @@ export class AdCreateFormService {
   }
   BingLocationByPoint(latitude: number, longitude: number): void {
     this.bingService.searchData(latitude, longitude, this.callback_BingLocationByPoint);
+  }
+
+  addressPopulate(){
+    this.geoIPDbService.geoIPDbData(); // todo
   }
 
 }
