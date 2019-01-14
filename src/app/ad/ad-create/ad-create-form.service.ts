@@ -1,3 +1,4 @@
+import { LatLon } from './../../_models/ad.models';
 import { Injectable } from "@angular/core";
 import {
   FormBuilder,
@@ -7,7 +8,7 @@ import {
 } from "@angular/forms";
 import { AdModel } from "src/app/_models/ad.models";
 import lookup from "src/assets/data/lookup.json";
-import { Constants } from "src/app/_core/constants";
+import { Constants, GeoCodeReverseWithLatLonEnum } from "src/app/_core/constants";
 import { Observable, of } from "rxjs";
 import { map, startWith, debounceTime, switchMap, catchError } from "rxjs/operators";
 import { Util } from "src/app/_core/util";
@@ -19,12 +20,15 @@ import { HereService, HereModel } from "src/app/_map/here.service";
 import { BingService } from "src/app/_map/bing.service";
 import { MapTilerService, MapTilerModel } from "src/app/_map/map-tiler.service";
 import { GeoIPDbService, GeoIPDbModel } from "src/app/_map/geoip-db.service";
+import { EsriService, esriAddressModel } from "src/app/_map/esri.service";
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
+  LatLon: LatLon = new LatLon();
   temp = "this is temp";
 
   private handleError: HandleError;
@@ -40,7 +44,7 @@ export class AdCreateFormService {
 
   constructor(private fb: FormBuilder, private locationCurrentService : LocationCurrentService, private hereService: HereService, 
     httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService,
-    private geoIPDbService: GeoIPDbService) {
+    private geoIPDbService: GeoIPDbService, private esriService: EsriService) {
     this.handleError = httpErrorHandler.createHandleError("AdCreateFormService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
@@ -254,38 +258,67 @@ export class AdCreateFormService {
   }
 
   knowYourLocation(){
+    if( this.LatLon && this.LatLon.Lat && this.LatLon.Lon){
+      this.addressPopulateFrom3rdParty();
+      return;
+    }
     const currentPosition$ = this.locationCurrentService.getLocationRxJs();
     currentPosition$.subscribe(
       position => {
         if(position && position.coords){
-          this.BingLocationByPoint(position.coords.latitude, position.coords.longitude);
-        }
-        else{
-          this.addressPopulateFromGeoIPDbApi();
+          this.LatLon.Lat = position.coords.latitude;
+          this.LatLon.Lon = position.coords.longitude;
         }
       },
       response => {
-        console.log(response);
-        this.addressPopulateFromGeoIPDbApi();
       },
-      () => {}
+      () => { this.addressPopulateFrom3rdParty();}
     );
   }
 
   callback_BingLocationByPoint(answer: any, userData: any){
     console.log(answer.address);
   }
-  BingLocationByPoint(latitude: number, longitude: number): void {
-    this.bingService.searchData(latitude, longitude, this.callback_BingLocationByPoint);
+
+  addressPopulateFrom3rdParty(){
+    if( this.LatLon && this.LatLon.Lat && this.LatLon.Lon){
+      switch (environment.map.whichGeoCodeReverseWithLatLon.toLowerCase()) {
+        case GeoCodeReverseWithLatLonEnum.BING.toLowerCase():
+          this.address_Bing();
+          break;
+        case GeoCodeReverseWithLatLonEnum.ESRI.toLowerCase():
+          this.address_Esri();
+          break;
+        default:
+          this.address_Bing();
+          break;
+      }
+    }
+    else{
+      this.address_GeoIPDb();
+    }
   }
 
-  addressPopulateFromGeoIPDbApi(){
-    this.geoIPDbService.geoIPDbData().subscribe(
+  private address_Bing(): void {
+    this.bingService.searchData(this.LatLon.Lat, this.LatLon.Lon, this.callback_BingLocationByPoint);
+  }
+  private address_GeoIPDb(): void {
+    this.geoIPDbService.geoIPDbReverseGeoCode().subscribe(
       result => {
           this.temp = this.temp + result.postal;
       },
       response => {console.log("GeoIPDb call in error", response);},
-      () => {console.log("The GeoIPDb call is now completed.");}
+      () => {console.log("GeoIPDb call is now completed.");}
+    );
+  }
+  private address_Esri(): void {
+    this.esriService.esriReverseGeoCode(this.LatLon.Lat,this.LatLon.Lon).subscribe(
+      result => {
+          const address : esriAddressModel = <esriAddressModel>result.address;
+          this.temp = address.LongLabel;
+      },
+      response => {console.log("Esri call in error", response);},
+      () => {console.log("Esri call is now completed.");}
     );
   }
 

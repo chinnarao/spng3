@@ -32,11 +32,11 @@
               </button>
             </legend>
               <div id='bingTypeaheadDivContainer'>
-                  <input id='bingTypeaheadInput' formControlName="address" type="text" placeholder="find your Address" autocomplete="off">
+                  <input id='bingTypeaheadInput' formControlName="address" type="text" placeholder="find your Address(bing)" autocomplete="off">
                   <!-- <input id="searchBox" name="searchBox" matInput type="text" [formControl]="address" placeholder="find your address" [matAutocomplete]="HereAutoComplete"> -->
               </div>
             <mat-form-field style="width:200px !important; margin-left: 5px;">
-                <input matInput type="text" [formControl]="formSvc.typeaheadHereControl" placeholder="find your address" [matAutocomplete]="HereAutoComplete">
+                <input matInput type="text" [formControl]="formSvc.typeaheadHereControl" placeholder="find your address(here)" [matAutocomplete]="HereAutoComplete">
                 <mat-autocomplete autoActiveFirstOption #HereAutoComplete="matAutocomplete">
                   <mat-option *ngFor="let hereGeo of formSvc.typeaheadHereList$ | async; let index = index" [value]="hereGeo.label">
                     {{ hereGeo.label}}
@@ -44,7 +44,7 @@
                 </mat-autocomplete>
               </mat-form-field>
               <mat-form-field style="width:200px !important; margin-left: 5px;">
-                  <input matInput type="text" [formControl]="formSvc.typeaheadMapTilerControl" placeholder="find your address" [matAutocomplete]="MapTilerAutoComplete">
+                  <input matInput type="text" [formControl]="formSvc.typeaheadMapTilerControl" placeholder="find your address(map tiler)" [matAutocomplete]="MapTilerAutoComplete">
                   <mat-autocomplete autoActiveFirstOption #MapTilerAutoComplete="matAutocomplete">
                     <mat-option *ngFor="let mapTiler of formSvc.typeaheadMapTilerList$ | async; let index = index" [value]="mapTiler.display_name">
                       {{ mapTiler.display_name}}

@@ -19,6 +19,9 @@ export const environment = {
       messagingSenderId: '633429318654',
   },
   map: {
+    whichGeoCodeReverseWithLatLon: "bing",
+    whichGeoCodeReverseWithoutLatLon: "geoIPDb",
+    whichTypeaheadApi: "bing",
     bing:{
       url: 'https://www.bing.com/api/maps/mapcontrol',
       branch: 'experimental',
@@ -42,7 +45,10 @@ export const environment = {
     geoIPDb: {
       url: "https://geoip-db.com/json/dd367f80-17d5-11e9-8dde-63ec6a7ac566",
     },
-    esri:{}
+    esri:{
+      url: "http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?f=json&location=",
+      key: "you can use key but later",
+    }
   }
 };
 

@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-export interface esriAddress {
+export interface esriAddressModel {
     Match_addr: string;
     LongLabel: string;
     ShortLabel: string;
@@ -36,20 +35,9 @@ export class EsriService {
 
   constructor(private httpClient: HttpClient) {}
 
-  typeaheadUrl(): string {
-    const autoCompleteUrl = environment.map.here.autoCompleteUrl;
-    const app_id = environment.map.here.app_id;
-    const app_code = environment.map.here.app_code;
-    let url = `${autoCompleteUrl}?app_id=${app_id}&app_code=${app_code}&query=`
-    return url;
-  }
-
-  public typeaheadData(query: string): Observable<any> {
-    query = query.toLowerCase();
-    const url = this.typeaheadUrl() + query;
-    const params = { q: query, sort: 'stars', order: 'desc' };
-    return this.httpClient.get<any>(url, { observe: 'response', params: params})
-      .pipe( map(res => { console.log(res.body); return res.body;}));
+  public esriReverseGeoCode(latitude:number, longitude:number): Observable<any> {
+    const url = environment.map.esri.url + [longitude, latitude].join(",");
+    return this.httpClient.get<any>(url);
   }
 
 }

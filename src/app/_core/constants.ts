@@ -18,6 +18,10 @@ export const enum Constants {
 const enum Breakpoints { xs = 'xs', sm = 'sm', md = 'md', lg = 'lg' }
 enum Direction { Up = 'UP', Down = 'DOWN', Left = 'LEFT', Right = 'RIGHT' }
 
+export const enum GeoCodeReverseWithLatLonEnum { BING = 'bing', ESRI = 'esri', GOOGLE = 'google' }
+export const enum GeoCodeReverseWithoutLatLonEnum { GEOIPDB = 'geoipdb' }
+export const enum TypeaheadApiEnum { BING = 'bing', MAPTILER = 'maptiler', HERE = 'here' }
+
 
 export const Headers_Content_Type_Text: HttpHeaders = new HttpHeaders({ 'Content-Type': 'text/plain' });
 export const Headers_Content_Type_Json: HttpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' }); //; charset=utf-8

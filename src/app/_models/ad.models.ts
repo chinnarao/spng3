@@ -21,6 +21,11 @@ export class AdSearchModel {
   mapLattitude: string = "";
 }
 
+export class LatLon {
+  Lat: number;
+  Lon: number;
+}
+
 export class AdModel {
   adId: string;
   adTitle: string;

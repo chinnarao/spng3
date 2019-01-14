@@ -21,7 +21,7 @@ export class GeoIPDbService {
     geoIPDbModel: GeoIPDbModel;
     constructor(private httpClient: HttpClient) {}
 
-    public geoIPDbData(): Observable<GeoIPDbModel> {
+    public geoIPDbReverseGeoCode(): Observable<GeoIPDbModel> {
         return this.httpClient.get<GeoIPDbModel>(environment.map.geoIPDb.url);
     }
 
