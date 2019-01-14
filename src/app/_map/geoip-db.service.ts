@@ -1,8 +1,7 @@
 //https://developer.here.com/api-explorer/rest/geocoding_suggestions
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { HttpClient} from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
 export interface GeoIPDbModel {
@@ -22,18 +21,8 @@ export class GeoIPDbService {
     geoIPDbModel: GeoIPDbModel;
     constructor(private httpClient: HttpClient) {}
 
-    public geoIPDbData(): GeoIPDbModel {
-        const geoIPDB$ = this.httpClient.get<any>(environment.map.geoIPDb.url);
-        geoIPDB$.subscribe(
-            result => {
-                console.log("GeoIPDb call successful value returned in body", result);
-                this.geoIPDbModel = result;
-                console.log(result);
-            },
-            response => {console.log("GeoIPDb call in error", response);},
-            () => {console.log("The GeoIPDb call is now completed.");}
-        );
-        return this.geoIPDbModel;
+    public geoIPDbData(): Observable<GeoIPDbModel> {
+        return this.httpClient.get<GeoIPDbModel>(environment.map.geoIPDb.url);
     }
 
 }

@@ -4,10 +4,35 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
-//https://github.com/sam18093ui/UI/blob/fea1e141ba8483032ee5f9531a1b9b044f2f7e55/gooogleemaps.ts
+export interface esriAddress {
+    Match_addr: string;
+    LongLabel: string;
+    ShortLabel: string;
+    Addr_type: string;
+    Type: string;
+    PlaceName: string;
+    AddNum: string;
+    Address: string;
+    Block: string;
+    Sector: string;
+    Neighborhood: string;
+    District: string;
+    City: string;
+    MetroArea: string;
+    Subregion: string;
+    Region: string;
+    Territory: string;
+    Postal: string;
+    PostalExt: string;
+    CountryCode: string;
+}
+
+//https://developers.arcgis.com/rest/geocode/api-reference/geocoding-reverse-geocode.htm#ESRI_SECTION1_0E738E9A0EFB49B2B56DD240AFFF46BF
+//http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/reverseGeocode?f=json&location=-118.0356,33.9413
+//x: longitude, y: latitude
 
 @Injectable()
-export class GoogleService {
+export class EsriService {
 
   constructor(private httpClient: HttpClient) {}
 

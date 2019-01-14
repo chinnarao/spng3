@@ -40,8 +40,9 @@ export const environment = {
       url: 'https://geocoder.tilehosting.com'
     },
     geoIPDb: {
-      url: "https://geoip-db.com/json"
-    }
+      url: "https://geoip-db.com/json/dd367f80-17d5-11e9-8dde-63ec6a7ac566",
+    },
+    esri:{}
   }
 };
 

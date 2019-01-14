@@ -18,13 +18,14 @@ import { KeyValueDescription } from "src/app/_models/ad-lookup.models";
 import { HereService, HereModel } from "src/app/_map/here.service";
 import { BingService } from "src/app/_map/bing.service";
 import { MapTilerService, MapTilerModel } from "src/app/_map/map-tiler.service";
-import { GeoIPDbService } from "src/app/_map/geoip-db.service";
+import { GeoIPDbService, GeoIPDbModel } from "src/app/_map/geoip-db.service";
 
 @Injectable()
 export class AdCreateFormService {
   form: FormGroup;
   categories = lookup.categoryOptionsBy;
   conditions = lookup.conditionOptionsBy;
+  temp = "this is temp";
 
   private handleError: HandleError;
 
@@ -40,7 +41,7 @@ export class AdCreateFormService {
   constructor(private fb: FormBuilder, private locationCurrentService : LocationCurrentService, private hereService: HereService, 
     httpErrorHandler: HttpErrorHandler, private bingService: BingService, private mapTilerService: MapTilerService,
     private geoIPDbService: GeoIPDbService) {
-    this.handleError = httpErrorHandler.createHandleError("AdService");
+    this.handleError = httpErrorHandler.createHandleError("AdCreateFormService");
     this.form = this.AdForm;
     this.form.patchValue(this.AdFormDefaultData);
   }
@@ -252,7 +253,7 @@ export class AdCreateFormService {
     );
   }
 
-  findLocation(){
+  knowYourLocation(){
     const currentPosition$ = this.locationCurrentService.getLocationRxJs();
     currentPosition$.subscribe(
       position => {
@@ -260,14 +261,14 @@ export class AdCreateFormService {
           this.BingLocationByPoint(position.coords.latitude, position.coords.longitude);
         }
         else{
-          this.addressPopulate();
+          this.addressPopulateFromGeoIPDbApi();
         }
       },
       response => {
-        console.log("browser find location call in error", response);
-        this.addressPopulate();
+        console.log(response);
+        this.addressPopulateFromGeoIPDbApi();
       },
-      () => {console.log("The browser find location call is now completed.");}
+      () => {}
     );
   }
 
@@ -278,8 +279,14 @@ export class AdCreateFormService {
     this.bingService.searchData(latitude, longitude, this.callback_BingLocationByPoint);
   }
 
-  addressPopulate(){
-    this.geoIPDbService.geoIPDbData(); // todo
+  addressPopulateFromGeoIPDbApi(){
+    this.geoIPDbService.geoIPDbData().subscribe(
+      result => {
+          this.temp = this.temp + result.postal;
+      },
+      response => {console.log("GeoIPDb call in error", response);},
+      () => {console.log("The GeoIPDb call is now completed.");}
+    );
   }
 
 }

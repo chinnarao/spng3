@@ -27,7 +27,7 @@
             <legend>
               Find Address: 
               <!-- <span style="min-width: 10px;display: inline-block;"></span> -->
-              <button mat-icon-button (click)="formSvc.findLocation()">
+              <button mat-icon-button (click)="formSvc.knowYourLocation()">
                 <mdc-icon>location_searching</mdc-icon>
               </button>
             </legend>
@@ -145,7 +145,7 @@
     </aside>
   </div>
 </div>
-
+<span>{{formSvc.temp}}</span>
 <button mat-raised-button color="primary" (click)="onSubmit()">submit</button>
 <app-ad-create-map></app-ad-create-map>
 
