@@ -39,8 +39,8 @@ export interface BingAddressModel {
 export class BingService {
 
   bingKey = environment.map.bing.key;
-  BingMapsSuggestionsConfig = { autoDetectLocation: true, placeSuggestions: false, maxResults: 5, showBingLogo: false };
-  private bingMapManager: Microsoft.Maps.AutosuggestManager;
+  //BingMapsSuggestionsConfig = { autoDetectLocation: true, placeSuggestions: false, maxResults: 5 };
+  //private bingMapManager: Microsoft.Maps.AutosuggestManager;
 
   constructor() {}
 
@@ -58,7 +58,7 @@ export class BingService {
   }
 
   private url(): string {
-    const url = environment.map.bing.url;
+    const url = environment.map.bing.url; //https://www.bing.com/api/maps/mapcontrol
     const key = this.bingKey;
     const branch = environment.map.bing.branch;
     const autoCompleteurl = `${url}?branch=${branch}&key=${key}&callback=`
@@ -67,14 +67,8 @@ export class BingService {
 
   private autoSuggestModule(inputId: string, resultsId: string, callback: (results) => void): void {
     Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', {
-        callback: () => {
-            this.bingMapManager = new Microsoft.Maps.AutosuggestManager(this.BingMapsSuggestionsConfig);
-            this.bingMapManager.attachAutosuggest(inputId, resultsId, callback);
-        },
-        credentials: this.bingKey,
-        errorCallback: () => {
-            console.error('Error getting address autosugesstions');
-        }
+        callback: () => { new Microsoft.Maps.AutosuggestManager({ autoDetectLocation: true, placeSuggestions: false, maxResults: 5 }).attachAutosuggest(inputId, resultsId, callback); },
+        errorCallback: () => {console.error('Error getting address autosugesstions'); }
     });
   }
 
