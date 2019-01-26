@@ -73,4 +73,8 @@ export class AdModel {
   updatedDateTimeString: string;
   category: KeyValueDescription;
   condition: KeyValueDescription;
+  isBingTypeaheadShow: boolean;
+  isHereTypeaheadShow: boolean;
+  isMapTilerTypeaheadShow: boolean;
+  isGoogleTypeaheadShow: boolean;
 }

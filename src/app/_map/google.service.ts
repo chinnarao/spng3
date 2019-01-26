@@ -1,30 +1,65 @@
+/// <reference types="@types/googlemaps" />
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Observable, Observer } from 'rxjs';
 
-//https://github.com/sam18093ui/UI/blob/fea1e141ba8483032ee5f9531a1b9b044f2f7e55/gooogleemaps.ts
+//https://developers.google.com/maps/documentation/javascript/
+// https://github.com/robisim74/angular-maps/blob/04864c37e653ab0ad93b87dc4badcb9a098061a9/src/app/app.component.ts
+@Injectable() export class GoogleService {
 
-@Injectable()
-export class GoogleService {
+    geocoder: google.maps.Geocoder;
 
-  constructor(private httpClient: HttpClient) {}
+    constructor() {
+        this.geocoder = new google.maps.Geocoder();
+    }
 
-  typeaheadUrl(): string {
-    const autoCompleteUrl = environment.map.here.autoCompleteUrl;
-    const app_id = environment.map.here.app_id;
-    const app_code = environment.map.here.app_code;
-    let url = `${autoCompleteUrl}?app_id=${app_id}&app_code=${app_code}&query=`
-    return url;
-  }
+    /**
+     * Reverse geocoding by location.
+     * Wraps the Google Maps API geocoding service into an observable.
+     * @param lat, @param lng are Location coordinates
+     * @return An observable of GeocoderResult
+     */
+    geocode(lat: number, lng: number): Observable<google.maps.GeocoderResult[]> {
+        const position = new google.maps.LatLng(lat, lng);
+        return Observable.create((observer: Observer<google.maps.GeocoderResult[]>) => {
+            // Invokes geocode method of Google Maps API geocoding.
+            this.geocoder.geocode({ location: position }, (
+                (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        observer.next(results);
+                        observer.complete();
+                    } else {
+                        console.log('Geocoding service: geocoder failed due to: ' + status);
+                        observer.error(status);
+                    }
+                })
+            );
+        });
+    }
 
-  public typeaheadData(query: string): Observable<any> {
-    query = query.toLowerCase();
-    const url = this.typeaheadUrl() + query;
-    const params = { q: query, sort: 'stars', order: 'desc' };
-    return this.httpClient.get<any>(url, { observe: 'response', params: params})
-      .pipe( map(res => { console.log(res.body); return res.body;}));
-  }
+    /**
+     * Geocoding service.
+     * Wraps the Google Maps API geocoding service into an observable.
+     * @param address The address to be searched
+     * @return An observable of GeocoderResult
+     */
+    codeAddress(address: string): Observable<google.maps.GeocoderResult[]> {
+        return Observable.create((observer: Observer<google.maps.GeocoderResult[]>) => {
+            // Invokes geocode method of Google Maps API geocoding.
+            this.geocoder.geocode({ address: address }, (
+                (results: google.maps.GeocoderResult[], status: google.maps.GeocoderStatus) => {
+                    if (status === google.maps.GeocoderStatus.OK) {
+                        observer.next(results);
+                        observer.complete();
+                    } else {
+                        console.log(
+                            'Geocoding service: geocode was not successful for the following reason: '
+                            + status
+                        );
+                        observer.error(status);
+                    }
+                })
+            );
+        });
+    }
 
 }

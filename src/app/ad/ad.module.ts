@@ -1,6 +1,6 @@
 import { AdCreateFormService } from './ad-create/ad-create-form.service';
 import { MdcModule } from "./../_core/mdc-module";
-import { NgModule } from "@angular/core";
+import { NgModule, ChangeDetectorRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { AdRoutingModule } from "./ad-routing.module";
@@ -20,6 +20,7 @@ import { NumberDirective } from '../_directives/numbers-only.directive';
 import { DecimalsOnlyDirective } from '../_directives/decimals-only.directive';
 import { MapModule } from '../_map/map.module';
 import { AdCreateMapComponent } from './ad-create-map/ad-create-map.component';
+import { GooglePlacesDirective } from '../_directives/google-places.directive';
 
 const IMPORTS = [
   CommonModule,
@@ -43,9 +44,10 @@ const DECLARATIONS = [
   AdSearchCriteriaComponent,
   NumberDirective,
   DecimalsOnlyDirective,
+  GooglePlacesDirective,
 ];
 
-const PROVIDERS = [AdService, AdRuntime, AdCreateFormService];
+const PROVIDERS = [ChangeDetectorRef, AdService, AdRuntime, AdCreateFormService];
 
 @NgModule({
   imports: [IMPORTS],

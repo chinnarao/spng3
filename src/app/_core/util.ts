@@ -34,5 +34,17 @@ export class Util {
       console.log("script is already included and trying to include again?");
     }
   }
+
+  //https://www.google.com/maps/@35.463637,-118.789785,15z
+  public static googleLatLonUrl(latitude:number, longitude:number): any {
+    const url = "https://www.google.com/maps/@" + [longitude, latitude].join(",");
+    return url;
+  }
+
+  //https://maps.google.com/?q=loc: 11020 Tipperary dr Bakersfield CA US
+  public static googleAddressUrl(location: string): any {
+    const url = encodeURI("https://maps.google.com/?q=loc:" + location);
+    return url;
+  }
   
 }

@@ -23,6 +23,9 @@ export class GeoIPDbService {
 
     public geoIPDbReverseGeoCode(): Observable<GeoIPDbModel> {
         return this.httpClient.get<GeoIPDbModel>(environment.map.geoIPDb.url);
-    }
-
+	}
+	
+	public FormattedAddress(d: GeoIPDbModel): any {
+		return [d.city, d.postal, d.state, d.country_code].join(" ");
+	}
 }

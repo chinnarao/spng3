@@ -48,6 +48,10 @@ export const ads: AdModel[] = [
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
         category: null,
         condition: null,
+        isBingTypeaheadShow: false,
+        isHereTypeaheadShow: false,
+        isMapTilerTypeaheadShow: false,
+        isGoogleTypeaheadShow: false,
     },
     {
         adId: '636671112867386101',
@@ -97,5 +101,9 @@ export const ads: AdModel[] = [
         updatedDateTimeString: '2018-10-22T06:06:52+00:00',
         category: null,
         condition: null,
+        isBingTypeaheadShow: false,
+        isHereTypeaheadShow: false,
+        isMapTilerTypeaheadShow: false,
+        isGoogleTypeaheadShow: false,
     }
 ];

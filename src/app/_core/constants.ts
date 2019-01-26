@@ -20,7 +20,7 @@ enum Direction { Up = 'UP', Down = 'DOWN', Left = 'LEFT', Right = 'RIGHT' }
 
 export const enum GeoCodeReverseWithLatLonEnum { BING = 'bing', ESRI = 'esri', GOOGLE = 'google' }
 export const enum GeoCodeReverseWithoutLatLonEnum { GEOIPDB = 'geoipdb' }
-export const enum TypeaheadApiEnum { BING = 'bing', MAPTILER = 'maptiler', HERE = 'here' }
+export const enum TypeaheadApiEnum { BING = 'bing', MAPTILER = 'maptiler', HERE = 'here', GOOGLE = 'google' }
 
 
 export const Headers_Content_Type_Text: HttpHeaders = new HttpHeaders({ 'Content-Type': 'text/plain' });

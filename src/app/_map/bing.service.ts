@@ -12,6 +12,7 @@ export interface BingAddressModel {
   addressLine: string, // houseNumber and street name
   adminDistrict: string, // state name
   countryRegion: string, // country name
+  countryRegionISO2: string //US
   district: string,      // county name or distring name
   formattedAddress: string, // full address
   locality: string,         // not accurate, near land mark or big area or region

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { AdModel } from 'src/app/_models/ad.models';
 import { ToastrService } from 'ngx-toastr';
 import { AdService } from '../ad.service';
@@ -13,7 +13,8 @@ import { Subscription } from 'rxjs';
   templateUrl: './ad-create.component.html',
   styleUrls: ['./ad-create.component.scss'],
   providers: [
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdCreateComponent implements OnInit, OnDestroy {
   user: User;
@@ -23,7 +24,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
   errors = [];
 
   constructor(private toastrService: ToastrService, private adService: AdService, 
-    private adCreateFormService: AdCreateFormService, private sharedService: SharedService) {
+    private adCreateFormService: AdCreateFormService, private sharedService: SharedService, private cd: ChangeDetectorRef) {
       this.formSvc = adCreateFormService;
       this.userSource$ = sharedService.userLatest$.subscribe(data => { this.user = data; });
   }
@@ -32,9 +33,7 @@ export class AdCreateComponent implements OnInit, OnDestroy {
     this.user = this.sharedService.getUser();
     this.formSvc.typeaheadCategories();
     this.formSvc.typeaheadCurrencies();
-    this.formSvc.typeaheadHere();
-    this.formSvc.typeaheadBing();
-    this.formSvc.typeaheadMapTiler();
+    this.formSvc.typeaheads(this.cd);
   }
 
   onSubmit() {
