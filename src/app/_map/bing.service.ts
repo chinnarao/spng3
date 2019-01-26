@@ -86,18 +86,17 @@ export class BingService {
   }
 
   private searchModule(latitude: number, longitude: number, callback: (answer, userData) => void): void {
-
+    console.log("Bing searchModule fn started!");
     var ele = document.createElement("div");
     ele.setAttribute("id","myMap");
     var map = new Microsoft.Maps.Map(ele, {});
 
     Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-      var searchManager = new Microsoft.Maps.Search.SearchManager(map);
       var reverseGeocodeRequestOptions = {
           location: new Microsoft.Maps.Location(latitude, longitude),
           callback: callback,
         };
-      searchManager.reverseGeocode(reverseGeocodeRequestOptions);
+      new Microsoft.Maps.Search.SearchManager(map).reverseGeocode(reverseGeocodeRequestOptions);
     });
   }
 

@@ -197,16 +197,6 @@ export class AdCreateFormService {
     });
   }
 
-  private googleMapsStaticLatLonURL(): any {
-    if( this.LatLon && this.LatLon.Lat && this.LatLon.Lon){
-      const staticGoogleMapsURL = Util.googleLatLonUrl(this.LatLon.Lat, this.LatLon.Lon);
-      this.form.patchValue({
-        staticGoogleMapsURL: staticGoogleMapsURL
-      });
-      this.changeDetectorRef.detectChanges();
-    }
-  }
-
   typeaheadMapTilerList$: Observable<MapTilerModel[]> = null;
   typeaheadMapTilerControl = new FormControl();
   typeaheadMapTiler(): void {
@@ -287,14 +277,13 @@ export class AdCreateFormService {
     }
     const currentPosition$ = this.locationCurrentService.getLocationRxJs();
     currentPosition$.subscribe(
-      position => {
-        if(position && position.coords){
-          this.LatLon.Lat = position.coords.latitude;
-          this.LatLon.Lon = position.coords.longitude;
+      res => {
+        if(res && res.coords){
+          this.LatLon.Lat = res.coords.latitude;
+          this.LatLon.Lon = res.coords.longitude;
         }
       },
-      response => {
-      },
+      err => { this.addressPopulateFrom3rdParty();},
       () => { this.addressPopulateFrom3rdParty();}
     );
   }
@@ -322,8 +311,10 @@ export class AdCreateFormService {
   }
 
   private address_Bing(): void {
+    console.log("k-your-l_4");
     this.bingService.searchData(this.LatLon.Lat, this.LatLon.Lon, (answer: any, userData: any) => {
       if (answer && answer.address) {
+        console.log("k-your-l_5");
         const bingAddressModel: BingAddressModel = <BingAddressModel>answer.address;
         const staticGoogleMapsURL = Util.googleAddressUrl(bingAddressModel.formattedAddress);
         this.form.patchValue({
@@ -380,8 +371,8 @@ export class AdCreateFormService {
           this.changeDetectorRef.detectChanges();
         }
       },
-      response => {console.log("GeoIPDb call in error", response);},
-      () => {console.log("GeoIPDb call is now completed.");}
+      err => {console.log("GeoIPDb Error:", err);},
+      () => {}
     );
   }
 

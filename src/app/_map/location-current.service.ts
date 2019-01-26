@@ -2,27 +2,10 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 
 //https://www.w3schools.com/html/html5_geolocation.asp
-
 //https://www.codingame.com/playgrounds/3799/html-geolocation
-// export interface Position {
-//   coords: Coordinates, 
-//   timestamp: number
-// }
-
-// export interface Coordinates {
-//   latitude:number,
-//   longitude:number,
-//   accuracy:number,
-//   // altitude?:number,
-//   // altitudeAccuracy?:number
-//   // heading?:string,
-//   // speed?:number
-// }
 
 @Injectable()
 export class LocationCurrentService {
-
-  errorMsg : string;
 
   GEOLOCATION_ERRORS = {
     "errors.location.unsupportedBrowser": "Browser does not support location services",
@@ -33,17 +16,17 @@ export class LocationCurrentService {
 
   constructor(){}
 
-  public getLocationRxJs(geoLocationOptions?: any): Observable<any> {
-    geoLocationOptions = geoLocationOptions || { timeout: 5000 };
+  public getLocationRxJs(): Observable<any> {
+    
     return Observable.create(observer => {
       if (window.navigator && window.navigator.geolocation) {
         window.navigator.geolocation.getCurrentPosition(
-          position => {
-            observer.next(position);
+          successCallback => {
+            observer.next(successCallback);
             observer.complete();
           },
-          error => {
-            switch (error.code) {
+          errorCallback => {
+            switch (errorCallback.code) {
               case 1:
                 observer.error(
                   this.GEOLOCATION_ERRORS["errors.location.permissionDenied"]
@@ -59,45 +42,42 @@ export class LocationCurrentService {
                 break;
             }
           },
-          geoLocationOptions
+          { timeout: 5000 }
         );
       } else {
         observer.error(
           this.GEOLOCATION_ERRORS["errors.location.unsupportedBrowser"]
         );
       }
-    });
+    }); 
+
   }
 
-  public getLocationJs() {
+  public getLocationJs(positionCallback?: (position: any) => void) {
     if (window && window.navigator && window.navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition, this.showError);
+      navigator.geolocation.getCurrentPosition(positionCallback, this.showError);
     } else { 
-      this.errorMsg = "Geolocation is not supported by this browser.";
+      console.log("Geolocation is not supported by this browser.");
     }
-  }
-  
-  private showPosition(position) {
-    const lat = position.coords.latitude ;
-    const lon = position.coords.longitude;
   }
   
   private showError(error) {
+    let errorMsg : string;
     switch(error.code) {
       case error.PERMISSION_DENIED:
-        this.errorMsg = "User denied the request for Geolocation."
+        errorMsg = "User denied the request for Geolocation."
         break;
       case error.POSITION_UNAVAILABLE:
-        this.errorMsg = "Location information is unavailable."
+        errorMsg = "Location information is unavailable."
         break;
       case error.TIMEOUT:
-        this.errorMsg = "The request to get user location timed out."
+        errorMsg = "The request to get user location timed out."
         break;
       case error.UNKNOWN_ERROR:
-        this.errorMsg = "An unknown error occurred."
+        errorMsg = "An unknown error occurred."
         break;
     }
-    console.log(this.errorMsg);
+    console.log(errorMsg);
   }
 
 }

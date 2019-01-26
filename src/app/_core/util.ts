@@ -18,10 +18,6 @@ export class Util {
   }
 
   public static scriptRegister(src: string, id : string, isSync: boolean, isDefer: boolean, apiLoaderCallbackFnName: string, callback?: () => void): void {
-    // if(document.getElementById(id)){
-    //   var head = document.getElementsByTagName("head")[0];
-    //   head.parentNode.removeChild(document.getElementById(id));
-    // }
     window[apiLoaderCallbackFnName] = callback || (() => {});
     const script = document.createElement('script');
     script.type = 'text/javascript';
@@ -30,6 +26,7 @@ export class Util {
     script.defer = isDefer;
     script.id = id;
     document.head.appendChild(script);
+    console.log("script id: ", id);
   }
 
   //https://www.google.com/maps/@35.463637,-118.789785,15z
